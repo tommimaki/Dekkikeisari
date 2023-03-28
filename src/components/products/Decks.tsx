@@ -4,7 +4,7 @@ const products = [
     { id: 1, name: 'Rullalauta A', image: 'https://via.placeholder.com/200', price: '99.99 €' },
     { id: 2, name: 'Rullalauta B', image: 'https://via.placeholder.com/200', price: '109.99 €' },
     { id: 3, name: 'Rullalauta C', image: 'https://via.placeholder.com/200', price: '119.99 €' },
-    { id: 3, name: 'Rullalauta C', image: 'https://via.placeholder.com/200', price: '119.99 €' },
+    { id: 4, name: 'Rullalauta C', image: 'https://via.placeholder.com/200', price: '119.99 €' },
 
     // Add more products
 ];

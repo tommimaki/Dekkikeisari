@@ -7,6 +7,7 @@ import Shirts from './components/products/Shirts';
 import Shoes from './components/products/Shoes';
 import SignUp from './components/user/signup';
 import Products from './components/products/Products'
+import AdminPanel from './admin/AdminPanel';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/shoes' element={<Shoes />} />
           <Route path='/products' element={<Products />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/admin' element={<AdminPanel />} />
 
 
         </Routes>
