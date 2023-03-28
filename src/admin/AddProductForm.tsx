@@ -41,10 +41,20 @@ const AddProductForm: React.FC = () => {
 
             const result = await addProduct(product);
             console.log('Product added successfully:', result);
+            setName('');
+            setDescription('');
+            setPrice('');
+            setCategory('');
+            setImageUrl('');
         } catch (error) {
             console.error('Error adding product:', error);
         }
     };
+
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setCategory(e.target.value);
+    };
+
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -59,7 +69,7 @@ const AddProductForm: React.FC = () => {
                     className="mt-1 w-full border border-gray-300 rounded p-2"
                 />
             </div>
-            {/* Add more input fields for other fields like description, price, category, and image_url */}
+
             <div>
                 <label htmlFor="description" className="block text-sm font-medium">Description</label>
                 <textarea
@@ -81,14 +91,20 @@ const AddProductForm: React.FC = () => {
                 />
             </div>
             <div>
-                <label htmlFor="category" className="block text-sm font-medium">Category</label>
-                <input
-                    type="text"
+                <label htmlFor="category" className="block text-sm font-medium">
+                    Category
+                </label>
+                <select
                     id="category"
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={handleCategoryChange}
                     className="mt-1 w-full border border-gray-300 rounded p-2"
-                />
+                >
+                    <option value="">-- Select category --</option>
+                    <option value="Skateboards">Skateboards</option>
+                    <option value="Shirts">Shirts</option>
+                    <option value="Shoes">Shoes</option>
+                </select>
             </div>
             <div>
                 <label htmlFor="image_url" className="block text-sm font-medium">Image URL</label>
