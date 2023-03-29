@@ -8,6 +8,8 @@ import Shoes from './components/products/Shoes';
 import SignUp from './components/user/signup';
 import Products from './components/products/Products'
 import AdminPanel from './admin/AdminPanel';
+import ProductPage from './components/products/ProductPage';
+
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -28,6 +30,7 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/admin' element={<AdminPanel />} />
+          <Route path="/products/:id" element={<ProductPage />} />
 
 
         </Routes>
