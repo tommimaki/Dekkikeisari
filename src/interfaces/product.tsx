@@ -6,7 +6,7 @@ interface Product {
   image_url: string;
   price: number;
   category: string;
-  sizes: string[]; // Add this line
+  sizes: string; // Add this line
 }
 
 export default Product;

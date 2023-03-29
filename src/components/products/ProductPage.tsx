@@ -22,6 +22,7 @@ const ProductPage = () => {
     if (!product) {
         return <div>Loading...</div>;
     }
+    console.log(product)
 
     return (
         <div className="py-8">
@@ -29,8 +30,7 @@ const ProductPage = () => {
             <h3 className="text-2xl font-semibold mb-4">{product.name}</h3>
             <p className="text-gray-700">{product.description}</p>
             <p className="text-gray-700 mb-4">{product.price}€</p>
-
-            {product.sizes && product.sizes.length > 0 && (
+            {product.sizes && (
                 <div className="mb-4">
                     <label htmlFor="size" className="block mb-2">Size</label>
                     <select
@@ -40,18 +40,26 @@ const ProductPage = () => {
                         className="w-full border border-gray-300 p-2 rounded"
                     >
                         <option value="">Select a size</option>
-                        {product.sizes.map((size: string) => (
-                            <option key={size} value={size}>{size}</option>
-                        ))}
+                        {(() => {
+                            const parsedSizes = JSON.parse(product.sizes);
+                            return parsedSizes.map((sizeString: string) => (
+                                <option
+                                    key={sizeString}
+                                    value={sizeString}
+                                >
+                                    {sizeString}
+                                </option>
+                            ));
+                        })()}
                     </select>
                 </div>
             )}
-
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" disabled={!selectedSize}>
                 Add to cart
             </button>
         </div>
     );
+
 };
 
 export default ProductPage;
