@@ -6,8 +6,14 @@ interface Product {
   image_url: string;
   price: number;
   category: string;
-  sizes: string; // Add this line
+  sizes: string;
+  quantity?: number;
 }
+
+// interface CartProduct extends Product {
+//   quantity: number;
+// }
+
 
 export default Product;
 
