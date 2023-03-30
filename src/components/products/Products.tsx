@@ -9,8 +9,6 @@ const Products = () => {
 
     return (
         <div>
-
-            <h1> tuotteet</h1>
             <Decks />
             <Shoes />
             <Shirts />
