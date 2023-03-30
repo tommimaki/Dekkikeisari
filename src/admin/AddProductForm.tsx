@@ -20,12 +20,37 @@ async function addProduct(product: any) {
     return await response.json();
 }
 
+
+
 const AddProductForm: React.FC = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
     const [image_url, setImageUrl] = useState('');
+    const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+    const [availableSizes, setAvailableSizes] = useState<string[]>([]);
+
+
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setCategory(e.target.value);
+
+        // Set available sizes based on the selected category
+        switch (e.target.value) {
+            case 'Skateboards':
+                setAvailableSizes(['7,5', '7.75', '8.0', '8.25', '8.5']);
+                break;
+            case 'Shirts':
+                setAvailableSizes(['XS', 'S', 'M', 'L', 'XL', 'XXL']);
+                break;
+            case 'Shoes':
+                setAvailableSizes(['36', '37', '38', '39', '40', '41', '42', '43', '44']);
+                break;
+            default:
+                setAvailableSizes([]);
+        }
+    };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -37,6 +62,7 @@ const AddProductForm: React.FC = () => {
                 price,
                 category,
                 image_url,
+                sizes: selectedSizes,
             };
 
             const result = await addProduct(product);
@@ -46,14 +72,12 @@ const AddProductForm: React.FC = () => {
             setPrice('');
             setCategory('');
             setImageUrl('');
+            setSelectedSizes([]); // clear selected sizes
         } catch (error) {
             console.error('Error adding product:', error);
         }
     };
 
-    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setCategory(e.target.value);
-    };
 
 
     return (
@@ -104,6 +128,26 @@ const AddProductForm: React.FC = () => {
                     <option value="Skateboards">Skateboards</option>
                     <option value="Shirts">Shirts</option>
                     <option value="Shoes">Shoes</option>
+                </select>
+            </div>
+            <div>
+                <label htmlFor="sizes" className="block text-sm font-medium">
+                    Sizes(cmd and click to select multiple)
+                </label>
+                <select
+                    id="sizes"
+                    value={selectedSizes}
+                    onChange={(e) =>
+                        setSelectedSizes(Array.from(e.target.selectedOptions, (option) => option.value))
+                    }
+                    className="mt-1 w-full border border-gray-300 rounded p-2"
+                    multiple // allow selecting multiple options
+                >
+                    {availableSizes.map((size) => (
+                        <option key={size} value={size}>
+                            {size}
+                        </option>
+                    ))}
                 </select>
             </div>
             <div>
