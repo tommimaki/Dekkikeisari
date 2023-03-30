@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import skatelogo from '../assets/skatelogo.jpeg'
+import Cart from "./ShoppingCart/Cart";
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -57,12 +58,7 @@ const Header = () => {
                         </Link>
 
 
-                        <Link
-                            to="/cart"
-                            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-400"
-                        >
-                            Cart
-                        </Link>
+                        <Cart />
 
                     </nav>
                 </div>

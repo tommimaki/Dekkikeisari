@@ -10,9 +10,6 @@ interface Product {
   quantity?: number;
 }
 
-// interface CartProduct extends Product {
-//   quantity: number;
-// }
 
 
 export default Product;
