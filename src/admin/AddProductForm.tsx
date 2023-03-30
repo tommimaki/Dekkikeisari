@@ -1,36 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent, useCallback } from 'react';
+import axios from 'axios';
 
+import { useDropzone } from 'react-dropzone';
 
-
-const API_URL = 'http://localhost:3001/products/add'; // Replace with your API URL
+const API_URL = 'http://localhost:3001/products/add';
 
 async function addProduct(product: any) {
-    const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product),
-    });
+    try {
+        // Log the FormData object's keys and values
+        product.forEach((value: any, key: string) => {
+            console.log(`${key}: ${value}`);
+        });
 
-    if (!response.ok) {
-        throw new Error(`Failed to add product: ${response.statusText}`);
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            body: product,
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Failed to add product: ${response.statusText} - ${errorMessage}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error in addProduct function:', error);
+        throw error;
     }
-
-    return await response.json();
 }
 
 
 
+
+
 const AddProductForm: React.FC = () => {
+    const [image, setImage] = useState<File | null>(null);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
-    const [image_url, setImageUrl] = useState('');
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [availableSizes, setAvailableSizes] = useState<string[]>([]);
 
+
+    //image stuff
+
+    const onDrop = useCallback(async (acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        setImage(file);
+    }, []);
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setCategory(e.target.value);
@@ -52,30 +71,28 @@ const AddProductForm: React.FC = () => {
     };
 
 
-    const handleSubmit = async (e: React.FormEvent) => {
+
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        try {
-            const product = {
-                name,
-                description,
-                price,
-                category,
-                image_url,
-                sizes: selectedSizes,
-            };
-
-            const result = await addProduct(product);
-            console.log('Product added successfully:', result);
-            setName('');
-            setDescription('');
-            setPrice('');
-            setCategory('');
-            setImageUrl('');
-            setSelectedSizes([]); // clear selected sizes
-        } catch (error) {
-            console.error('Error adding product:', error);
+        const formData = new FormData();
+        if (image) {
+            formData.append('image', image);
         }
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('price', price);
+        formData.append('category', category);
+        formData.append('sizes', JSON.stringify(selectedSizes));
+
+        await addProduct(formData);
+        setName('');
+        setDescription('');
+        setPrice('');
+        setCategory('');
+        setSelectedSizes([]);
+        setImage(null);
     };
 
 
@@ -116,7 +133,7 @@ const AddProductForm: React.FC = () => {
             </div>
             <div>
                 <label htmlFor="category" className="block text-sm font-medium">
-                    Category
+                    Category(choose before sizes)
                 </label>
                 <select
                     id="category"
@@ -150,15 +167,23 @@ const AddProductForm: React.FC = () => {
                     ))}
                 </select>
             </div>
+
             <div>
-                <label htmlFor="image_url" className="block text-sm font-medium">Image URL</label>
-                <input
-                    type="text"
-                    id="image_url"
-                    value={image_url}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    className="mt-1 w-full border border-gray-300 rounded p-2"
-                />
+                <label className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2">
+                    Product Image
+                </label>
+                <div
+                    {...getRootProps()}
+                    className={`border-dashed border-2 p-4 text-center ${isDragActive ? 'border-blue-500' : 'border-gray-600'
+                        }`}
+                >
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                        <p>Drop the image here...</p>
+                    ) : (
+                        <p>Drag and drop an image, or click to select a file</p>
+                    )}
+                </div>
             </div>
             <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
                 Add Product
