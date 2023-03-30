@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { FaTimes } from 'react-icons/fa';
-
-import { closeCart } from '../../features/cart/cartSlice'; // import the action creator
+import Checkout from './Checkout';
+import { closeCart, emptyCart } from '../../features/cart/cartSlice'; // import the action creator
 
 
 
@@ -11,9 +11,18 @@ const CartModal = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0);
+    const [showCheckout, setShowCheckout] = useState(false);
 
     const handleCloseCart = () => {
         dispatch(closeCart()); // use the closeCart action creator
+    };
+    const handleEmptyCart = () => {
+        dispatch(emptyCart()); // use the closeCart action creator
+    };
+
+    const handleCheckoutSuccess = () => {
+        handleEmptyCart(); // Empty the cart
+        handleCloseCart(); // Close the cart
     };
 
     useEffect(() => {
@@ -68,6 +77,9 @@ const CartModal = () => {
                             <div className="col-span-3">
                                 <p>{item.quantity}</p>
                             </div>
+                            {/* <div className="col-span-3">
+                                <p>{item.size}</p>
+                            </div> */}
                             <div className="col-span-3">
                                 <p>${(price * (item.quantity ?? 0)).toFixed(2)}</p>
                             </div>
@@ -80,6 +92,26 @@ const CartModal = () => {
                     </p>
                 </div>
             </div>
+            {!showCheckout && (
+                <button
+                    onClick={() => setShowCheckout(true)}
+                    className="checkout-button bg-gray-600 text-white p-4 rounded-md"
+                >
+                    Checkout
+                </button>
+            )}
+
+            {showCheckout && (
+                <>
+                    <button
+                        onClick={() => setShowCheckout(false)}
+                        className="back-to-cart-button"
+                    >
+                        Back to Cart
+                    </button>
+                    <Checkout onCheckoutSuccess={handleCheckoutSuccess} />
+                </>
+            )}
         </div>
     );
 };
