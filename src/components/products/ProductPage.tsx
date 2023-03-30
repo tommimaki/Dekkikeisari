@@ -25,11 +25,12 @@ const ProductPage = () => {
     }, [id]);
 
     const handleAddToCart = () => {
-        if (product) {
-            const cartProduct = { ...product, quantity };
+        if (product && selectedSize) {
+            const cartProduct = { ...product, quantity, size: selectedSize };
             dispatch(addToCart(cartProduct));
         }
     };
+
 
     if (!product) {
         return <div>Loading...</div>;
@@ -40,46 +41,50 @@ const ProductPage = () => {
     return (
         <div className="py-8 md:flex md:space-x-6">
             <div className="md:w-1/2">
-                <img src={product.image_url} alt={product.name} className="w-full h-60 object-cover mx-auto mb-4 rounded" />
+                <img src={product.image_url} alt={product.name} className="w-full sm:w-2/4 md:w-3/4 lg:w-full  h-60 object-cover mx-auto mb-4 rounded" />
+
             </div>
             <div className="md:w-1/2">
                 <h3 className="text-2xl font-semibold mb-4">{product.name}</h3>
                 <p className="text-gray-700">{product.description}</p>
                 <p className="text-gray-700 mb-4">{product.price}€</p>
-                {product.sizes && (
+                <div className='flex gap-6 justify-center'>
+
+                    {product.sizes && (
+                        <div className="mb-4">
+                            <label htmlFor="size" className="block mb-2">Size</label>
+                            <select
+                                id="size"
+                                value={selectedSize}
+                                onChange={(e) => setSelectedSize(e.target.value || '')}
+                                className="w-24 border border-gray-300 p-2 rounded"
+                            >
+                                <option value="">Select a size</option>
+                                {(() => {
+                                    const parsedSizes = JSON.parse(product.sizes);
+                                    return parsedSizes.map((sizeString: string) => (
+                                        <option
+                                            key={sizeString}
+                                            value={sizeString}
+                                        >
+                                            {sizeString}
+                                        </option>
+                                    ));
+                                })()}
+                            </select>
+                        </div>
+                    )}
                     <div className="mb-4">
-                        <label htmlFor="size" className="block mb-2">Size</label>
-                        <select
-                            id="size"
-                            value={selectedSize}
-                            onChange={(e) => setSelectedSize(e.target.value || '')}
+                        <label htmlFor="quantity" className="block mb-2">Quantity</label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            value={quantity}
+                            onChange={(e) => setQuantity(parseInt(e.target.value))}
+                            min={1}
                             className="w-24 border border-gray-300 p-2 rounded"
-                        >
-                            <option value="">Select a size</option>
-                            {(() => {
-                                const parsedSizes = JSON.parse(product.sizes);
-                                return parsedSizes.map((sizeString: string) => (
-                                    <option
-                                        key={sizeString}
-                                        value={sizeString}
-                                    >
-                                        {sizeString}
-                                    </option>
-                                ));
-                            })()}
-                        </select>
+                        />
                     </div>
-                )}
-                <div className="mb-4">
-                    <label htmlFor="quantity" className="block mb-2">Quantity</label>
-                    <input
-                        type="number"
-                        id="quantity"
-                        value={quantity}
-                        onChange={(e) => setQuantity(parseInt(e.target.value))}
-                        min={1}
-                        className="w-24 border border-gray-300 p-2 rounded"
-                    />
                 </div>
                 <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" disabled={!selectedSize} onClick={handleAddToCart}>
                     Add to cart

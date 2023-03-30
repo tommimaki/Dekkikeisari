@@ -8,6 +8,7 @@ interface Product {
   category: string;
   sizes: string;
   quantity?: number;
+  size?: string;
 }
 
 

@@ -51,15 +51,19 @@ const CartModal = () => {
                 <div className="col-span-3">
                     <p className="font-semibold text-gray-700">Product</p>
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-2">
                     <p className="font-semibold text-gray-700">Price</p>
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-2">
+                    <p className="font-semibold text-gray-700">Size</p>
+                </div>
+                <div className="col-span-2">
                     <p className="font-semibold text-gray-700">Quantity</p>
                 </div>
                 <div className="col-span-3">
                     <p className="font-semibold text-gray-700">Total</p>
                 </div>
+
 
                 {cartItems.map((item) => {
                     const price = Number(item.price);
@@ -71,15 +75,15 @@ const CartModal = () => {
                                 <img src={item.image_url} alt={item.name} className="w-full rounded-lg mb-2" />
                                 <p className="font-semibold">{item.name}</p>
                             </div>
-                            <div className="col-span-3">
+                            <div className="col-span-2">
                                 <p>${price.toFixed(2)}</p>
                             </div>
-                            <div className="col-span-3">
+                            <div className="col-span-2">
+                                <p>{item.size}</p>
+                            </div>
+                            <div className="col-span-2">
                                 <p>{item.quantity}</p>
                             </div>
-                            {/* <div className="col-span-3">
-                                <p>{item.size}</p>
-                            </div> */}
                             <div className="col-span-3">
                                 <p>${(price * (item.quantity ?? 0)).toFixed(2)}</p>
                             </div>
@@ -92,27 +96,31 @@ const CartModal = () => {
                     </p>
                 </div>
             </div>
-            {!showCheckout && (
-                <button
-                    onClick={() => setShowCheckout(true)}
-                    className="checkout-button bg-gray-600 text-white p-4 rounded-md"
-                >
-                    Checkout
-                </button>
-            )}
-
-            {showCheckout && (
-                <>
+            {
+                !showCheckout && (
                     <button
-                        onClick={() => setShowCheckout(false)}
-                        className="back-to-cart-button"
+                        onClick={() => setShowCheckout(true)}
+                        className="checkout-button bg-gray-600 text-white p-4 rounded-md"
                     >
-                        Back to Cart
+                        Checkout
                     </button>
-                    <Checkout onCheckoutSuccess={handleCheckoutSuccess} />
-                </>
-            )}
-        </div>
+                )
+            }
+
+            {
+                showCheckout && (
+                    <>
+                        <button
+                            onClick={() => setShowCheckout(false)}
+                            className="back-to-cart-button"
+                        >
+                            Back to Cart
+                        </button>
+                        <Checkout onCheckoutSuccess={handleCheckoutSuccess} />
+                    </>
+                )
+            }
+        </div >
     );
 };
 
