@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-modal';
 import CartModal from './CartModal';
 import { RootState } from '../../store';
-import { openCart, closeCart } from '../../features/cart/cartSlice'; // import the action creators
+import { openCart, closeCart } from '../../features/cart/cartSlice';
 import { FaShoppingCart } from 'react-icons/fa';
 
 const Cart = () => {
@@ -12,11 +12,11 @@ const Cart = () => {
     const dispatch = useDispatch();
 
     const handleOpenCart = () => {
-        dispatch(openCart()); // use the openCart action creator
+        dispatch(openCart());
     };
 
     const handleCloseCart = () => {
-        dispatch(closeCart()); // use the closeCart action creator
+        dispatch(closeCart());
     };
 
     return (

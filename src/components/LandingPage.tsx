@@ -4,7 +4,7 @@ import React from 'react';
 // import Shirts from './products/Shirts';
 import skater1 from '../assets/skater1.jpg'
 import NewIn from './products/NewIn';
-
+import Info from './Info';
 const LandingPage = () => {
     return (
         <div className="min-h-screen  flex flex-col items-center justify-center">
@@ -23,25 +23,10 @@ const LandingPage = () => {
                 <div className="bg-white p-6  rounded-lg w-screen   ">
                     <NewIn />
                 </div>
-                {/* <div className="bg-white p-6  rounded-lg w-screen shadow-md">
-                    <Decks />
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                    <Shoes />
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-md">
 
-                    <Shirts />
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h3 className="text-2xl font-semibold mb-4">Oheistuotteet</h3>
-                    <p className="text-gray-700">Rullalautailuun liittyvät tarvikkeet ja lisäosat.</p>
-                </div> */}
             </div>
+            <Info />
 
-            <div className="mt-8">
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Tutustu valikoimaan</button>
-            </div>
         </div >
     );
 };
