@@ -39,7 +39,7 @@ const ProductPage = () => {
     console.log('Cart:', cart.items); // Log the cart state to the console
 
     return (
-        <div className="py-8 md:flex md:space-x-6">
+        <div className="py-8 sm:flex min-h-screen items-center justify-center  md:space-x-6">
             <div className="md:w-1/2">
                 <img src={product.image_url} alt={product.name} className="w-full sm:w-2/4 md:w-3/4 lg:w-full  h-60 object-cover mx-auto mb-4 rounded" />
 
@@ -59,7 +59,7 @@ const ProductPage = () => {
                                 onChange={(e) => setSelectedSize(e.target.value || '')}
                                 className="w-24 border border-gray-300 p-2 rounded"
                             >
-                                <option value="">Select a size</option>
+                                <option value="">Size</option>
                                 {(() => {
                                     const parsedSizes = JSON.parse(product.sizes);
                                     return parsedSizes.map((sizeString: string) => (
@@ -90,7 +90,7 @@ const ProductPage = () => {
                     Add to cart
                 </button>
             </div>
-        </div>
+        </div >
     );
 };
 
