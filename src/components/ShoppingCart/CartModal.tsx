@@ -136,7 +136,11 @@ const CartModal = () => {
                         >
                             Back to Cart
                         </button>
-                        <Checkout onCheckoutSuccess={handleCheckoutSuccess} />
+                        <Checkout
+                            cartItems={cartItems}
+                            totalAmount={totalAmount}
+                            onCheckoutSuccess={handleCheckoutSuccess}
+                        />
                     </>
                 )
             }

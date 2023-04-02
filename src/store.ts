@@ -1,10 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import cartReducer from "./features/cart/cartSlice";
 import { PersistPartial } from "redux-persist/es/persistReducer";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+
+const customizedMiddleware = getDefaultMiddleware({
+  serializableCheck: {
+    ignoredActions: ["persist/PERSIST"], // ignore the non-serializable action
+  },
+});
 
 const persistConfig = {
   key: "root",
@@ -21,6 +27,7 @@ const persistedReducer = persistReducer<any, any>(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: customizedMiddleware,
 });
 const persistor = persistStore(store);
 

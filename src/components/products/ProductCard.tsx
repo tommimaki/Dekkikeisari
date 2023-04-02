@@ -22,8 +22,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
                     <div>
                         <p className="text-gray-700 mb-2">Sizes:</p>
-                        {sizes.map((size: string) => (
-                            <span className="mr-2 font-semibold text-gray-700">{size}</span>
+                        {sizes.map((size: string, index: number) => (
+                            <span key={index} className="mr-2 font-semibold text-gray-700">{size}</span>
                         ))}
                     </div>
                     <div>
