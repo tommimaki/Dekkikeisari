@@ -4,15 +4,12 @@ import './index.css';
 import App from './App';
 
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { configureStore } from '@reduxjs/toolkit';
+import { store, persistor } from './store'
 
-import cartReducer from './features/cart/cartSlice';
+// import cartReducer from './features/cart/cartSlice';
 
-const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-  },
-});
 
 
 const root = ReactDOM.createRoot(
@@ -21,8 +18,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
 
-      <App />
+
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

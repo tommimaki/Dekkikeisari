@@ -12,7 +12,7 @@ const ProductPage = () => {
     const [quantity, setQuantity] = useState<number>(1);
     const dispatch = useDispatch();
 
-    const cart = useSelector((state: RootState) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart?.items);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -36,7 +36,7 @@ const ProductPage = () => {
         return <div>Loading...</div>;
     }
 
-    console.log('Cart:', cart.items); // Log the cart state to the console
+    console.log('Cart:', cart); // Log the cart state to the console
 
     return (
         <div className="py-8 sm:flex min-h-screen items-center justify-center  md:space-x-6">

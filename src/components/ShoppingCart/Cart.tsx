@@ -7,8 +7,9 @@ import { openCart, closeCart } from '../../features/cart/cartSlice';
 import { FaShoppingCart } from 'react-icons/fa';
 
 const Cart = () => {
-    const cartItems = useSelector((state: RootState) => state.cart.items);
-    const isOpen = useSelector((state: RootState) => state.cart.isOpen);
+    const cartItems = useSelector((state: RootState) => state.cart?.items);
+    const isOpen = useSelector((state: RootState) => state.cart?.isOpen);
+
     const dispatch = useDispatch();
 
     const handleOpenCart = () => {

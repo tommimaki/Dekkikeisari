@@ -4,11 +4,13 @@ import { RootState } from '../../store';
 import { FaTimes } from 'react-icons/fa';
 import Checkout from './Checkout';
 import { closeCart, emptyCart } from '../../features/cart/cartSlice'; // import the action creator
+import Product from '../../interfaces/product';
 
 
 
 const CartModal = () => {
-    const cartItems = useSelector((state: RootState) => state.cart.items);
+    const cartItems = useSelector((state: RootState) => state.cart?.items);
+
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0);
     const [showCheckout, setShowCheckout] = useState(false);
@@ -27,7 +29,7 @@ const CartModal = () => {
 
     useEffect(() => {
         const calculateTotal = () => {
-            const total = cartItems.reduce((accumulator, item) => {
+            const total = cartItems.reduce((accumulator: number, item: Product) => {
                 const price = Number(item.price);
                 if (isNaN(price)) return accumulator;
                 return accumulator + price * (item.quantity ?? 0);
@@ -65,7 +67,7 @@ const CartModal = () => {
                 </div>
 
 
-                {cartItems.map((item) => {
+                {cartItems.map((item: Product) => {
                     const price = Number(item.price);
                     if (isNaN(price)) return null;
 
