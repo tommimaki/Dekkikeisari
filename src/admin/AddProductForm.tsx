@@ -42,9 +42,7 @@ const AddProductForm: React.FC = () => {
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [availableSizes, setAvailableSizes] = useState<string[]>([]);
 
-
     //image stuff
-
     const onDrop = useCallback(async (acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
         setImage(file);

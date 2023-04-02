@@ -9,6 +9,8 @@ import SignUp from './components/user/signup';
 import Products from './components/products/Products'
 import AdminPanel from './admin/AdminPanel';
 import ProductPage from './components/products/ProductPage';
+import Orders from './admin/Orders';
+import ProductManagement from './admin/ProductManagement';
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -31,6 +33,9 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/admin' element={<AdminPanel />} />
           <Route path="/products/:id" element={<ProductPage />} />
+          <Route path="/admin/product-management" element={<ProductManagement />} />
+
+
 
 
         </Routes>

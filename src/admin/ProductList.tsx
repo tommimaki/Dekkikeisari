@@ -1,18 +1,23 @@
-// src/admin/ProductList.tsx
-
 import React, { useEffect, useState } from 'react';
-
-interface Product {
-    id: number;
-    name: string;
-    // Add more fields like description, price, category, and image_url
-}
+import Product from '../interfaces/product';
 
 const ProductList: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
-        // Fetch products from the API and set the state
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/products');
+                const data = await response.json();
+                console.log('Data:', data);
+                setProducts(data.products);
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
     }, []);
 
     return (
