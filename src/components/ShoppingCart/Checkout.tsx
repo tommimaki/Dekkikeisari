@@ -14,12 +14,6 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
 
-    // const handleSubmit = (e: FormEvent) => {
-    //     e.preventDefault();
-    //     console.log('Checkout information:', { name, email, address });
-    //     alert('Checkout successful! (Demo)');
-    //     onCheckoutSuccess(); // Call the onCheckoutSuccess prop
-    // };
 
     const handleChange = (setter: (value: string) => void) => (
         e: ChangeEvent<HTMLInputElement>
@@ -31,13 +25,16 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
 
         try {
             const orderInfo = {
-                name,
-                email,
-                address,
-                items: cartItems, // Add this line
-                total: totalAmount, // Add this line
+                customerId: 1, // You should replace this with the actual customer ID from your system
+                products: cartItems.map((item) => ({
+                    productId: item.id,
+                    price: item.price,
+                    quantity: 1, // You should replace this with the actual quantity of the item in the cart
+                })),
+                total: totalAmount,
+                shippingAddress: address,
             };
-            console.log(orderInfo)
+            console.log(orderInfo);
             await submitOrder(orderInfo);
             alert("Checkout successful!");
             onCheckoutSuccess(); // Call the onCheckoutSuccess prop
@@ -46,6 +43,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
             alert("Failed to submit order. Please try again.");
         }
     };
+
 
     async function submitOrder(orderInfo: any) {
         const response = await fetch("http://localhost:3001/orders", {
@@ -102,3 +100,10 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
 };
 
 export default Checkout;
+
+// const handleSubmit = (e: FormEvent) => {
+//     e.preventDefault();
+//     console.log('Checkout information:', { name, email, address });
+//     alert('Checkout successful! (Demo)');
+//     onCheckoutSuccess(); // Call the onCheckoutSuccess prop
+// };
