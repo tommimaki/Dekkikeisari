@@ -31,9 +31,12 @@ async function addProduct(product: any) {
 
 
 
+interface Props {
+    onCloseModal: () => void;
+}
 
+const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
 
-const AddProductForm: React.FC = () => {
     const [image, setImage] = useState<File | null>(null);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -91,12 +94,20 @@ const AddProductForm: React.FC = () => {
         setCategory('');
         setSelectedSizes([]);
         setImage(null);
+        onCloseModal();
     };
 
 
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+            <button
+                type="button"
+                className="bg-gray-500 text-white py-2 px-4 rounded"
+                onClick={onCloseModal}
+            >
+                X
+            </button>
             <h2 className="text-2xl font-bold mb-4">Add Product</h2>
             <div>
                 <label htmlFor="name" className="block text-sm font-medium">Product Name</label>
