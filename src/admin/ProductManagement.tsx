@@ -6,7 +6,6 @@ const ProductManagement: React.FC = () => {
     return (
         <div>
             <h2>Product Management</h2>
-            {/* Add your Product management code here */}
             <AddProductForm />
             <ProductList />
         </div>
