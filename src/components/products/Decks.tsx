@@ -22,6 +22,7 @@ const Decks: React.FC<DecksProps> = ({ size }) => {
 
         fetchProducts();
     }, []);
+
     const filteredProducts = products.filter((product) => {
         if (size) {
             const sizesArray = JSON.parse(product.sizes);
@@ -30,7 +31,6 @@ const Decks: React.FC<DecksProps> = ({ size }) => {
         return true;
     });
 
-    console.log(filteredProducts)
 
     return (
         <div className="py-8">
