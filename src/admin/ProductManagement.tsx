@@ -3,7 +3,7 @@ import AddProductForm from './AddProductForm';
 import ProductList from './ProductList';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root'); // Set the root element to be accessible to screen readers
+Modal.setAppElement('#root'); //root element to be accessible to screen readers
 
 const ProductManagement: React.FC = () => {
     const [showModal, setShowModal] = useState(false);

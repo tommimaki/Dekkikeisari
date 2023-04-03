@@ -57,17 +57,17 @@ const ProductList: React.FC = () => {
     ];
 
     const handleDelete = async (id: number) => {
-        try {
-            await fetch(`http://localhost:3001/products/${id}`, {
-                method: 'DELETE'
-            });
-            setProducts(products.filter(product => product.id !== id));
-        } catch (error) {
-            console.error('Error deleting product:', error);
+        if (window.confirm(`Poista tuote ${id}?`)) {
+            try {
+                await fetch(`http://localhost:3001/products/${id}`, {
+                    method: 'DELETE'
+                });
+                setProducts(products.filter(product => product.id !== id));
+            } catch (error) {
+                console.error('Error deleting product:', error);
+            }
         }
     };
-
-
 
     return (
         <div>
