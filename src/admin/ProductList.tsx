@@ -10,18 +10,21 @@ const ProductList: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/products');
-                const data = await response.json();
-                console.log('Data:', data);
-                setProducts(data.products);
 
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/products');
+            const data = await response.json();
+            console.log('Data:', data);
+            setProducts(data.products);
+
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    useEffect(() => {
+
 
         fetchProducts();
     }, []);
@@ -33,6 +36,11 @@ const ProductList: React.FC = () => {
     const closeModal = () => {
         setSelectedProduct(null);
     };
+
+    const handleProductUpdated = () => {
+        fetchProducts();
+    };
+
 
     const columnDefs = [
         { headerName: 'Name', field: 'name', sortable: true, filter: true },
@@ -83,7 +91,8 @@ const ProductList: React.FC = () => {
             </div>
             {selectedProduct && (
                 <Modal isOpen={true} onRequestClose={closeModal} contentLabel="Edit Product">
-                    <EditProductForm product={selectedProduct} onCloseModal={closeModal} />
+                    <EditProductForm product={selectedProduct} onCloseModal={closeModal} onProductUpdated={handleProductUpdated} />
+
                 </Modal>
             )}
         </div>

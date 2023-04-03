@@ -5,23 +5,26 @@ import { useDropzone } from 'react-dropzone';
 interface Props {
     product: Product;
     onCloseModal: () => void;
+    onProductUpdated: (updatedProduct: Product) => void;
 }
 
-const EditProductForm: React.FC<Props> = ({ product, onCloseModal }) => {
+
+const EditProductForm: React.FC<Props> = ({ product, onCloseModal, onProductUpdated }) => {
     const [image, setImage] = useState<File | null>(null);
     const [name, setName] = useState(product.name);
     const [description, setDescription] = useState(product.description);
     const [price, setPrice] = useState(product.price);
     const [category, setCategory] = useState(product.category);
-    // const [selectedSizes, setSelectedSizes] = useState<string[]>(product.sizes);
+    const [selectedSizes, setSelectedSizes] = useState<string[]>(JSON.parse(product.sizes || '[]'));
     const [availableSizes, setAvailableSizes] = useState<string[]>([]);
+
 
     useEffect(() => {
         setName(product.name);
         setDescription(product.description);
         setPrice(product.price);
         setCategory(product.category);
-        // setSelectedSizes(product.sizes);
+        setSelectedSizes(JSON.parse(product.sizes || '[]'));
     }, [product]);
 
     // Image dropzone
@@ -53,9 +56,46 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // TODO: Implement the update functionality for the product
+        try {
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('description', description);
+            formData.append('price', price.toString());
+            formData.append('category', category);
+            formData.append('sizes', JSON.stringify(selectedSizes));
 
-        onCloseModal();
+            if (image) {
+                formData.append('image', image);
+            }
+
+            await updateProduct(product.id, formData);
+            onProductUpdated(product);
+            onCloseModal();
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const updateProduct = async (id: number, productData: FormData) => {
+        try {
+            const response = await fetch(`http://localhost:3001/products/${id}`, {
+                method: 'PUT',
+                body: productData,
+                headers: {
+                    // todo authentication tokens
+                },
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Could not update the product');
+            }
+            return data.product;
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
     };
 
     return (
@@ -115,7 +155,7 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal }) => {
                     <option value="Shoes">Shoes</option>
                 </select>
             </div>
-            {/* <div>
+            <div>
                 <label htmlFor="sizes" className="block text-sm font-medium">
                     Sizes(cmd and click to select multiple)
                 </label>
@@ -134,7 +174,7 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal }) => {
                         </option>
                     ))}
                 </select>
-            </div> */}
+            </div>
 
             <div>
                 <label className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2">
