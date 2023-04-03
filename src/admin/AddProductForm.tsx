@@ -55,7 +55,7 @@ const AddProductForm: React.FC = () => {
         // Set available sizes based on the selected category
         switch (e.target.value) {
             case 'Skateboards':
-                setAvailableSizes(['7,5', '7.75', '8.0', '8.25', '8.5']);
+                setAvailableSizes(['7.5', '7.75', '8.0', '8.25', '8.5']);
                 break;
             case 'Shirts':
                 setAvailableSizes(['XS', 'S', 'M', 'L', 'XL', 'XXL']);

@@ -6,7 +6,7 @@ const Orders: React.FC = () => {
         <div>
             <h2>Orders Management</h2>
             {/* Add your Orders management code here */}
-            <OrderList />ß
+            <OrderList />
         </div>
     );
 };

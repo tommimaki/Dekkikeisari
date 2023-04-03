@@ -32,6 +32,7 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/admin' element={<AdminPanel />} />
+          <Route path="/admin/orders" element={<Orders />} />
           <Route path="/products/:id" element={<ProductPage />} />
           <Route path="/admin/product-management" element={<ProductManagement />} />
 
