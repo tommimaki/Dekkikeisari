@@ -50,7 +50,7 @@ const Header = () => {
                     </button>
                     <nav
                         className={`${showMenu ? "block" : "hidden"
-                            } lg:flex lg:items-center`}
+                            } lg:flex lg:items-center l:flex items-center justify-between`}
                     >
                         <Link
                             to="/"

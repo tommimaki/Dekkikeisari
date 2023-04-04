@@ -21,7 +21,7 @@ const Cart = () => {
     };
 
     return (
-        <div className="cart  mt-4">
+        <div className="cart ">
             <div className="flex items-center">
                 <button onClick={handleOpenCart} className="flex items-center">
                     <FaShoppingCart className="mr-2" />
