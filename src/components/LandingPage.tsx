@@ -5,6 +5,7 @@ import React from 'react';
 import skater1 from '../assets/skater1.jpg'
 import NewIn from './products/NewIn';
 import Info from './Info';
+import Welcome from './user/Welcome';
 const LandingPage = () => {
     return (
         <div className="min-h-screen  flex flex-col items-center justify-center">
@@ -18,7 +19,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-
+            <Welcome />
             <div className="grid grid-cols-1  md:grid-cols-1 gap-4  " >
                 <div className="bg-white p-6  rounded-lg w-screen   ">
                     <NewIn />

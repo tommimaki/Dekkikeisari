@@ -54,7 +54,13 @@ const Header = () => {
                             to="/signup"
                             className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
                         >
-                            signup {'  '}
+                            rekisteröidy {'  '}
+                        </Link>
+                        <Link
+                            to="/signin"
+                            className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
+                        >
+                            kirjaudu sisään {'  '}
                         </Link>
 
 

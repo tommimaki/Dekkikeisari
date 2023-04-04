@@ -1,22 +1,16 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-            alert("Passwords don't match");
-            return;
-        }
-
         try {
-            const response = await fetch('http://localhost:3001/users/create', {
+            const response = await fetch('http://localhost:3001/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,20 +20,20 @@ const SignUp = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Registration successful:', data);
-                navigate('/'); // redirect to landing page
+                console.log('Login successful:', data);
+                navigate('/'); // redirect to dashboard page
             } else {
                 const error = await response.json();
-                console.log('Registration failed:', error);
+                console.log('Login failed:', error);
             }
         } catch (error) {
-            console.error('Error during registration:', error);
+            console.error('Error during login:', error);
         }
     };
 
     return (
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-10">
-            <h2 className="text-3xl font-bold mb-6 text-center">Rekisteröidy</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center">Kirjaudu sisään</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label htmlFor="email" className="block mb-2">Sähköposti</label>
@@ -52,7 +46,7 @@ const SignUp = () => {
                         required
                     />
                 </div>
-                <div className="mb-4">
+                <div className="mb-6">
                     <label htmlFor="password" className="block mb-2">Salasana</label>
                     <input
                         type="password"
@@ -63,21 +57,10 @@ const SignUp = () => {
                         required
                     />
                 </div>
-                <div className="mb-6">
-                    <label htmlFor="confirmPassword" className="block mb-2">Vahvista salasana</label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                        required
-                    />
-                </div>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" type="submit">Rekisteröidy</button>
+                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" type="submit">Kirjaudu sisään</button>
             </form>
         </div>
     );
 };
 
-export default SignUp;
+export default SignIn;

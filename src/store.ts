@@ -1,12 +1,19 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  getDefaultMiddleware,
+  ThunkAction,
+} from "@reduxjs/toolkit";
+
 import { persistStore, persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import cartReducer from "./features/cart/cartSlice";
+import userReducer from "./features/userAuth/userSlice";
+
 import { PersistPartial } from "redux-persist/es/persistReducer";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
-const customizedMiddleware = getDefaultMiddleware({
+const middleware = getDefaultMiddleware({
   serializableCheck: {
     ignoredActions: ["persist/PERSIST"], // ignore the non-serializable action
   },
@@ -21,15 +28,18 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   cart: cartReducer,
+  user: userReducer,
 });
 
 const persistedReducer = persistReducer<any, any>(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: customizedMiddleware,
+  middleware,
 });
 const persistor = persistStore(store);
 
+export type GetState = RootState;
+export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState> & PersistPartial;
 export { store, persistor };
