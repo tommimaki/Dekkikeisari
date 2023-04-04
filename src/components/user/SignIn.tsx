@@ -1,10 +1,15 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { loginSuccess } from '../../features/userAuth/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../features/userAuth/userSlice';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -21,8 +26,11 @@ const SignIn = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
+                localStorage.setItem('token', data.token); // Store the token in local storage
+                dispatch(login());
                 navigate('/'); // redirect to dashboard page
-            } else {
+            }
+            else {
                 const error = await response.json();
                 console.log('Login failed:', error);
             }

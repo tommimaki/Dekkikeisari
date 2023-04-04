@@ -9,10 +9,6 @@ interface DecksProps {
 
 const Decks: React.FC<DecksProps> = ({ size }) => {
     const [products, setProducts] = useState<Product[]>([]);
-
-    console.log(size)
-
-
     useEffect(() => {
         const fetchProducts = async () => {
             const response = await fetch('http://localhost:3001/products?category=Skateboards');

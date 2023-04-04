@@ -10,7 +10,6 @@ const NewIn = () => {
             try {
                 const response = await fetch('http://localhost:3001/products');
                 const data = await response.json();
-                console.log(data)
                 setProducts(data.products);
             } catch (error) {
                 console.log('Error fetching products:', error);

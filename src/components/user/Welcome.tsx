@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadUser } from '../../features/userAuth/userSlice';
+// import { loadUser } from '../../features/userAuth/userSlice';
 import { RootState, AppDispatch } from '../../store';
 
 const Welcome = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { user, isAuthenticated, isLoading } = useSelector((state: RootState) => state.user);
 
-    useEffect(() => {
-        dispatch(loadUser());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(loadUser());
+    // }, [dispatch]);
 
     if (isLoading) {
         return <div>Loading...</div>;

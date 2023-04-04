@@ -3,9 +3,25 @@ import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import skatelogo from '../assets/skatelogo.jpeg'
 import Cart from "./ShoppingCart/Cart";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from "../store";
+import { logout } from "../features/userAuth/userSlice";
+
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
+
+    const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+    const dispatch = useDispatch();
+
+    console.log(isLoggedIn)
+
+    const handleLogout = () => {
+        dispatch(logout())
+        localStorage.removeItem('token');
+        window.location.reload();
+
+    };
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -35,8 +51,6 @@ const Header = () => {
                     <nav
                         className={`${showMenu ? "block" : "hidden"
                             } lg:flex lg:items-center`}
-
-
                     >
                         <Link
                             to="/"
@@ -50,20 +64,38 @@ const Header = () => {
                         >
                             tuotteet
                         </Link>
-                        <Link
-                            to="/signup"
-                            className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
-                        >
-                            rekisteröidy {'  '}
-                        </Link>
-                        <Link
-                            to="/signin"
-                            className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
-                        >
-                            kirjaudu sisään {'  '}
-                        </Link>
 
 
+                        {isLoggedIn ? (
+                            <div>
+
+                                <Link
+                                    to="/profile"
+                                    className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
+                                >
+                                    Profiili
+                                </Link>
+                                <Link
+                                    to="/landingPage">
+                                    <button onClick={handleLogout}>kirjaudu ulos</button>
+                                </Link>
+                            </div>
+                        ) : (
+                            <>
+                                <Link
+                                    to="/signup"
+                                    className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
+                                >
+                                    Rekisteröidy
+                                </Link>
+                                <Link
+                                    to="/signin"
+                                    className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
+                                >
+                                    Kirjaudu sisään
+                                </Link>
+                            </>
+                        )}
                         <Cart />
 
                     </nav>

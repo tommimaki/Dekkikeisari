@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './components/Header';
 import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
@@ -12,15 +12,13 @@ import ProductPage from './components/products/ProductPage';
 import Orders from './admin/Orders';
 import ProductManagement from './admin/ProductManagement';
 import SignIn from './components/user/SignIn';
-
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import './App.css';
 
 function App() {
-  return (
 
+  return (
     <BrowserRouter>
       <div className="App">
         <Header />
