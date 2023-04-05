@@ -6,13 +6,21 @@ interface ProductCardProps {
     product: Product;
 }
 
+
+
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const sizes = JSON.parse(product.sizes);
+
+    const imageUrlsArray = product.image_urls ? JSON.parse(product.image_urls) : [];
+    console.log(imageUrlsArray[0]);
+
+    const imageUrl = imageUrlsArray.length > 0 ? imageUrlsArray[0] : 'default_image_url';
+
     return (
         <Link to={`/products/${product.id}`} key={product.id}>
             <div className="bg-white p-4 rounded-lg shadow-md">
                 <img
-                    src={product.image_url}
+                    src={imageUrlsArray[0]}
                     alt={product.name}
                     className="w-full h-48 object-cover mb-4 rounded"
                 />

@@ -1,27 +1,23 @@
 import React, { useState, FormEvent, useCallback } from 'react';
-import axios from 'axios';
-
 import { useDropzone } from 'react-dropzone';
-
 const API_URL = 'http://localhost:3001/products/add';
 
 async function addProduct(product: any) {
+
+    console.log(product)
     try {
         // Log the FormData object's keys and values
         product.forEach((value: any, key: string) => {
             console.log(`${key}: ${value}`);
         });
-
         const response = await fetch(API_URL, {
             method: 'POST',
             body: product,
         });
-
         if (!response.ok) {
             const errorMessage = await response.text();
             throw new Error(`Failed to add product: ${response.statusText} - ${errorMessage}`);
         }
-
         return await response.json();
     } catch (error) {
         console.error('Error in addProduct function:', error);
@@ -29,15 +25,14 @@ async function addProduct(product: any) {
     }
 }
 
-
-
 interface Props {
     onCloseModal: () => void;
 }
 
 const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
 
-    const [image, setImage] = useState<File | null>(null);
+    // const [image, setImage] = useState<File | null>(null);
+    const [images, setImages] = useState<File[]>([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -46,10 +41,14 @@ const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
     const [availableSizes, setAvailableSizes] = useState<string[]>([]);
 
     //image stuff
+    // const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    //     const file = acceptedFiles[0];
+    //     setImage(file);
+    // }, []);
     const onDrop = useCallback(async (acceptedFiles: File[]) => {
-        const file = acceptedFiles[0];
-        setImage(file);
+        setImages((prevImages) => [...prevImages, ...acceptedFiles]);
     }, []);
+
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -71,15 +70,13 @@ const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
         }
     };
 
-
-
-
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         const formData = new FormData();
-        if (image) {
-            formData.append('image', image);
+
+        for (let i = 0; i < images.length; i++) {
+            formData.append("images[]", images[i]);
         }
         formData.append('name', name);
         formData.append('description', description);
@@ -93,11 +90,10 @@ const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
         setPrice('');
         setCategory('');
         setSelectedSizes([]);
-        setImage(null);
+        // setImage(null);
+        setImages([]);
         onCloseModal();
     };
-
-
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">

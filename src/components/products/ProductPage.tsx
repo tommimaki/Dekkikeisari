@@ -30,20 +30,33 @@ const ProductPage = () => {
             dispatch(addToCart(cartProduct));
         }
     };
-
-
     if (!product) {
         return <div>Loading...</div>;
     }
 
-    console.log('Cart:', cart); // Log the cart state to the console
+    const imageUrlsArray = JSON.parse(product.image_urls);
+    console.log(imageUrlsArray[0]);
+
+
 
     return (
         <div className="py-8 sm:flex min-h-screen items-center justify-center  md:space-x-6">
             <div className="md:w-1/2">
-                <img src={product.image_url} alt={product.name} className="w-full sm:w-2/4 md:w-3/4 lg:w-full  h-60 object-cover mx-auto mb-4 rounded" />
-
+                <img src={imageUrlsArray[0]} alt={product.name} className="w-full sm:w-2/4 md:w-3/4 lg:w-full  h-60 object-cover mx-auto mb-4 rounded" />
             </div>
+            {/* <div className="">
+                {Array.isArray(product.image_urls) &&
+                    product.image_urls.map((imageUrl, index) => (
+                        <img
+                            key={index}
+                            src={imageUrl}
+                            alt={`${product.name}-${index}`}
+                        // className="w-full sm:w-2/4 md:w-3/4 lg:w-full h-60 object-cover mx-auto mb-4 rounded"
+                        />
+                    ))}
+            </div> */}
+
+
             <div className="md:w-1/2">
                 <h3 className="text-2xl font-semibold mb-4">{product.name}</h3>
                 <p className="text-gray-700">{product.description}</p>

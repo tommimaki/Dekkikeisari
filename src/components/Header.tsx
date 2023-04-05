@@ -14,8 +14,6 @@ const Header = () => {
     const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
     const dispatch = useDispatch();
 
-    console.log(isLoggedIn)
-
     const handleLogout = () => {
         dispatch(logout())
         localStorage.removeItem('token');
@@ -54,12 +52,14 @@ const Header = () => {
                     >
                         <Link
                             to="/"
+                            onClick={() => setShowMenu(false)}
                             className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-400 mr-10"
                         >
                             Home
                         </Link>
                         <Link
                             to="/products"
+                            onClick={() => setShowMenu(false)}
                             className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-400 mr-10"
                         >
                             tuotteet
@@ -71,12 +71,15 @@ const Header = () => {
 
                                 <Link
                                     to="/profile"
+                                    onClick={() => setShowMenu(false)}
                                     className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
                                 >
                                     Profiili
                                 </Link>
                                 <Link
+                                    onClick={() => setShowMenu(false)}
                                     to="/landingPage">
+
                                     <button onClick={handleLogout}>kirjaudu ulos</button>
                                 </Link>
                             </div>
@@ -84,12 +87,14 @@ const Header = () => {
                             <>
                                 <Link
                                     to="/signup"
+                                    onClick={() => setShowMenu(false)}
                                     className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
                                 >
                                     Rekisteröidy
                                 </Link>
                                 <Link
                                     to="/signin"
+                                    onClick={() => setShowMenu(false)}
                                     className="block mt-4 lg:inline-block lg:mt-0 mr-10 text-white hover:text-gray-400"
                                 >
                                     Kirjaudu sisään

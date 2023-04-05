@@ -30,6 +30,9 @@ const CartModal = () => {
         handleCloseCart(); // Close the cart
     };
 
+
+
+
     useEffect(() => {
         const calculateTotal = () => {
             const total = cartItems.reduce((accumulator: number, item: Product) => {
@@ -78,11 +81,13 @@ const CartModal = () => {
                     cartItems.map((item: Product) => {
                         const price = Number(item.price);
                         if (isNaN(price)) return null;
+                        const imageUrlsArray = item.image_urls ? JSON.parse(item.image_urls) : [];
+                        const imageUrl = imageUrlsArray.length > 0 ? imageUrlsArray[0] : 'default_image_url';
 
                         return (
                             <React.Fragment key={item.id}>
                                 <div className="col-span-2">
-                                    <img src={item.image_url} alt={item.name} className="w-full rounded-lg mb-2" />
+                                    <img src={imageUrl} alt={item.name} className="w-full rounded-lg mb-2" />
                                     <p className="font-semibold">{item.name}</p>
                                 </div>
                                 <div className="col-span-2">
