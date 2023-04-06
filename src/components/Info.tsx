@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom';
 const Info = () => {
     return (
         <div className=" bg-gray-700 text-white w-full p-10">
-            <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between">
-                <div className="lg:w-1/2 mb-6 lg:mb-0">
-                    <h2 className="text-2xl font-semibold mb-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
-                    <p className="text-white mb-4">
+            <div className="container mx-auto px-4 flex flex-col  items-center  lg:flex-row justify-between">
+                <div className="lg:w-1/2 mb-6 mx-10 pr-10 content-center  lg:mb-0">
+                    <h2 className="text-4xl font-semibold mb-20">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
+                    <p className="text-white text-xl mb-4">
                         Myymme streetwear-vaatteita ja skeittilautoja. Tee tilaus netissä tai tule moikkaamaan
                         liikkeeseemme!  (palkatkaa mut T:tommi)
                     </p>
 
                     <div className="mt-8">
-                        {/* href="/products"  */}
                         <Link to="/products">
                             <button className="bg-gray-900 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                                 Tutustu koko valikoimaan
@@ -23,7 +22,7 @@ const Info = () => {
                     </div>
                 </div>
                 <div className="lg:w-1/2">
-                    <div className="bg-white p-4 rounded-lg shadow-md">
+                    <div className="bg-white  p-10 rounded-lg shadow-md">
                         <div className="flex items-center">
                             <FaMapMarkerAlt className="text-red-600 mr-2" />
                             <div className="text-gray-700">
