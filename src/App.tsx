@@ -25,7 +25,7 @@ function App() {
         <Routes>
 
           <Route path='/' element={<LandingPage />} />
-          <Route path='/decks' element={<Decks />} />
+          <Route path='/skateboards' element={<Decks />} />
           <Route path='/shirts' element={<Shirts />} />
           <Route path='/shoes' element={<Shoes />} />
           <Route path='/products' element={<Products />} />

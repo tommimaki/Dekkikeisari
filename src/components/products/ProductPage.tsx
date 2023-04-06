@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Product from '../../interfaces/product';
 import { addToCart } from '../../features/cart/cartSlice';
 import { RootState } from '../../store';
+import { Carousel } from 'react-responsive-carousel';
+import { Link } from 'react-router-dom';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -35,76 +39,97 @@ const ProductPage = () => {
     }
 
     const imageUrlsArray = JSON.parse(product.image_urls);
-    console.log(imageUrlsArray[0]);
-
 
 
     return (
-        <div className="py-8 sm:flex min-h-screen items-center justify-center  md:space-x-6">
-            <div className="md:w-1/2">
-                <img src={imageUrlsArray[0]} alt={product.name} className="w-full sm:w-2/4 md:w-3/4 lg:w-full  h-60 object-cover mx-auto mb-4 rounded" />
-            </div>
-            {/* <div className="">
-                {Array.isArray(product.image_urls) &&
-                    product.image_urls.map((imageUrl, index) => (
-                        <img
-                            key={index}
-                            src={imageUrl}
-                            alt={`${product.name}-${index}`}
-                        // className="w-full sm:w-2/4 md:w-3/4 lg:w-full h-60 object-cover mx-auto mb-4 rounded"
-                        />
-                    ))}
-            </div> */}
+        <div className="min-h-screen mx-auto max-w-7xl px-4 flex flex-col items-center justify-center sm:px-6 lg:px-8">
+            {product.category && (
+                <div className="mb-4 self-start">
+                    <Link
+                        to={`/${product.category}`}
+                        className="text-blue-500 hover:text-blue-700"
+                    >
+                        <p>
 
+                            tuotteet/{product.category}
+                        </p>
 
-            <div className="md:w-1/2">
-                <h3 className="text-2xl font-semibold mb-4">{product.name}</h3>
-                <p className="text-gray-700">{product.description}</p>
-                <p className="text-gray-700 mb-4">{product.price}€</p>
-                <div className='flex gap-6 justify-center'>
-
-                    {product.sizes && (
-                        <div className="mb-4">
-                            <label htmlFor="size" className="block mb-2">Size</label>
-                            <select
-                                id="size"
-                                value={selectedSize}
-                                onChange={(e) => setSelectedSize(e.target.value || '')}
-                                className="w-24 border border-gray-300 p-2 rounded"
-                            >
-                                <option value="">Size</option>
-                                {(() => {
-                                    const parsedSizes = JSON.parse(product.sizes);
-                                    return parsedSizes.map((sizeString: string) => (
-                                        <option
-                                            key={sizeString}
-                                            value={sizeString}
-                                        >
-                                            {sizeString}
-                                        </option>
-                                    ));
-                                })()}
-                            </select>
-                        </div>
-                    )}
-                    <div className="mb-4">
-                        <label htmlFor="quantity" className="block mb-2">Quantity</label>
-                        <input
-                            type="number"
-                            id="quantity"
-                            value={quantity}
-                            onChange={(e) => setQuantity(parseInt(e.target.value))}
-                            min={1}
-                            className="w-24 border border-gray-300 p-2 rounded"
-                        />
-                    </div>
+                    </Link>
                 </div>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" disabled={!selectedSize} onClick={handleAddToCart}>
-                    Add to cart
-                </button>
+            )}
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-6">
+                <div className="sm:w-1/2 z-0 flex items-center justify-center lg:justify-start mb-8 sm:mb-0">
+                    <Carousel
+                        className="w-full"
+                        showStatus={false}
+                        showThumbs={false}
+                        infiniteLoop
+                        swipeable
+                        autoPlay
+                        interval={2000}
+                    >
+                        {imageUrlsArray.map((imageUrl: string, index: number) => (
+                            <div key={index}>
+                                <img src={imageUrl} alt={`${product.name} ${index}`} />
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
+                <div className="sm:w-1/2">
+                    <h3 className="text-4xl font-semibold mb-4">{product.name}</h3>
+                    <p className="text-gray-700 pb-2 border-b ">{product.description}</p>
+                    <p className="text-black text-xl mt-10 lfont-bold mb-4">{product.price}€</p>
+                    <div className="flex gap-6 items-center justify-center mb-4">
+                        {product.sizes && (
+                            <div>
+                                <label htmlFor="size" className="block mb-2">
+                                    Size
+                                </label>
+                                <select
+                                    id="size"
+                                    value={selectedSize}
+                                    onChange={(e) => setSelectedSize(e.target.value || "")}
+                                    className="w-24 border border-gray-300 p-2 rounded"
+                                >
+                                    <option value="">Size</option>
+                                    {(() => {
+                                        const parsedSizes = JSON.parse(product.sizes);
+                                        return parsedSizes.map((sizeString: string) => (
+                                            <option key={sizeString} value={sizeString}>
+                                                {sizeString}
+                                            </option>
+                                        ));
+                                    })()}
+                                </select>
+                            </div>
+                        )}
+                        <div>
+                            <label htmlFor="quantity" className="block mb-2">
+                                Quantity
+                            </label>
+                            <input
+                                type="number"
+                                id="quantity"
+                                value={quantity}
+                                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                min={1}
+                                className="w-24 border border-gray-300 p-2 rounded"
+                            />
+                        </div>
+                    </div>
+                    <button
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                        disabled={!selectedSize}
+                        onClick={handleAddToCart}
+                    >
+                        Lisää ostoskoriin
+                    </button>
+                </div>
             </div>
-        </div >
+        </div>
     );
+
+
 };
 
 export default ProductPage;

@@ -35,28 +35,28 @@ const Filters = ({ handleFilterChange }: FiltersProps) => {
                 <div>
                     <label htmlFor="category"
                         className="block mb-2 text-sm font-medium text-gray-900 ">
-                        Category:
+                        Tuoteryhmä
                     </label>
                     <select
                         id="category"
                         onChange={handleCategoryChange}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">All</option>
-                        <option value="decks">Decks</option>
-                        <option value="shoes">Shoes</option>
-                        <option value="shirts">Shirts</option>
+                        <option value="decks">Dekit</option>
+                        <option value="shoes">Kengät</option>
+                        <option value="shirts">Paidat</option>
                     </select>
                 </div>
                 <div>
                     <label htmlFor="size"
                         className="block mb-2 text-sm font-medium text-gray-900 ">
-                        Size:
+                        Koko:
                     </label>
                     <select
                         id="size"
                         onChange={(event) => handleFilterChange('size', event.target.value)}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="">All</option>
+                        <option value="">Kaikki</option>
                         {availableSizes.map((size) => (
                             <option key={size} value={size}>
                                 {size}

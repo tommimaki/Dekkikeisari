@@ -8,7 +8,7 @@ import Info from './Info';
 import Welcome from './user/Welcome';
 const LandingPage = () => {
     return (
-        <div className="min-h-screen  flex flex-col items-center justify-center">
+        <div className=" min-h-screen flex flex-col items-center justify-center">
             <div className="text-center mb-8">
                 <div className="relative text-center mb-8">
                     <img src={skater1} alt="Skater" />
