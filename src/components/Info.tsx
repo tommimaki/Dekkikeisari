@@ -21,8 +21,8 @@ const Info = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="lg:w-1/2">
-                    <div className="bg-white  p-10 rounded-lg shadow-md">
+                <div className="w-full lg:w-1/2">
+                    <div className="bg-white p-10 rounded-lg shadow-md">
                         <div className="flex items-center">
                             <FaMapMarkerAlt className="text-red-600 mr-2" />
                             <div className="text-gray-700">
@@ -36,18 +36,18 @@ const Info = () => {
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7939.465494145467!2d24.923580297014965!3d60.166390986204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46920a34d032778f%3A0x2600b5523c1977b1!2sKamppi%2C%20Helsinki!5e0!3m2!1sfi!2sfi!4v1680177754827!5m2!1sfi!2sfi"
                                     width="600"
-                                    height="450"
+                                    height="500"
                                     allowFullScreen
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    className="map"
+                                    className="map w-full h-full"
                                 ></iframe>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

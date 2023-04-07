@@ -43,7 +43,7 @@ const ProductPage = () => {
 
     return (
 
-        <div className='flex-col'>
+        <div className='flex-col mb-10'>
 
             <div className='flex'>
                 {product.category && (

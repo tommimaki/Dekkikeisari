@@ -10,6 +10,7 @@ import Products from './components/products/Products'
 import AdminPanel from './admin/AdminPanel';
 import ProductPage from './components/products/ProductPage';
 import Orders from './admin/Orders';
+import Profile from './components/user/Profile';
 import ProductManagement from './admin/ProductManagement';
 import SignIn from './components/user/SignIn';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -31,6 +32,7 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<AdminPanel />} />
           <Route path="/admin/orders" element={<Orders />} />
           <Route path="/products/:id" element={<ProductPage />} />
