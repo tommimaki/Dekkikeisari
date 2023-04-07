@@ -1,6 +1,5 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { loginSuccess } from '../../features/userAuth/userSlice';
 import { useDispatch } from 'react-redux';
 import { login, setUser } from '../../features/userAuth/userSlice';
 
@@ -10,35 +9,6 @@ const SignIn = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-
-    // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-
-    //     try {
-    //         const response = await fetch('http://localhost:3001/auth/login', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ email, password }),
-    //         });
-
-    //         if (response.ok) {
-    //             const data = await response.json();
-    //             console.log('Login successful:', data);
-    //             localStorage.setItem('token', data.token); // Store the token in local storage
-    //             dispatch(login());
-    //             dispatch(setUser(data.user));
-    //             navigate('/'); // redirect to dashboard page
-    //         }
-    //         else {
-    //             const error = await response.json();
-    //             console.log('Login failed:', error);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error during login:', error);
-    //     }
-    // };
 
     const fetchUserData = async (token: string) => {
         try {
@@ -52,7 +22,7 @@ const SignIn = () => {
 
             if (response.ok) {
                 const userData = await response.json();
-                console.log('User data:', userData);
+                // console.log('User data:', userData);
                 return userData;
             } else {
                 const error = await response.json();
@@ -87,6 +57,7 @@ const SignIn = () => {
                 if (userData) {
                     dispatch(setUser(userData));
                 }
+
 
                 navigate('/'); // redirect to dashboard page
             } else {
