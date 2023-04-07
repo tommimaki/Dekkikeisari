@@ -32,9 +32,9 @@ const Shirts: React.FC<ShirtProps> = ({ size }) => {
 
 
     return (
-        <div className="py-8">
+        <div className="py-8  mx-8">
             <h2 className="text-3xl font-bold mb-6 text-center">Paidat</h2>
-            <p className="text-gray-700"> Paitoja joka lähtöön</p>
+            <p className="text-gray-700 mb-6"> Paitoja joka lähtöön</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />

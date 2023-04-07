@@ -7,6 +7,7 @@ import { RootState } from '../../store';
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Breadcrumb from '../BreadCrumb';
 
 
 const ProductPage = () => {
@@ -44,23 +45,8 @@ const ProductPage = () => {
     return (
 
         <div className='flex-col mb-10'>
+            <Breadcrumb category={product.category} name={product.name} />
 
-            <div className='flex'>
-                {product.category && (
-                    <div className="m-4 self-start">
-                        <Link
-                            to={`/${product.category}`}
-                            className="text-blue-500 hover:text-blue-700"
-                        >
-                            <p>
-
-                                tuotteet/{product.category}
-                            </p>
-
-                        </Link>
-                    </div>
-                )}
-            </div>
             <div className="min-h-screen mx-auto max-w-7xl px-4 flex flex-col items-center justify-center sm:px-6 lg:px-8">
                 <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-6">
                     <div className="sm:w-1/2 z-0 flex items-center justify-center lg:justify-start mb-8 sm:mb-0">

@@ -4,7 +4,7 @@ import Decks from './Decks';
 import Shoes from './Shoes';
 import Shirts from './Shirts';
 import Filters from './Filters';
-
+import Breadcrumb from '../BreadCrumb';
 const Products = () => {
     const [category, setCategory] = React.useState('');
     const [size, setSize] = React.useState('');
@@ -22,6 +22,8 @@ const Products = () => {
     console.log(size)
     return (
         <div>
+
+            <Breadcrumb name={"products"} />
             <Filters handleFilterChange={handleFilterChange} />
             <div>
                 {category === '' && size === '' && (

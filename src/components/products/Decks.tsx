@@ -29,9 +29,9 @@ const Decks: React.FC<DecksProps> = ({ size }) => {
 
 
     return (
-        <div className="py-8">
+        <div className="py-8 mx-8">
             <h3 className="text-2xl font-semibold mb-4">dekit</h3>
-            <p className="text-gray-700">Laaja valikoima dekkejä alan parhailta valmistajilta.</p>
+            <p className="text-gray-700 mb-6">Laaja valikoima dekkejä alan parhailta valmistajilta.</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
