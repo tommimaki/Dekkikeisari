@@ -10,7 +10,7 @@ interface Props {
 
 
 const EditProductForm: React.FC<Props> = ({ product, onCloseModal, onProductUpdated }) => {
-    const [image, setImage] = useState<File | null>(null);
+    const [images, setImages] = useState<File[]>([]);
     const [name, setName] = useState(product.name);
     const [description, setDescription] = useState(product.description);
     const [price, setPrice] = useState(product.price);
@@ -29,9 +29,9 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal, onProductUpda
 
     // Image dropzone
     const onDrop = useCallback(async (acceptedFiles: File[]) => {
-        const file = acceptedFiles[0];
-        setImage(file);
+        setImages((prevImages) => [...prevImages, ...acceptedFiles]);
     }, []);
+
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -58,15 +58,17 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal, onProductUpda
 
         try {
             const formData = new FormData();
+
+
+            for (let i = 0; i < images.length; i++) {
+                formData.append("images[]", images[i]);
+            }
             formData.append('name', name);
             formData.append('description', description);
             formData.append('price', price.toString());
             formData.append('category', category);
             formData.append('sizes', JSON.stringify(selectedSizes));
 
-            if (image) {
-                formData.append('image', image);
-            }
 
             await updateProduct(product.id, formData);
             onProductUpdated(product);

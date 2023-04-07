@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 src={imageUrl}
                                 alt={`${product.name} ${index}`}
                                 onClick={handleClick}
-                                className=" object-cover rounded-t-lg"
+                                className="min-h-full h-48 object-cover rounded-t-lg"
                             />
                         </div>
                     ))}
