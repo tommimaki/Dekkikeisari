@@ -33,8 +33,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         e.stopPropagation();
     };
     return (
-        <div className="flex justify-center">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex justify-center  product-card">
+            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <Carousel
                     className="rounded-t-lg"
                     showStatus={false}
@@ -48,8 +48,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 src={imageUrl}
                                 alt={`${product.name} ${index}`}
                                 onClick={handleClick}
-                                className="min-h-full h-48 object-cover rounded-t-lg"
+                                className="min-h-full object-cover rounded-t-lg product-image"
                             />
+
                         </div>
                     ))}
                 </Carousel>

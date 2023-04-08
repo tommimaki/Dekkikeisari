@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Product from '../../interfaces/product';
 import ProductCard from './ProductCard';
+import { Link } from 'react-router-dom'
 
 interface ShoeProps {
     size?: string;
@@ -49,8 +50,15 @@ const Shoes: React.FC<ShoeProps> = ({ size }) => {
 
     return (
         <div className="py-8 mx-8">
-            <h2 className="text-3xl font-bold mb-6 text-center">Kengät</h2>
-            <p className="text-gray-700 mb-6">Uudet skeittikengät.</p>
+            <Link
+                to='/shoes'
+            >
+
+                <h2 className="text-3xl font-bold mb-6 text-center">KENGÄT</h2>
+            </Link>
+            <hr className="mb-4" />
+            <p className="text-gray-700 font-semibold mb-6">Uudet skeittikengät.</p>
+            <hr className="mb-4" />
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />

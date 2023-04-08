@@ -32,7 +32,7 @@ const Filters = ({ handleFilterChange }: FiltersProps) => {
         <div>
 
             <div className="flex justify-center space-x-8">
-                <div>
+                <div className='mb-2'>
                     <label htmlFor="category"
                         className="block mb-2 text-sm font-medium text-gray-900 ">
                         Tuoteryhmä
@@ -65,6 +65,7 @@ const Filters = ({ handleFilterChange }: FiltersProps) => {
                     </select>
                 </div>
             </div>
+            <hr className="mb-4" />
         </div>
     );
 

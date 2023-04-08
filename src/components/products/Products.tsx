@@ -23,7 +23,7 @@ const Products = () => {
     return (
         <div>
 
-            <Breadcrumb name={"products"} />
+            <Breadcrumb name={"Tuotteet"} />
             <Filters handleFilterChange={handleFilterChange} />
             <div>
                 {category === '' && size === '' && (

@@ -22,3 +22,13 @@
   height: 100%;
   border: 0;
 }
+
+img.product-image {
+  max-height: 300px; /* set the max height to 200px */
+  max-width: 300px;
+  /* width: 80%; s */
+}
+
+.product-card {
+  max-width: 305px;
+}
