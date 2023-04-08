@@ -155,7 +155,7 @@ const CartModal = () => {
                     <>
                         <button
                             onClick={() => setShowCheckout(false)}
-                            className="back-to-cart-button"
+                            className="checkout-button bg-gray-600 text-white p-4 rounded-md"
                         >
                             Back to Cart
                         </button>

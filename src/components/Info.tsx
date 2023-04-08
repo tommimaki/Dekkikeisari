@@ -26,7 +26,7 @@ const Info = () => {
                         <div className="flex items-center">
                             <FaMapMarkerAlt className="text-red-600 mr-2" />
                             <div className="text-gray-700">
-                                <p className="font-medium">Osoite:</p>
+                                <p className="font-medium text-left">Osoite:</p>
                                 <p>Katuosoite 123</p>
                                 <p>00100 Helsinki</p>
                             </div>
