@@ -10,7 +10,27 @@ const NewIn = () => {
             try {
                 const response = await fetch('http://localhost:3001/products');
                 const data = await response.json();
-                setProducts(data.products);
+
+                const parsedProducts = data.products.map((product: Product) => {
+                    let imageUrlsArray = [];
+
+                    try {
+                        if (typeof product.image_urls === 'string') {
+                            const parsed = JSON.parse(product.image_urls);
+                            imageUrlsArray = Array.isArray(parsed) ? parsed : JSON.parse(parsed);
+                        } else if (Array.isArray(product.image_urls)) {
+                            imageUrlsArray = product.image_urls;
+                        } else {
+                            console.error('Error: Unsupported image_urls format');
+                        }
+                    } catch (error) {
+                        console.error('Error parsing image URLs:', error);
+                    }
+
+                    return { ...product, image_urls: imageUrlsArray };
+                });
+
+                setProducts(parsedProducts);
             } catch (error) {
                 console.log('Error fetching products:', error);
             }

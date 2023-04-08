@@ -90,7 +90,6 @@ const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
         setPrice('');
         setCategory('');
         setSelectedSizes([]);
-        // setImage(null);
         setImages([]);
         onCloseModal();
     };
