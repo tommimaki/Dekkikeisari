@@ -59,24 +59,24 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {product.name}
                         </h5>
-                    </Link>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{product.price}€</p>
-                    <div className="flex justify-between items-center mb-3">
-                        <div className="flex flex-col items-start">
-                            <p className="text-white mb-2">Sizes:</p>
-                            <div className="flex flex-wrap">
-                                {sizes.map((size: string, index: number) => (
-                                    <span key={index} className="mr-2 mb-1 font-semibold text-white">{size}</span>
-                                ))}
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{product.price}€</p>
+                        <div className="flex justify-between items-center mb-3">
+                            <div className="flex flex-col items-start">
+                                <p className="text-white mb-2">Sizes:</p>
+                                <div className="flex flex-wrap">
+                                    {sizes.map((size: string, index: number) => (
+                                        <span key={index} className="mr-2 mb-1 font-semibold text-white">{size}</span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2zm0 0V4a2 2 0 012-2h2a2 2 0 012 2v1" />
-                            </svg>
-                        </button>
-                    </div>
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2zm0 0V4a2 2 0 012-2h2a2 2 0 012 2v1" />
+                                </svg>
+                            </button>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -32,3 +32,16 @@ img.product-image {
 .product-card {
   max-width: 305px;
 }
+
+.fullScreenMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}

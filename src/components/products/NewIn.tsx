@@ -39,10 +39,22 @@ const NewIn = () => {
     }, []);
 
     return (
-        <div className="container mx-auto mt-8">
+        // <div className='flex justify-center center'>
+
+        //     <div className="container mx-auto mt-8">
+        //         <h2 className="text-2xl font-semibold mb-4">Uutuudet</h2>
+        //         <hr className="mb-4" />
+        //         <div className="grid grid-cols-2 sm:grid-cols-2 justify-center md:grid-cols-3 gap-4">
+        //             {products.slice(-6).map((product) => (
+        //                 <ProductCard key={product.id} product={product} />
+        //             ))}
+        //         </div>
+        //     </div>
+        // </div>
+        <div className="container mx-auto mb-8 mt-8">
             <h2 className="text-2xl font-semibold mb-4">Uutuudet</h2>
             <hr className="mb-4" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
                 {products.slice(-6).map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}

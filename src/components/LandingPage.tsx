@@ -20,9 +20,9 @@ const LandingPage = () => {
                 </div>
             </div>
             <div className="grid grid-cols-1  md:grid-cols-1 gap-4  " >
-                <div className="bg-white p-6  rounded-lg w-screen   ">
-                    <NewIn />
-                </div>
+
+                <NewIn />
+
 
             </div>
             <Info />

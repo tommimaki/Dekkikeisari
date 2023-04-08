@@ -17,8 +17,6 @@ const ProductPage = () => {
     const [quantity, setQuantity] = useState<number>(1);
     const dispatch = useDispatch();
 
-    const cart = useSelector((state: RootState) => state.cart?.items);
-
     useEffect(() => {
         const fetchProduct = async () => {
             const response = await fetch(`http://localhost:3001/products/${id}`);
@@ -31,15 +29,15 @@ const ProductPage = () => {
 
     const handleAddToCart = () => {
         if (product && selectedSize) {
-            const cartProduct = { ...product, quantity, size: selectedSize };
+            const cartProduct = { product: { ...product, size: selectedSize }, quantity };
             dispatch(addToCart(cartProduct));
         }
     };
+
     if (!product) {
         return <div>Loading...</div>;
     }
 
-    // const imageUrlsArray = JSON.parse(product.image_urls);
 
     let imageUrlsArray = [];
 
@@ -89,7 +87,7 @@ const ProductPage = () => {
                             {product.sizes && (
                                 <div>
                                     <label htmlFor="size" className="block mb-2">
-                                        Size
+                                        Koko
                                     </label>
                                     <select
                                         id="size"
@@ -97,7 +95,7 @@ const ProductPage = () => {
                                         onChange={(e) => setSelectedSize(e.target.value || "")}
                                         className="w-24 border border-gray-300 p-2 rounded"
                                     >
-                                        <option value="">Size</option>
+                                        <option value="">Koko</option>
                                         {(() => {
                                             const parsedSizes = JSON.parse(product.sizes);
                                             return parsedSizes.map((sizeString: string) => (
@@ -111,7 +109,7 @@ const ProductPage = () => {
                             )}
                             <div>
                                 <label htmlFor="quantity" className="block mb-2">
-                                    Quantity
+                                    Määrä
                                 </label>
                                 <input
                                     type="number"

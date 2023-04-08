@@ -6,7 +6,7 @@ const Info = () => {
     return (
         <div className=" bg-gray-700 text-white w-full p-10">
             <div className="container mx-auto px-4 flex flex-col  items-center  lg:flex-row justify-between">
-                <div className="lg:w-1/2 mb-6 mx-10 pr-10 content-center  lg:mb-0">
+                <div className="lg:w-1/2 mb-6 mx-10  content-center  lg:mb-0">
                     <h2 className="text-4xl font-semibold mb-20">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
                     <p className="text-white text-xl mb-4">
                         Myymme streetwear-vaatteita ja skeittilautoja. Tee tilaus netissä tai tule moikkaamaan
