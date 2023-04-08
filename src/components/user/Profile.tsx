@@ -1,10 +1,14 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { FaUser, FaEnvelope, FaMapMarkerAlt, FaCreditCard } from 'react-icons/fa';
 import Breadcrumb from '../BreadCrumb';
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../features/userAuth/userSlice"
 
 const Profile = () => {
     const [user, setUser] = useState({ name: '', email: '', address: '', id: null });
     const [isEditing, setIsEditing] = useState(false);
+    const dispatch = useDispatch();
+
     // Fetch user data from the server when the component mounts
     useEffect(() => {
         fetchUserData().then((userData) => setUser(userData));
@@ -64,6 +68,7 @@ const Profile = () => {
 
             const updatedUser = await response.json(); // updated user data from the response
             setUser(updatedUser); // Update the local state with the updated user data
+            dispatch(updateUser(updatedUser));
 
             console.log("Updated user data:", user);
             setIsEditing(false);

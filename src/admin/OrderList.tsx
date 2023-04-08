@@ -50,8 +50,18 @@ const OrderList: React.FC = () => {
 
 
     const handleDelete = async (orderId: number) => {
-        // handle the delete action
-        console.log(`Delete order ${orderId}`);
+        // Show a confirmation window
+        const confirmDelete = window.confirm(`Are you sure you want to delete order ${orderId}?`);
+        if (confirmDelete) {
+            try {
+                await fetch(`http://localhost:3001/orders/${orderId}`, {
+                    method: 'DELETE',
+                });
+                setOrders(orders.filter((order) => order.id !== orderId));
+            } catch (error) {
+                console.log('Error deleting order:', error);
+            }
+        }
     };
 
 
