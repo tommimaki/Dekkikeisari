@@ -26,6 +26,10 @@ const Header = () => {
         setShowMenu(!showMenu);
     };
 
+    const handleClose = () => {
+        setShowMenu(false);
+    };
+
     return (
         <header className="bg-gray-900 text-white">
             <div className="container mx-auto px-4">
@@ -136,7 +140,8 @@ const Header = () => {
                                     </Link>
                                 </>
                             )}
-                            <Cart />
+                            <Cart handleClose={handleClose} />
+
                             {showMenu && <hr className="mb-5" />}
                         </div>
                     </nav>

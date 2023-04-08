@@ -81,7 +81,25 @@ const CartModal = () => {
                     cartItems.map((item: Product) => {
                         const price = Number(item.price);
                         if (isNaN(price)) return null;
-                        const imageUrlsArray = item.image_urls ? JSON.parse(item.image_urls) : [];
+                        // const imageUrlsArray = item.image_urls ? JSON.parse(item.image_urls) : [];
+                        let imageUrlsArray = [];
+
+                        try {
+                            if (typeof item.image_urls === 'string') {
+                                const parsed = JSON.parse(item.image_urls);
+                                imageUrlsArray = Array.isArray(parsed) ? parsed : JSON.parse(parsed);
+                            } else if (Array.isArray(item.image_urls)) {
+                                imageUrlsArray = item.image_urls;
+                            } else {
+                                console.error('Error: Unsupported image_urls format');
+                            }
+                        } catch (error) {
+                            console.error('Error parsing image URLs:', error);
+                        }
+
+
+
+
                         const imageUrl = imageUrlsArray.length > 0 ? imageUrlsArray[0] : 'default_image_url';
 
                         return (

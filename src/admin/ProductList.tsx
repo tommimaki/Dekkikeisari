@@ -78,9 +78,9 @@ const ProductList: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className='flex-col justify-center items-center'>
             <h2 className="text-2xl font-bold mb-4">Inventaario</h2>
-            <div className="ag-theme-alpine" style={{ height: '700px', width: '100%' }}>
+            <div className="ag-theme-alpine" style={{ height: '800px', width: '1200px' }}>
                 <AgGridReact
                     columnDefs={columnDefs}
                     rowData={products}

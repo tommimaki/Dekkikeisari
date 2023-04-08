@@ -6,13 +6,14 @@ import { RootState } from '../../store';
 import { openCart, closeCart } from '../../features/cart/cartSlice';
 import { FaShoppingCart } from 'react-icons/fa';
 
-const Cart = () => {
+const Cart = ({ handleClose }: { handleClose: () => void }) => {
     const cartItems = useSelector((state: RootState) => state.cart?.items);
     const isOpen = useSelector((state: RootState) => state.cart?.isOpen);
 
     const dispatch = useDispatch();
 
     const handleOpenCart = () => {
+        handleClose();
         dispatch(openCart());
     };
 

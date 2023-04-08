@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Order, ProductInOrder, Customer } from '../interfaces/order';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
 
 const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -25,37 +29,43 @@ const OrderList: React.FC = () => {
         };
         fetchOrders();
     }, []);
+
+
+    const columnDefs = [
+        { headerName: 'ID', field: 'id' },
+        { headerName: 'Customer', field: 'customer_id' },
+        {
+            headerName: 'Products',
+            field: 'products',
+            cellRendererFramework: (params: any) => (
+                <div>
+                    {params.value.map((product: ProductInOrder) => (
+                        <div key={product.productId}>
+                            Product ID: {product.productId} (Quantity: {product.quantity})
+                        </div>
+                    ))}
+                </div>
+            ),
+        },
+        { headerName: 'Total', field: 'total' },
+        { headerName: 'Shipping Address', field: 'shipping_address' },
+    ];
+
+
     return (
         <div className="container mx-auto mt-8">
             <h2 className="text-2xl font-semibold mb-4">Orders</h2>
-            <table className="w-full">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Customer</th>
-                        <th>Products</th>
-                        <th>Total</th>
-                        <th>Shipping Address</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orders.map((order) => (
-                        <tr key={order.id}>
-                            <td>{order.id}</td>
-                            <td>{order.customer_id}</td>
-                            <td>
-                                {order.products.map((product) => (
-                                    <div key={product.productId}>
-                                        Product ID: {product.productId} (Quantity: {product.quantity})
-                                    </div>
-                                ))}
-                            </td>
-                            <td>{order.total}</td>
-                            <td>{order.shipping_address}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+
+            <div className="ag-theme-alpine" style={{ height: '800px', width: '100%' }}>
+                <AgGridReact
+                    columnDefs={columnDefs}
+                    rowData={orders}
+                    pagination={true}
+                    paginationPageSize={20}
+                    suppressCellSelection={true}
+                />
+            </div>
+
         </div>
     );
 };
