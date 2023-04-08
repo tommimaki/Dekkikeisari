@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Product from '../../interfaces/product';
 import { addToCart } from '../../features/cart/cartSlice';
-import { RootState } from '../../store';
+
 import { Carousel } from 'react-responsive-carousel';
-import { Link } from 'react-router-dom';
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Breadcrumb from '../BreadCrumb';
 
@@ -16,6 +16,8 @@ const ProductPage = () => {
     const [selectedSize, setSelectedSize] = useState<string>('');
     const [quantity, setQuantity] = useState<number>(1);
     const dispatch = useDispatch();
+    const [showAddedToCartMessage, setShowAddedToCartMessage] = useState(false);
+    const [showSizeQuantityMessage, setShowSizeQuantityMessage] = useState(false);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -27,10 +29,18 @@ const ProductPage = () => {
         fetchProduct();
     }, [id]);
 
+
     const handleAddToCart = () => {
-        if (product && selectedSize) {
-            const cartProduct = { product: { ...product, size: selectedSize }, quantity };
-            dispatch(addToCart(cartProduct));
+        if (product) {
+            if (selectedSize && quantity) {
+                const cartProduct = { product: { ...product, size: selectedSize }, quantity };
+                dispatch(addToCart(cartProduct));
+                setShowAddedToCartMessage(true);
+                setTimeout(() => setShowAddedToCartMessage(false), 3000);
+            } else {
+                setShowSizeQuantityMessage(true);
+                setTimeout(() => setShowSizeQuantityMessage(false), 3000);
+            }
         }
     };
 
@@ -123,11 +133,21 @@ const ProductPage = () => {
                         </div>
                         <button
                             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                            disabled={!selectedSize}
+                            // disabled={!selectedSize}
                             onClick={handleAddToCart}
                         >
                             Lisää ostoskoriin
                         </button>
+                        {showAddedToCartMessage && (
+                            <div className="mt-4 text-green-600">
+                                Tuote lisätty ostoskoriin!
+                            </div>
+                        )}
+                        {showSizeQuantityMessage && (
+                            <div className="mt-4 text-red-600">
+                                Valitse koko ja määrä!
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
