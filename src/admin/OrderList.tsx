@@ -3,6 +3,8 @@ import { Order, ProductInOrder, Customer } from '../interfaces/order';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import { ValueFormatterParams } from 'ag-grid-community';
+
 
 
 const OrderList: React.FC = () => {
@@ -113,7 +115,27 @@ const OrderList: React.FC = () => {
         },
         { headerName: 'Total', field: 'total' },
         { headerName: 'Shipping Address', field: 'shipping_address' },
-        { headerName: 'Status', field: 'status' },
+        {
+            headerName: 'Status',
+            field: 'status',
+            sortable: true,
+            cellStyle: (params: ValueFormatterParams) => {
+                switch (params.value) {
+                    case 'pending':
+                        return { backgroundColor: '#FBBF24' }; // Change the color as needed
+                    case 'processing':
+                        return { backgroundColor: '#3B82F6' }; // Change the color as needed
+                    case 'shipped':
+                        return { backgroundColor: '#34D399' }; // Change the color as needed
+                    case 'delivered':
+                        return { backgroundColor: '#10B981' }; // Change the color as needed
+                    case 'cancelled':
+                        return { backgroundColor: '#EF4444' }; // Change the color as needed
+                    default:
+                        return null;
+                }
+            },
+        },
         {
             headerName: 'Actions',
             field: '',
