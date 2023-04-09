@@ -15,6 +15,11 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    //conditional rendering for adminpanel if user is admin
+    const user = useSelector((state: RootState) => state.user);
+    const userRole = user.user?.role;
+    const isAdmin = userRole === 'admin';
+
     const handleLogout = () => {
         dispatch(logout())
         localStorage.removeItem('token');
@@ -39,9 +44,9 @@ const Header = () => {
                         <img src={skatelogo} className="w-full h-full object-cover object-center transform -translate-x-2" alt="logo" />
                     </div>
 
-                    <Link to="/" className="text-xl font-semibold">
+                    {/* <Link to="/" className="text-xl font-semibold">
                         Dekkikeisari
-                    </Link>
+                    </Link> */}
                     <button
                         onClick={toggleMenu}
                         className="block lg:hidden text-white focus:outline-none"
@@ -64,6 +69,16 @@ const Header = () => {
                             <FaTimes className="text-xl" />
                         </button>
                         <div className="lg:flex lg:items-center l:flex items-center justify-between">
+                            {isAdmin && (
+                                <Link
+                                    to="/admin"
+                                    onClick={() => setShowMenu(false)}
+                                    className={`block ${showMenu ? "mt-10" : "mt-4"} lg:inline-block lg:mt-0 text-white hover:text-gray-400 mr-10`}
+                                >
+                                    Admin Panel
+                                    {showMenu && <hr className="mb-5" />}
+                                </Link>
+                            )}
                             <Link
                                 to="/"
                                 onClick={() => setShowMenu(false)}

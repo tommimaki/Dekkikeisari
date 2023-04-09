@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, setUser } from '../../features/userAuth/userSlice';
 
+
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -54,7 +55,9 @@ const SignIn = () => {
                 dispatch(login());
 
                 const userData = await fetchUserData(data.token);
+
                 if (userData) {
+
                     dispatch(setUser(userData));
                 }
 
