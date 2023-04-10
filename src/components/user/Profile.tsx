@@ -1,49 +1,51 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { FaUser, FaEnvelope, FaMapMarkerAlt, FaCreditCard } from 'react-icons/fa';
+
 import Breadcrumb from '../BreadCrumb';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../features/userAuth/userSlice"
+import { Order } from '../../interfaces/order';
+import { RootState } from '../../store';
+import {
+    FaUser,
+    FaEnvelope,
+    FaMapMarkerAlt,
+    FaCreditCard,
+} from "react-icons/fa";
 
 const Profile = () => {
     const [user, setUser] = useState({ name: '', email: '', address: '', id: null });
     const [isEditing, setIsEditing] = useState(false);
     const dispatch = useDispatch();
+    const [orders, setOrders] = useState<Order[]>([]);
+    const reduxUser = useSelector((state: RootState) => state.user);
 
-    // Fetch user data from the server when the component mounts
     useEffect(() => {
-        fetchUserData().then((userData) => setUser(userData));
-    }, []);
+        const fetchUserOrders = async () => {
+            try {
+                const response = await fetch(`http://localhost:3001/orders/customer/${reduxUser.user.id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-    const fetchUserData = async () => {
-        try {
-            const response = await fetch("http://localhost:3001/users/user", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error("Failed to fetch user data");
-            }
-
-            const userData = await response.json();
-            console.log("Fetched user data:", userData);
-
-            //sets empty string if datafield null
-            const propertiesToCheck = ["name", "email", "address", "id"];
-            propertiesToCheck.forEach((property) => {
-                if (userData[property] === undefined) {
-                    console.log(property)
-                    userData[property] = '';
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user orders');
                 }
-            });
-            return userData;
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-            throw error;
-        }
-    };
 
+                const data = await response.json();
+                setOrders(data.orders);
+            } catch (error) {
+                console.error('Error fetching user orders:', error);
+            }
+        };
+
+
+        if (reduxUser.user.id) {
+            setUser(reduxUser.user);
+            fetchUserOrders(); // Fetch user orders
+        }
+    }, [reduxUser, reduxUser.id]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -80,10 +82,9 @@ const Profile = () => {
 
     return (
         <div>
-
             <Breadcrumb name={'Profiili'} />
-            <div className="min-h-screen  flex items-center justify-center">
-                <div className="bg-white min-h-screen p-8 rounded shadow-lg w-full text-left max-w-md">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:min-h-screen p-4">
+                <div className="bg-white p-8 rounded shadow-lg w-full text-left md:max-w-md">
                     <h2 className="text-2xl text-center font-bold mb-4">Hi, {user.name}</h2>
                     <hr className="mb-20" />
                     {isEditing ? (
@@ -185,9 +186,37 @@ const Profile = () => {
                         </div>
                     )}
                 </div>
-            </div >
-        </div>
+
+                <div className="bg-white p-8 rounded shadow-lg w-full text-left md:max-w-md">
+                    <h2 className="text-2xl font-bold mb-4">Your Orders:</h2>
+                    {orders.length > 0 ? (
+                        <ul>
+                            {orders.map((order) => (
+                                <li
+                                    key={order.id}
+                                    className="p-4 mb-4 bg-gray-100 rounded shadow"
+                                >
+                                    <p>
+                                        <strong>Order ID:</strong> {order.id}
+                                    </p>
+                                    <p>
+                                        <strong>Total:</strong> {order.total}€
+                                    </p>
+                                    <p>
+                                        <strong>Order status:</strong> {order.status}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No orders found</p>
+                    )}
+                </div>
+            </div>
+        </div >
     );
 };
 
 export default Profile;
+
+

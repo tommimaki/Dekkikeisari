@@ -12,15 +12,7 @@ export interface Customer {
     email: string;
 }
 
-// export interface Order {
-//     id: number;
-//     customer_id: number;
-//     products: ProductInOrder[];
-//     total: number;
-//     shipping_address: string;
-//     created_at: string;
-//     updated_at: string;
-// }
+
 export interface Order {
     id: number;
     customer_id: number;
@@ -34,4 +26,4 @@ export interface Order {
     status: string;
 }
 
-  // ... other interfaces
+
