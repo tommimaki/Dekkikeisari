@@ -32,29 +32,36 @@ const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onC
     return (
         <div>
             <h2>Edit Customer</h2>
-            <form onSubmit={handleSubmit}>
-                {/* Add input fields for other customer properties */}
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input id="name" name="name" type="text" value={updatedCustomer.name} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input id="email" name="email" type="email" value={updatedCustomer.email} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="address">Address:</label>
-                    <input id="address" name="address" type="text" value={updatedCustomer.address} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="role">Role:</label>
-                    <input id="role" name="role" type="text" value={updatedCustomer.role} onChange={handleChange} />
-                </div>
-                <button type="submit">Save Changes</button>
-                <button type="button" onClick={onCloseModal}>
-                    Cancel
+            <form className="flex flex-col w-full max-w-md mx-auto space-y-4">
+                <input
+                    type="text"
+                    className="form-input px-3 py-2 border border-gray-300 rounded"
+                    placeholder="Name"
+                />
+                <input
+                    type="email"
+                    className="form-input px-3 py-2 border border-gray-300 rounded"
+                    placeholder="Email"
+                />
+                <input
+                    type="password"
+                    className="form-input px-3 py-2 border border-gray-300 rounded"
+                    placeholder="Password"
+                />
+                <input
+                    type="text"
+                    className="form-input px-3 py-2 border border-gray-300 rounded"
+                    placeholder="Address"
+                />
+                <select className="form-select px-3 py-2 border border-gray-300 rounded">
+                    <option value="customer">Customer</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600">
+                    Submit
                 </button>
             </form>
+
         </div>
     );
 };
