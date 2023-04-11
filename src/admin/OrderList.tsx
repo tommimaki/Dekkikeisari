@@ -16,16 +16,6 @@ const OrderList: React.FC = () => {
     });
 
 
-    const fetchProductById = async (productId: number) => {
-        try {
-            const response = await fetch(`http://localhost:3001/products/${productId}`);
-            const data = await response.json();
-            return data.product;
-        } catch (error) {
-            console.log('Error fetching product:', error);
-            return null;
-        }
-    };
 
     useEffect(() => {
         const fetchOrders = async () => {

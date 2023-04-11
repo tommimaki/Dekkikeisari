@@ -40,7 +40,7 @@ const NewIn = () => {
 
     return (
 
-        <div className="container mx-auto mb-8 mt-8">
+        <div className="py-8 mx-8">
             <h2 className="text-2xl font-semibold mb-4">Uutuudet</h2>
             <hr className="mb-4" />
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">

@@ -15,7 +15,7 @@ const Info = () => {
 
                     <div className="mt-8">
                         <Link to="/products">
-                            <button className="bg-gray-900 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-gray-900 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded">
                                 Tutustu koko valikoimaan
                             </button>
                         </Link>
@@ -34,6 +34,7 @@ const Info = () => {
                         <div>
                             <div className="map-container">
                                 <iframe
+                                    title="Google Maps - Kamppi, Helsinki"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7939.465494145467!2d24.923580297014965!3d60.166390986204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46920a34d032778f%3A0x2600b5523c1977b1!2sKamppi%2C%20Helsinki!5e0!3m2!1sfi!2sfi!4v1680177754827!5m2!1sfi!2sfi"
                                     width="600"
                                     height="500"

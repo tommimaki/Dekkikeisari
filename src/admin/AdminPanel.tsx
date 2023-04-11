@@ -26,7 +26,7 @@ const AdminPanel: React.FC = () => {
                                     : 'text-blue-600 hover:bg-blue-500 hover:text-white'
                                     }`}
                             >
-                                Orders
+                                Tilaukset
                             </Link>
                         </li>
                         <li>
@@ -37,7 +37,7 @@ const AdminPanel: React.FC = () => {
                                     : 'text-blue-600 hover:bg-blue-500 hover:text-white'
                                     }`}
                             >
-                                Product Management
+                                Tuotteiden hallinta
                             </Link>
                         </li>
                         <li>
@@ -48,7 +48,7 @@ const AdminPanel: React.FC = () => {
                                     : 'text-blue-600 hover:bg-blue-500 hover:text-white'
                                     }`}
                             >
-                                Customer Management
+                                Asiakkaiden Hallinta
                             </Link>
                         </li>
                     </ul>

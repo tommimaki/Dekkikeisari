@@ -40,13 +40,12 @@ const Header = () => {
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
 
-                    <div className="h-15 w-20 bg-white rounded-full overflow-hidden">
-                        <img src={skatelogo} className="w-full h-full object-cover object-center transform -translate-x-2" alt="logo" />
-                    </div>
+                    <Link to="/">
+                        <div className="h-15 w-20 bg-white rounded-full overflow-hidden">
+                            <img src={skatelogo} className="w-full h-full object-cover object-center transform -translate-x-2" alt="logo" />
+                        </div>
+                    </Link>
 
-                    {/* <Link to="/" className="text-xl font-semibold">
-                        Dekkikeisari
-                    </Link> */}
                     <button
                         onClick={toggleMenu}
                         className="block lg:hidden text-white focus:outline-none"
