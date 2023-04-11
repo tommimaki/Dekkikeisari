@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Decks from './components/products/Decks';
 import Shirts from './components/products/Shirts';
 import Shoes from './components/products/Shoes';
-import SignUp from './components/user/SignUp';
+import SignUp from './components/user/UserSignUp';
 import Products from './components/products/Products'
 import AdminPanel from './admin/AdminPanel';
 import ProductPage from './components/products/ProductPage';
