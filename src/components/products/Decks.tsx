@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Product from '../../interfaces/product';
 import ProductCard from './ProductCard';
-import Breadcrumb from '../BreadCrumb';
 import { Link } from 'react-router-dom';
 
 

@@ -21,7 +21,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
     const [address, setAddress] = useState('');
 
     const user = useSelector((state: RootState) => state.user.user);
-    const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+    // const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
     // Update local state when the Redux user state changes
     useEffect(() => {
