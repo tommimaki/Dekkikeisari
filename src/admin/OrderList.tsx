@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Order, ProductInOrder, Customer } from '../interfaces/order';
+import { Order, ProductInOrder } from '../interfaces/order';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ValueFormatterParams } from 'ag-grid-community';
-
-
+import ProductCell from './ProductCell';
 
 
 const OrderList: React.FC = () => {
@@ -16,17 +15,48 @@ const OrderList: React.FC = () => {
         status: '',
     });
 
+
+    const fetchProductById = async (productId: number) => {
+        try {
+            const response = await fetch(`http://localhost:3001/products/${productId}`);
+            const data = await response.json();
+            return data.product;
+        } catch (error) {
+            console.log('Error fetching product:', error);
+            return null;
+        }
+    };
+
     useEffect(() => {
         const fetchOrders = async () => {
             try {
                 const response = await fetch('http://localhost:3001/orders');
                 const data = await response.json();
 
+                // Fetch product names
+                const productNames = await Promise.all(
+                    data.orders.flatMap((order: any) =>
+                        JSON.parse(order.products).map(async (product: ProductInOrder) => {
+                            try {
+                                const productResponse = await fetch(`http://localhost:3001/products/${product.productId}`);
+                                const productData = await productResponse.json();
+                                return { id: productData.product.id, name: productData.product.name };
+                            } catch (error) {
+                                console.log(`Error fetching product with ID ${product.productId}:`, error);
+                                return { id: product.productId, name: 'Not found' };
+                            }
+                        })
+                    )
+                );
+
                 // Parse the products field
                 const parsedOrders = data.orders.map((order: any) => {
                     return {
                         ...order,
-                        products: JSON.parse(order.products),
+                        products: JSON.parse(order.products).map((product: ProductInOrder) => {
+                            const productName = productNames.find((p) => p.id === product.productId)?.name || '';
+                            return { ...product, productName };
+                        }),
                     };
                 });
 
@@ -104,16 +134,9 @@ const OrderList: React.FC = () => {
         {
             headerName: 'Products',
             field: 'products',
-            cellRendererFramework: (params: any) => (
-                <div>
-                    {params.value.map((product: ProductInOrder) => (
-                        <div key={product.productId}>
-                            Product ID: {product.productId} (Quantity: {product.quantity})
-                        </div>
-                    ))}
-                </div>
-            ),
+            cellRendererFramework: ProductCell,
         },
+
         { headerName: 'Total', field: 'total' },
         { headerName: 'Shipping Address', field: 'shipping_address' },
         {

@@ -4,6 +4,8 @@ export interface ProductInOrder {
     productId: number;
     price: number;
     quantity: number;
+    size: string;
+    productName: string;
 }
 
 export interface Customer {
