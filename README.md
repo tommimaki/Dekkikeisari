@@ -1,3 +1,61 @@
+# Skateshop
+
+### Skateshop is a fully functional e-commerce application built with React, Redux, TypeScript, and Tailwind CSS. This project showcases a variety of features such as product listing, filtering, user authentication, shopping cart, and admin panel for managing products and customers.
+
+hosted on netlify: https://cerulean-marshmallow-946350.netlify.app/
+Backend repository here: https://github.com/tommimaki/dekkikeisari-Backend
+
+## Features
+
+- Product listing with category-based filtering
+- User authentication (Sign Up and Sign In)
+- User profiles
+- Shopping cart
+- Admin panel for managing products, orders, and customers
+- Responsive design
+
+## Technologies
+
+- React
+- Redux
+- TypeScript
+- Tailwind CSS
+- React Router DOM
+- React Icons
+- React Modal
+- React Responsive Carousel
+- React Dropzone
+- React Collapse
+- Axios
+- ag-Grid
+
+## Installation
+
+### Clone the repository:
+
+bash
+git clone https://github.com/yourusername/skateshop.git
+Change into the project directory:
+cd skateshop
+Install the dependencies:
+npm install
+Add environment variables in a .env file in the root of the project, with the following format:
+REACT_APP_API_URL=https://your-backend-api-url/
+Replace https://your-backend-api-url/ with the URL of your backend API.
+
+Start the development server:
+sql
+npm start
+The application will be available at http://localhost:3000.
+
+Build
+To build the application for production, run:
+npm run build
+This will create a build folder in the project directory containing the optimized production build.
+
+License
+MIT
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
