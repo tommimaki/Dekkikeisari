@@ -8,6 +8,7 @@ const NewIn = () => {
     const [products, setProducts] = useState<Product[]>([]);
 
 
+    console.log(BASE_API_URL)
     useEffect(() => {
         const fetchProducts = async () => {
             try {
