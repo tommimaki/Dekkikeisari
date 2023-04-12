@@ -9,11 +9,11 @@ import EditProductForm from './EditProductForm';
 const ProductList: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
+    const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:3001/products');
+            const response = await fetch(`${BASE_API_URL}products`);
             const data = await response.json();
             console.log('Data:', data);
             setProducts(data.products);
@@ -24,8 +24,6 @@ const ProductList: React.FC = () => {
     };
 
     useEffect(() => {
-
-
         fetchProducts();
     }, []);
 
@@ -40,7 +38,6 @@ const ProductList: React.FC = () => {
     const handleProductUpdated = () => {
         fetchProducts();
     };
-
 
     const columnDefs = [
         { headerName: 'Nimi', field: 'name', sortable: true, filter: true },
@@ -67,7 +64,7 @@ const ProductList: React.FC = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm(`Poista tuote ${id}?`)) {
             try {
-                await fetch(`http://localhost:3001/products/${id}`, {
+                await fetch(`${BASE_API_URL}products/${id}`, {
                     method: 'DELETE'
                 });
                 setProducts(products.filter(product => product.id !== id));

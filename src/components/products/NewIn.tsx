@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../../interfaces/product';
 import ProductCard from './ProductCard';
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
+
 
 const NewIn = () => {
     const [products, setProducts] = useState<Product[]>([]);
 
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3001/products');
+                const response = await fetch(`${BASE_API_URL}products`);
                 const data = await response.json();
-
                 const parsedProducts = data.products.map((product: Product) => {
                     let imageUrlsArray = [];
 

@@ -1,6 +1,9 @@
 import React, { useState, FormEvent, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-const API_URL = 'http://localhost:3001/products/add';
+
+
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
+const API_URL = `${BASE_API_URL}products/add`;
 
 async function addProduct(product: any) {
 

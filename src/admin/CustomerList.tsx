@@ -5,14 +5,14 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import Modal from 'react-modal';
 import EditCustomerForm from './EditCustomerForm';
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const CustomerList: React.FC = () => {
     const [customers, setCustomers] = useState<Customer[]>([]);
     const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
-
     const fetchCustomers = async () => {
         try {
-            const response = await fetch('http://localhost:3001/users');
+            const response = await fetch(`${BASE_API_URL}products`);
             const data = await response.json();
             console.log('Data:', data);
             setCustomers(data.users);
@@ -68,7 +68,7 @@ const CustomerList: React.FC = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm(`Delete customer ${id}?`)) {
             try {
-                await fetch(`http://localhost:3001/users/${id}`, {
+                await fetch(`${BASE_API_URL}users/${id}`, {
                     method: 'DELETE',
                 });
                 setCustomers(customers.filter((customer) => customer.id !== id));
