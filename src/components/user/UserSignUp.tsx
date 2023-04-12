@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, setUser } from '../../features/userAuth/userSlice';
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const SignUp = () => {
 
     const fetchUserData = async (token: string) => {
         try {
-            const response = await fetch('http://localhost:3001/users/user', {
+            const response = await fetch(`${BASE_API_URL}users/user`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,7 +23,6 @@ const SignUp = () => {
 
             if (response.ok) {
                 const userData = await response.json();
-                // console.log('User data:', userData);
                 return userData;
             } else {
                 const error = await response.json();
@@ -43,7 +43,7 @@ const SignUp = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/users/create', {
+            const response = await fetch(`${BASE_API_URL}users/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const SignUp = () => {
                 console.log('Registration successful:', data);
 
                 // Sign in after successful registration
-                const loginResponse = await fetch('http://localhost:3001/auth/login', {
+                const loginResponse = await fetch(`${BASE_API_URL}auth/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

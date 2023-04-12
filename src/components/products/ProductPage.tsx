@@ -3,12 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Product from '../../interfaces/product';
 import { addToCart } from '../../features/cart/cartSlice';
-
 import { Carousel } from 'react-responsive-carousel';
-
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Breadcrumb from '../BreadCrumb';
-
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -21,7 +19,7 @@ const ProductPage = () => {
 
     useEffect(() => {
         const fetchProduct = async () => {
-            const response = await fetch(`http://localhost:3001/products/${id}`);
+            const response = await fetch(`${BASE_API_URL}products/${id}`);
             const data = await response.json();
             setProduct(data.product);
         };

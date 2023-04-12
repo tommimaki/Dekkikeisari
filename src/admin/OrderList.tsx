@@ -5,7 +5,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ValueFormatterParams } from 'ag-grid-community';
 import ProductCell from './ProductCell';
-
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -20,7 +20,7 @@ const OrderList: React.FC = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch('http://localhost:3001/orders');
+                const response = await fetch(`${BASE_API_URL}orders`);
                 const data = await response.json();
 
                 // Fetch product names
@@ -28,7 +28,7 @@ const OrderList: React.FC = () => {
                     data.orders.flatMap((order: any) =>
                         JSON.parse(order.products).map(async (product: ProductInOrder) => {
                             try {
-                                const productResponse = await fetch(`http://localhost:3001/products/${product.productId}`);
+                                const productResponse = await fetch(`${BASE_API_URL}products/${product.productId}`);
                                 const productData = await productResponse.json();
                                 return { id: productData.product.id, name: productData.product.name };
                             } catch (error) {
@@ -77,7 +77,7 @@ const OrderList: React.FC = () => {
         const confirmDelete = window.confirm(`Are you sure you want to delete order ${orderId}?`);
         if (confirmDelete) {
             try {
-                await fetch(`http://localhost:3001/orders/${orderId}`, {
+                await fetch(`${BASE_API_URL}orders/${orderId}`, {
                     method: 'DELETE',
                 });
                 setOrders(orders.filter((order) => order.id !== orderId));
@@ -96,7 +96,7 @@ const OrderList: React.FC = () => {
     const handleEditFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3001/orders/${editFormData.id}`, {
+            const response = await fetch(`${BASE_API_URL}orders/${editFormData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

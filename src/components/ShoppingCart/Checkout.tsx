@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Product from '../../interfaces/product';
-
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 // Define interface for CheckoutProps
 interface CheckoutProps {
@@ -21,7 +21,6 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
     const [address, setAddress] = useState('');
 
     const user = useSelector((state: RootState) => state.user.user);
-    // const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
     // Update local state when the Redux user state changes
     useEffect(() => {
@@ -72,7 +71,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
     };
 
     async function submitOrder(orderInfo: any) {
-        const response = await fetch("http://localhost:3001/orders", {
+        const response = await fetch(`${BASE_API_URL}orders`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -42,7 +42,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({ category, title, su
         };
 
         fetchProducts();
-    }, []);
+    }, [category]);
 
     const filteredProducts = products.filter((product) => {
         if (size) {

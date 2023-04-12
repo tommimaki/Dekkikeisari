@@ -11,6 +11,7 @@ import {
     FaMapMarkerAlt,
     FaCreditCard,
 } from "react-icons/fa";
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const Profile = () => {
     const [user, setUser] = useState({ name: '', email: '', address: '', id: null });
@@ -22,7 +23,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserOrders = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/orders/customer/${reduxUser.user.id}`, {
+                const response = await fetch(`${BASE_API_URL}orders/customer/${reduxUser.user.id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ const Profile = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:3001/users/user", {
+            const response = await fetch(`${BASE_API_URL}users/user`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +70,7 @@ const Profile = () => {
             }
 
             const updatedUser = await response.json(); // updated user data from the response
-            setUser(updatedUser); // Update the local state with the updated user data
+            setUser(updatedUser); // Updating the local state with the updated user data
             dispatch(updateUser(updatedUser));
 
             console.log("Updated user data:", user);

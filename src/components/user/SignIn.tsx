@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, setUser } from '../../features/userAuth/userSlice';
-
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ const SignIn = () => {
 
     const fetchUserData = async (token: string) => {
         try {
-            const response = await fetch('http://localhost:3001/users/user', {
+            const response = await fetch(`${BASE_API_URL}users/user`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const SignIn = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3001/auth/login', {
+            const response = await fetch(`${BASE_API_URL}auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -108,7 +108,6 @@ const SignIn = () => {
                             />
                         </div>
                         <div className="flex items-start">
-                            {/* ...rest of the template code */}
                         </div>
                         <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-10 ">Kirjaudu sisään</button>
                         <Link

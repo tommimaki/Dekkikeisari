@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Product from '../interfaces/product';
 import { useDropzone } from 'react-dropzone';
-
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 interface Props {
     product: Product;
     onCloseModal: () => void;
@@ -80,7 +80,7 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal, onProductUpda
 
     const updateProduct = async (id: number, productData: FormData) => {
         try {
-            const response = await fetch(`http://localhost:3001/products/${id}`, {
+            const response = await fetch(`${BASE_API_URL}products/${id}`, {
                 method: 'PUT',
                 body: productData,
                 headers: {

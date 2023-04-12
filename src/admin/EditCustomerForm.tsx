@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import Customer from '../interfaces/customer';
+const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 interface EditCustomerProps {
     customer: Customer;
@@ -18,7 +19,7 @@ const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onC
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            await fetch(`http://localhost:3001/user/${updatedCustomer.id}`, {
+            await fetch(`${BASE_API_URL}user/${updatedCustomer.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedCustomer),

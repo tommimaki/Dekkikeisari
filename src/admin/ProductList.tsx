@@ -1,31 +1,33 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Product from '../interfaces/product';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import Modal from 'react-modal';
 import EditProductForm from './EditProductForm';
+
+
 const ProductList: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         try {
             const response = await fetch(`${BASE_API_URL}products`);
             const data = await response.json();
             console.log('Data:', data);
             setProducts(data.products);
-
         } catch (error) {
             console.error('Error fetching products:', error);
         }
-    };
+    }, [BASE_API_URL]);
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [fetchProducts]);
+
 
     const handleEdit = (product: Product) => {
         setSelectedProduct(product);
