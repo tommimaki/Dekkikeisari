@@ -2,7 +2,7 @@
 
 ### Skateshop is a fully functional e-commerce application built with React, Redux, TypeScript, and Tailwind CSS. This project showcases a variety of features such as product listing, filtering, user authentication, shopping cart, and admin panel for managing products and customers.
 
-hosted on netlify: https://cerulean-marshmallow-946350.netlify.app/
+hosted on netlify: https://cerulean-marshmallow-946350.netlify.app/ <br/>
 Backend repository here: https://github.com/tommimaki/dekkikeisari-Backend
 
 ## Features
