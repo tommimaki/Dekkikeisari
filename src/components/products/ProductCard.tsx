@@ -32,8 +32,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const handleClick = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
+
     return (
-        <div className="flex justify-center  product-card">
+        <div className="flex justify-center product-card">
             <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <Carousel
                     className="rounded-t-lg"
@@ -50,27 +51,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 onClick={handleClick}
                                 className="min-h-full object-cover rounded-t-lg product-image"
                             />
-
                         </div>
                     ))}
                 </Carousel>
                 <div className="p-5">
                     <Link to={`/products/${product.id}`} key={product.id}>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="mb-2 text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {product.name}
                         </h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{product.price}€</p>
-                        <div className="flex justify-between items-center mb-3">
+                        <p className="mb-3 text-sm sm:text-base font-normal text-gray-700 dark:text-gray-400">{product.price}€</p>
+                        <div className="flex flex-col md:flex-row justify-between items-center mb-3">
                             <div className="flex flex-col items-start">
-                                <p className="text-white mb-2">Koot:</p>
+                                <p className="text-sm sm:text-base text-white mb-2">Koot:</p>
                                 <div className="flex flex-wrap">
                                     {sizes.map((size: string, index: number) => (
-                                        <span key={index} className="mr-2 mb-1 font-semibold text-white">{size}</span>
+                                        <span key={index} className="text-sm sm:text-base mr-2 mb-1 font-semibold text-white">{size}</span>
                                     ))}
                                 </div>
                             </div>
 
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="w-full md:w-auto mt-4 md:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2zm0 0V4a2 2 0 012-2h2a2 2 0 012 2v1" />
                                 </svg>
@@ -81,6 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
         </div>
     );
+
 
 };
 
