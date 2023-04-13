@@ -17,6 +17,7 @@ const ProductPage = () => {
     const [showAddedToCartMessage, setShowAddedToCartMessage] = useState(false);
     const [showSizeQuantityMessage, setShowSizeQuantityMessage] = useState(false);
 
+
     useEffect(() => {
         const fetchProduct = async () => {
             const response = await fetch(`${BASE_API_URL}products/${id}`);
