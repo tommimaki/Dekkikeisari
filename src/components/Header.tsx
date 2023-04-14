@@ -48,7 +48,7 @@ const Header = () => {
                         className="block lg:hidden text-white focus:outline-none"
                     >
                         {showMenu ? (
-                            <FaTimes className="text-xl" />
+                            ""
                         ) : (
                             <FaBars className="text-xl" />
                         )}
