@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, FormEvent, useEffect, useCallback } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, setUser } from '../../features/userAuth/userSlice';
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
@@ -9,7 +9,55 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
 
+    const useQuery = () => {
+        return new URLSearchParams(location.search);
+    };
+
+    const query = useQuery();
+
+
+    const loginDemoAdmin = useCallback(async () => {
+        const demoAdminEmail = 'demo.admin@example.com';
+        const demoAdminPassword = 'demoAdminPassword';
+
+        try {
+            const response = await fetch(`${BASE_API_URL}auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: demoAdminEmail, password: demoAdminPassword }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Login successful:', data);
+                localStorage.setItem('token', data.token); // Store the token in local storage
+                dispatch(login());
+
+                const userData = await fetchUserData(data.token);
+
+                if (userData) {
+                    dispatch(setUser(userData));
+                }
+
+                navigate('/'); // redirect to dashboard page
+            } else {
+                const error = await response.json();
+                console.log('Login failed:', error);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
+    }, [dispatch, navigate]);
+
+    useEffect(() => {
+        if (query.get('demoAdminLogin') === 'true') {
+            loginDemoAdmin();
+        }
+    }, [loginDemoAdmin, query]);
 
     const fetchUserData = async (token: string) => {
         try {
