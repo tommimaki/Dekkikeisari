@@ -34,8 +34,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
 
     return (
-        <div className="flex justify-center product-card">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex justify-center product-card h-full">
+            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
                 <Carousel
                     className="rounded-t-lg"
                     showStatus={false}
@@ -49,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 src={imageUrl}
                                 alt={`${product.name} ${index}`}
                                 onClick={handleClick}
-                                className="min-h-full object-cover rounded-t-lg product-image"
+                                className=" h-60 sm:h-80 object-cover  rounded-t-lg product-image"
                             />
                         </div>
                     ))}
@@ -70,9 +70,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 </div>
                             </div>
 
-                            <button className="w-full md:w-auto mt-4 md:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="w-full md:w-32 md:h-14 md:self-end mt-4 md:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                                 <div className='flex justify-between'>
-
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2zm0 0V4a2 2 0 012-2h2a2 2 0 012 2v1" />
                                     </svg>
@@ -85,8 +84,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
         </div>
     );
-
-
 };
 
 export default ProductCard;

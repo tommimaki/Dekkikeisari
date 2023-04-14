@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const Info = () => {
     return (
         <div className=" bg-gray-700 text-white w-full p-2">
-            <div className="container mx-auto px-4 flex flex-col mb-6  items-center  lg:flex-row justify-between">
-                <div className="lg:w-1/2 mb-6 mx-10  content-center  lg:mb-0">
-                    <h2 className="text-4xl font-semibold mb-10">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
+            <div className="container mx-auto px-4 flex flex-col  items-center  lg:flex-row justify-between">
+                <div className="lg:w-1/2 mb-6 mx-6  content-center  lg:mb-0">
+                    <h2 className="text-4xl font-semibold my-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
                     <p className="text-white text-xl mb-4">
                         Myymme streetwear-vaatteita ja skeittilautoja. Tee tilaus netissä tai tule moikkaamaan
                         liikkeeseemme!  (palkatkaa mut T:tommi)
@@ -21,7 +21,7 @@ const Info = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/2">
+                <div className="sm:w-full   lg:w-1/2 lg:my-10">
                     <div className="bg-white p-4 rounded-lg shadow-md">
                         <div className="flex items-center">
                             <FaMapMarkerAlt className="text-red-600 mr-2" />
