@@ -1,4 +1,4 @@
-# Dekkikeisaru
+# Dekkikeisari
 
 ### Dekkikeisari is a fully functional fullstack application, Frontend built with React, Redux, TypeScript, and Tailwind CSS. This project showcases a variety of features such as product listing, filtering, user authentication and creation, shopping cart, and admin panel for managing products, customers and orders.
 
