@@ -1,6 +1,6 @@
 # Dekkikeisaru
 
-### Dekkikeisari is a fully functional application built with React, Redux, TypeScript, and Tailwind CSS. This project showcases a variety of features such as product listing, filtering, user authentication and creation, shopping cart, and admin panel for managing products, customers and orders.
+### Dekkikeisari is a fully functional fullstack application, Frontend built with React, Redux, TypeScript, and Tailwind CSS. This project showcases a variety of features such as product listing, filtering, user authentication and creation, shopping cart, and admin panel for managing products, customers and orders.
 
 hosted on netlify: https://cerulean-marshmallow-946350.netlify.app/ <br/>
 Backend repository here: https://github.com/tommimaki/dekkikeisari-Backend
