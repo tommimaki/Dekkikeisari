@@ -47,15 +47,19 @@ const CartModal = () => {
         calculateTotal();
     }, [cartItems]);
 
+
+
+
     return (
         <div className="cart-modal">
-            <div className="flex justify-end">
+            <div className="flex justify-end ">
                 <button onClick={handleCloseCart}>
                     <FaTimes />
                 </button>
             </div>
             <h2 className="text-lg font-bold mb-4">Cart</h2>
-            <div className="grid grid-cols-12 gap-4 mb-4">
+
+            <div className="grid grid-cols-12 gap-4 mb-4 ">
                 <div className="col-span-2">
                     <p className="font-semibold text-gray-700">Product</p>
                 </div>

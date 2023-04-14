@@ -21,7 +21,7 @@ const Info = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="sm:w-full   lg:w-1/2 lg:my-10">
+                <div className="w-full lg:w-1/2 mb-20 lg:my-10">
                     <div className="bg-white p-4 rounded-lg shadow-md">
                         <div className="flex items-center">
                             <FaMapMarkerAlt className="text-red-600 mr-2" />
