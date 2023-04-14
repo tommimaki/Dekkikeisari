@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className="bg-white  shadow dark:bg-gray-900 ">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
-                    <a href="https://tommimaki.com" target="_blank" className="flex items-center mb-4 sm:mb-0">
+                    <a href="https://tommimaki.com" target="_blank" rel="noopener noreferrer" className="flex items-center mb-4 sm:mb-0">
                         <img src={skatelogo} className="h-8 rounded mr-3" alt="skate Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Dekkikeisari</span>
                     </a>
