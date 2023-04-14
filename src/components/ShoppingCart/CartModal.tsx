@@ -10,29 +10,24 @@ import Product from '../../interfaces/product';
 
 const CartModal = () => {
     const cartItems = useSelector((state: RootState) => state.cart?.items);
-
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0);
     const [showCheckout, setShowCheckout] = useState(false);
 
     const handleCloseCart = () => {
-        dispatch(closeCart()); // use the closeCart action creator
+        dispatch(closeCart());
     };
     const handleEmptyCart = () => {
-        dispatch(emptyCart()); // use the closeCart action creator
+        dispatch(emptyCart());
     };
     const handleRemoveFromCart = (item: Product) => {
         dispatch(removeFromCart(item));
     };
 
     const handleCheckoutSuccess = () => {
-        handleEmptyCart(); // Empty the cart
-        handleCloseCart(); // Close the cart
+        handleEmptyCart();
+        handleCloseCart();
     };
-
-
-
-
     useEffect(() => {
         const calculateTotal = () => {
             const total = cartItems.reduce((accumulator: number, item: Product) => {
@@ -47,9 +42,6 @@ const CartModal = () => {
         calculateTotal();
     }, [cartItems]);
 
-
-
-
     return (
         <div className="cart-modal">
             <div className="flex justify-end">
@@ -58,7 +50,6 @@ const CartModal = () => {
                 </button>
             </div>
             <h2 className="text-lg font-bold mb-4">Cart</h2>
-
             <div className="flex flex-col md:grid md:grid-cols-12 gap-4 mb-4">
                 <div className="hidden md:block md:col-span-2">
                     <p className="font-semibold text-gray-700">Product</p>
@@ -78,10 +69,6 @@ const CartModal = () => {
                 <div className="hidden md:block md:col-span-2">
                     <p className="font-semibold text-gray-700"></p>
                 </div>
-
-
-
-
                 {
                     cartItems.map((item: Product) => {
                         const price = Number(item.price);
@@ -100,12 +87,7 @@ const CartModal = () => {
                         } catch (error) {
                             console.error('Error parsing image URLs:', error);
                         }
-
-
-
-
                         const imageUrl = imageUrlsArray.length > 0 ? imageUrlsArray[0] : 'default_image_url';
-
                         return (
                             <React.Fragment key={item.id}>
                                 <div className="flex flex-col md:flex-none md:col-span-2">
@@ -150,8 +132,6 @@ const CartModal = () => {
                         );
                     })
                 }
-
-
                 <div className="total-amount">
                     <p className="font-semibold text-gray-700">
                         Total Amount: ${totalAmount.toFixed(2)}
@@ -168,7 +148,6 @@ const CartModal = () => {
                     </button>
                 )
             }
-
             {
                 showCheckout && (
                     <>

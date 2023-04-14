@@ -1,36 +1,38 @@
 import React from 'react';
+import skatelogo from '../assets/skatelogo.jpeg'
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white">
-            <div className="container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">Dekkikeisari</h3>
-                        <p>1234 Example Street</p>
-                        <p>Helsinki, 00000</p>
-                        <p>Finland</p>
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">Linkit</h3>
-                        <ul>
-                            <li><a href="#!" className="hover:text-blue-400">Etusivu</a></li>
-                            <li><a href="#!" className="hover:text-blue-400">Tuotteet</a></li>
-                            <li><a href="#!" className="hover:text-blue-400">Yhteystiedot</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">Yhteystiedot</h3>
-                        <p>Puh: +358 123 456 789</p>
-                        <p>Email: info@skateshop.fi</p>
-                    </div>
+        <footer className="bg-white  shadow dark:bg-gray-900 ">
+            <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+                <div className="sm:flex sm:items-center sm:justify-between">
+                    <a href="https://tommimaki.com" target="_blank" className="flex items-center mb-4 sm:mb-0">
+                        <img src={skatelogo} className="h-8 rounded mr-3" alt="skate Logo" />
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Dekkikeisari</span>
+                    </a>
+                    <ul className="flex flex-wrap pr-4 items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                        <li>
+                            <a href="https://tommimaki.com" target="_blank" rel="noopener noreferrer" className=" hover:underline pr-4">About</a>
+                        </li>
+                        <li>
+                            <a href="https://tommimaki.com" target="_blank" rel="noopener noreferrer" className="hover:underline pr-4">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="https://tommimaki.com" target="_blank" rel="noopener noreferrer" className="hover:underline pr-4">Licensing</a>
+                        </li>
+                        <li>
+                            <a href="https://tommimaki.com" target="_blank" rel="noopener noreferrer" className="hover:underline pr-4">Contact</a>
+                        </li>
+                    </ul>
                 </div>
-                <div className="mt-8 flex justify-center">
-                    <p className="text-sm">&copy; {new Date().getFullYear()} Skate Shop. Kaikki oikeudet pidätetään.</p>
-                </div>
+                <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://tommimaki.com" className="hover:underline">Tommi Mäki</a>. All Rights Reserved.</span>
             </div>
-        </footer>
+        </footer >
+
+
     );
 };
 
 export default Footer;
+
