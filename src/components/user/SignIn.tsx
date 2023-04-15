@@ -10,6 +10,8 @@ const SignIn = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
+    const [errorMessage, setErrorMessage] = useState('');
+
 
     const useQuery = () => {
         return new URLSearchParams(location.search);
@@ -86,6 +88,7 @@ const SignIn = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setErrorMessage('');
 
         try {
             const response = await fetch(`${BASE_API_URL}auth/login`, {
@@ -111,6 +114,7 @@ const SignIn = () => {
             } else {
                 const error = await response.json();
                 console.log('Login failed:', error);
+                setErrorMessage('Invalid email or password.');
             }
         } catch (error) {
             console.error('Error during login:', error);
@@ -119,10 +123,7 @@ const SignIn = () => {
 
     return (
         <div className=' min-h-screen'>
-
-
             <div className='flex justify-center mt-40'>
-
                 <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <h5 className="text-xl font-medium text-gray-900 dark:text-white">Kirjaudu sisään</h5>
@@ -154,13 +155,23 @@ const SignIn = () => {
                         </div>
                         <div className="flex items-start">
                         </div>
-                        <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-10 ">Kirjaudu sisään</button>
-                        <Link
-                            to="/signup">
-                            <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                                Not registered? <p className="text-blue-700 hover:underline dark:text-blue-500">Luo Käyttäjä</p>
-                            </div>
-                        </Link>
+                        {
+                            errorMessage && (
+                                <div className="text-red-500 text-sm mb-4">
+                                    {errorMessage}
+                                </div>
+                            )
+                        }
+                        <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Kirjaudu sisään</button>
+
+                        <div className="text-sm font-medium text-gray-500 mt-4 dark:text-gray-300">
+                            Uusi asiakas?
+
+                            <Link
+                                to="/signup">
+                                <p className="text-blue-700 hover:underline dark:text-blue-500">Luo Käyttäjä</p>
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div >
