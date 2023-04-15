@@ -73,7 +73,6 @@ const OrderList: React.FC = () => {
 
 
     const handleDelete = async (orderId: number) => {
-        // Show a confirmation window
         const confirmDelete = window.confirm(`Are you sure you want to delete order ${orderId}?`);
         if (confirmDelete) {
             try {
@@ -136,15 +135,15 @@ const OrderList: React.FC = () => {
             cellStyle: (params: ValueFormatterParams) => {
                 switch (params.value) {
                     case 'pending':
-                        return { backgroundColor: '#FBBF24' }; // Change the color as needed
+                        return { backgroundColor: '#FBBF24' };
                     case 'processing':
-                        return { backgroundColor: '#3B82F6' }; // Change the color as needed
+                        return { backgroundColor: '#3B82F6' };
                     case 'shipped':
-                        return { backgroundColor: '#34D399' }; // Change the color as needed
+                        return { backgroundColor: '#34D399' };
                     case 'delivered':
-                        return { backgroundColor: '#10B981' }; // Change the color as needed
+                        return { backgroundColor: '#10B981' };
                     case 'cancelled':
-                        return { backgroundColor: '#EF4444' }; // Change the color as needed
+                        return { backgroundColor: '#EF4444' };
                     default:
                         return null;
                 }

@@ -52,19 +52,19 @@ const CartModal = () => {
             <h2 className="text-lg font-bold mb-4">Cart</h2>
             <div className="flex flex-col md:grid md:grid-cols-12 gap-4 mb-4">
                 <div className="hidden md:block md:col-span-2">
-                    <p className="font-semibold text-gray-700">Product</p>
+                    <p className="font-semibold text-gray-700">Tuote</p>
                 </div>
                 <div className="hidden md:block md:col-span-2">
-                    <p className="font-semibold text-gray-700">Price</p>
+                    <p className="font-semibold text-gray-700">Hinta</p>
                 </div>
                 <div className="hidden md:block md:col-span-2">
-                    <p className="font-semibold text-gray-700">Size</p>
+                    <p className="font-semibold text-gray-700">Koko</p>
                 </div>
                 <div className="hidden md:block md:col-span-2">
-                    <p className="font-semibold text-gray-700">Quantity</p>
+                    <p className="font-semibold text-gray-700">Määrä</p>
                 </div>
                 <div className="hidden md:block md:col-span-2">
-                    <p className="font-semibold text-gray-700">Total</p>
+                    <p className="font-semibold text-gray-700">Hinta</p>
                 </div>
                 <div className="hidden md:block md:col-span-2">
                     <p className="font-semibold text-gray-700"></p>
@@ -92,32 +92,32 @@ const CartModal = () => {
                             <React.Fragment key={item.id}>
                                 <div className="flex flex-col md:flex-none md:col-span-2">
                                     <div className="flex md:hidden">
-                                        <p className="font-semibold text-gray-700 mr-2">Product:</p>
+                                        <p className="font-semibold text-gray-700 mr-2">Tuote:</p>
                                     </div>
                                     <img src={imageUrl} alt={item.name} className="w-full rounded-lg mb-2" />
                                     <p className="font-semibold">{item.name}</p>
                                 </div>
                                 <div className="flex items-center md:items-start md:col-span-2">
                                     <div className="flex md:hidden">
-                                        <p className="font-semibold text-gray-700 mr-2">Price:</p>
+                                        <p className="font-semibold text-gray-700 mr-2">Hinta:</p>
                                     </div>
                                     <p>${price.toFixed(2)}</p>
                                 </div>
                                 <div className="flex items-center md:items-start md:col-span-2">
                                     <div className="flex md:hidden">
-                                        <p className="font-semibold text-gray-700 mr-2">Size:</p>
+                                        <p className="font-semibold text-gray-700 mr-2">Koko:</p>
                                     </div>
                                     <p>{item.size}</p>
                                 </div>
                                 <div className="flex items-center md:items-start md:col-span-2">
                                     <div className="flex md:hidden">
-                                        <p className="font-semibold text-gray-700 mr-2">Quantity:</p>
+                                        <p className="font-semibold text-gray-700 mr-2">Määrä:</p>
                                     </div>
                                     <p>{item.quantity}</p>
                                 </div>
                                 <div className="flex items-center md:items-start md:col-span-2">
                                     <div className="flex md:hidden">
-                                        <p className="font-semibold text-gray-700 mr-2">Total:</p>
+                                        <p className="font-semibold text-gray-700 mr-2">Hinta:</p>
                                     </div>
                                     <p>${(price * (item.quantity ?? 0)).toFixed(2)}</p>
                                 </div>
@@ -134,7 +134,7 @@ const CartModal = () => {
                 }
                 <div className="total-amount">
                     <p className="font-semibold text-gray-700">
-                        Total Amount: ${totalAmount.toFixed(2)}
+                        Loppusumma: €{totalAmount.toFixed(2)}
                     </p>
                 </div>
             </div >
@@ -155,7 +155,7 @@ const CartModal = () => {
                             onClick={() => setShowCheckout(false)}
                             className="checkout-button bg-gray-600 text-white p-4 rounded-md"
                         >
-                            Back to Cart
+                            Takaisin ostoskoriin
                         </button>
                         <Checkout
                             cartItems={cartItems}

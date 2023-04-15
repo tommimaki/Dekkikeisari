@@ -7,7 +7,6 @@ const Orders: React.FC = () => {
         <div>
             <Breadcrumb category='admin' name='tilaukset' />
             <h2>Orders Management</h2>
-            {/* Add your Orders management code here */}
             <OrderList />
         </div>
     );

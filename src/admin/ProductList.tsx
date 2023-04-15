@@ -28,7 +28,6 @@ const ProductList: React.FC = () => {
         fetchProducts();
     }, [fetchProducts]);
 
-
     const handleEdit = (product: Product) => {
         setSelectedProduct(product);
     };
@@ -77,9 +76,9 @@ const ProductList: React.FC = () => {
     };
 
     return (
-        <div className='flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center'>
             <h2 className="text-2xl font-bold mb-4">Inventaario</h2>
-            <div className="ag-theme-alpine" style={{ height: '800px', width: '1200px' }}>
+            <div className="ag-theme-alpine " style={{ height: '800px', width: '80%' }}>
                 <AgGridReact
                     columnDefs={columnDefs}
                     rowData={products}

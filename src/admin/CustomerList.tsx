@@ -12,7 +12,7 @@ const CustomerList: React.FC = () => {
     const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
     const fetchCustomers = async () => {
         try {
-            const response = await fetch(`${BASE_API_URL}products`);
+            const response = await fetch(`${BASE_API_URL}users`);
             const data = await response.json();
             console.log('Data:', data);
             setCustomers(data.users);
@@ -79,9 +79,9 @@ const CustomerList: React.FC = () => {
     };
 
     return (
-        <div className="flex-col justify-center items-center">
+        <div className=" flex flex-col justify-center items-center">
             <h2 className="text-2xl font-bold mb-4">Customer List</h2>
-            <div className="ag-theme-alpine" style={{ height: '800px', width: '1200px' }}>
+            <div className="ag-theme-alpine" style={{ height: '800px', width: '80%' }}>
                 <AgGridReact
                     columnDefs={columnDefs}
                     rowData={customers}
