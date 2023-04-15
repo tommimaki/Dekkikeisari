@@ -5,7 +5,7 @@ const CustomerManagement: React.FC = () => {
     return (
         <div>
             <Breadcrumb category='admin' name='Asiakkaat' />
-            <h2>Customer Management</h2>
+            <h2>Käyttäjähallinta</h2>
             <CustomerList />
         </div>
     );

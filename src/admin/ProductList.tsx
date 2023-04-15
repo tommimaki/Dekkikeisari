@@ -7,7 +7,6 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import Modal from 'react-modal';
 import EditProductForm from './EditProductForm';
 
-
 const ProductList: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -41,8 +40,9 @@ const ProductList: React.FC = () => {
     };
 
     const columnDefs = [
-        { headerName: 'Nimi', field: 'name', sortable: true, filter: true },
         { headerName: 'ID', field: 'id' },
+        { headerName: 'Nimi', field: 'name', sortable: true, filter: true },
+        { headerName: 'price', field: 'price' },
         { headerName: 'Kategoria', field: 'category', sortable: true, filter: true },
         {
             headerName: 'Kuvaus', field: 'description',

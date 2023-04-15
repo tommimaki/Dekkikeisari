@@ -81,10 +81,10 @@ const Profile = () => {
     };
 
     return (
-        <div>
+        <div >
             <Breadcrumb name={'Profiili'} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:min-h-screen p-4">
-                <div className="bg-white p-8 rounded shadow-lg w-full text-left md:max-w-md">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:min-h-screen place-items-center p-4">
+                <div className="bg-white p-8 rounded shadow-lg w-full text-left h-full md:max-w-md">
                     <h2 className="text-2xl text-center font-bold mb-4">Moi, {user.name}</h2>
                     <hr className="mb-20" />
                     {isEditing ? (
@@ -187,7 +187,7 @@ const Profile = () => {
                     )}
                 </div>
 
-                <div className="bg-white p-8 rounded shadow-lg w-full text-left md:max-w-md">
+                <div className="bg-white p-8 rounded shadow-lg w-full text-left h-full md:max-w-md">
                     <h2 className="text-2xl font-bold mb-4">Sinun Tilauksesi:</h2>
                     {orders.length > 0 ? (
                         <ul>

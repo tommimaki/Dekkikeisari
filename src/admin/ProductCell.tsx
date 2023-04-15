@@ -16,7 +16,7 @@ const ProductCell: React.FC<{ value: ProductInOrder[] }> = (params) => {
     <div>
       <button
         onClick={() => setIsOpen(true)}
-        className="text-sm px-2 py-1 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2  focus:ring-gray-500"
+        className="bg-blue-500 text-white text-sm px-3 py-1 rounded-md mr-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       >
         tuotelista
       </button>

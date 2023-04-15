@@ -10,7 +10,14 @@ interface EditCustomerProps {
 }
 
 const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onCustomerUpdated }) => {
-    const [updatedCustomer, setUpdatedCustomer] = useState<Customer>(customer);
+    // const [updatedCustomer, setUpdatedCustomer] = useState<Customer>(customer);
+    const [updatedCustomer, setUpdatedCustomer] = useState<Customer>({
+        ...customer,
+        name: customer.name || '',
+        email: customer.email || '',
+        address: customer.address || '',
+        role: customer.role || 'customer',
+    });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setUpdatedCustomer({ ...updatedCustomer, [event.target.name]: event.target.value });
@@ -19,9 +26,15 @@ const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onC
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            await fetch(`${BASE_API_URL}user/${updatedCustomer.id}`, {
+
+            const token = localStorage.getItem("token");
+
+            await fetch(`${BASE_API_URL}users/admin/user/${customer.id}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify(updatedCustomer),
             });
             onCustomerUpdated();
@@ -44,7 +57,7 @@ const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onC
                 <input
                     type="text"
                     name="name"
-                    value={updatedCustomer.name}
+                    value={updatedCustomer.name || ''}
                     onChange={handleChange}
                     className="form-input px-3 py-2 border border-gray-300 rounded"
                     placeholder="Name"
@@ -52,7 +65,7 @@ const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onC
                 <input
                     type="email"
                     name="email"
-                    value={updatedCustomer.email}
+                    value={updatedCustomer.email || ''}
                     onChange={handleChange}
                     className="form-input px-3 py-2 border border-gray-300 rounded"
                     placeholder="Email"
@@ -60,14 +73,14 @@ const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onC
                 <input
                     type="text"
                     name="address"
-                    value={updatedCustomer.address}
+                    value={updatedCustomer.address || ''}
                     onChange={handleChange}
                     className="form-input px-3 py-2 border border-gray-300 rounded"
                     placeholder="Address"
                 />
                 <select
                     name="role"
-                    value={updatedCustomer.role}
+                    value={updatedCustomer.role || ''}
                     onChange={handleChange}
                     className="form-select px-3 py-2 border border-gray-300 rounded"
                 >

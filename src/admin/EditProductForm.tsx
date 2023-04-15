@@ -79,12 +79,14 @@ const EditProductForm: React.FC<Props> = ({ product, onCloseModal, onProductUpda
     };
 
     const updateProduct = async (id: number, productData: FormData) => {
+
+        const token = localStorage.getItem("token");
         try {
             const response = await fetch(`${BASE_API_URL}products/${id}`, {
                 method: 'PUT',
                 body: productData,
                 headers: {
-                    // todo authentication tokens
+                    'Authorization': `Bearer ${token}`
                 },
             });
 

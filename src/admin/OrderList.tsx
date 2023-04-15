@@ -174,7 +174,7 @@ const OrderList: React.FC = () => {
 
     return (
         <div className="container mx-auto mt-8">
-            <h2 className="text-2xl font-semibold mb-4">Orders</h2>
+            <h2 className="text-2xl font-semibold mb-4">Tilaukset</h2>
 
             <div className="ag-theme-alpine" style={{ height: '800px', width: '100%' }}>
                 <AgGridReact

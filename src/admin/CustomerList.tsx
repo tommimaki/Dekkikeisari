@@ -80,7 +80,7 @@ const CustomerList: React.FC = () => {
 
     return (
         <div className=" flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-bold mb-4">Customer List</h2>
+            <h4 className="text-2xl font-bold mb-4">Asiakaslista</h4>
             <div className="ag-theme-alpine" style={{ height: '800px', width: '80%' }}>
                 <AgGridReact
                     columnDefs={columnDefs}
