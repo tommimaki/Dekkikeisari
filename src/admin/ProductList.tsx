@@ -40,9 +40,9 @@ const ProductList: React.FC = () => {
     };
 
     const columnDefs = [
-        { headerName: 'ID', field: 'id' },
         { headerName: 'Nimi', field: 'name', sortable: true, filter: true },
-        { headerName: 'price', field: 'price' },
+        { headerName: 'ID', field: 'id' },
+        { headerName: 'Price', field: 'price' },
         { headerName: 'Kategoria', field: 'category', sortable: true, filter: true },
         {
             headerName: 'Kuvaus', field: 'description',
