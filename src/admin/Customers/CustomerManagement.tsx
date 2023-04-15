@@ -1,6 +1,6 @@
 import React from 'react';
 import CustomerList from './CustomerList';
-import Breadcrumb from '../components/BreadCrumb';
+import Breadcrumb from '../../components/BreadCrumb';
 const CustomerManagement: React.FC = () => {
     return (
         <div>

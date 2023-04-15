@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import Customer from '../interfaces/customer';
+import Customer from '../../interfaces/customer';
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 interface EditCustomerProps {

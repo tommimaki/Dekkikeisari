@@ -105,11 +105,8 @@ const SignIn = () => {
                 const userData = await fetchUserData(data.token);
 
                 if (userData) {
-
                     dispatch(setUser(userData));
                 }
-
-
                 navigate('/'); // redirect to dashboard page
             } else {
                 const error = await response.json();

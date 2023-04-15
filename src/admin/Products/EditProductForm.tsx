@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Product from '../interfaces/product';
+import Product from '../../interfaces/product';
 import { useDropzone } from 'react-dropzone';
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 interface Props {

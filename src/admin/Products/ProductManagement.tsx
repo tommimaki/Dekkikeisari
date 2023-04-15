@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddProductForm from './AddProductForm';
 import ProductList from './ProductList';
 import Modal from 'react-modal';
-import Breadcrumb from '../components/BreadCrumb';
+import Breadcrumb from '../../components/BreadCrumb';
 
 
 Modal.setAppElement('#root'); //root element to be accessible to screen readers

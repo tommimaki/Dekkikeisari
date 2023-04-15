@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { ProductInOrder } from "../interfaces/order";
+import { ProductInOrder } from "../../interfaces/order";
 
 Modal.setAppElement("#root"); // Replace #root with the id of your root element
 

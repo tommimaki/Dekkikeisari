@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Order, ProductInOrder } from '../interfaces/order';
+import { Order, ProductInOrder } from '../../interfaces/order';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ValueFormatterParams } from 'ag-grid-community';
-import ProductCell from './ProductCell';
+import ProductCell from '../Products/ProductCell';
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const OrderList: React.FC = () => {
