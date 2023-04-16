@@ -34,9 +34,9 @@ const Header = () => {
     };
 
     return (
-        <header className="bg-gray-900 text-white">
+        <header className="bg-gray-900 text-white  h-22">
             <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center py-4">
+                <div className="flex justify-between items-center py-2">
 
                     <Link to="/">
                         <div className="h-15 w-20 bg-white rounded-full overflow-hidden">
