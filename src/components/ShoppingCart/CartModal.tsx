@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CartModal = () => {
     const cartItems = useSelector((state: RootState) => state.cart?.items);
+
+
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0);
 

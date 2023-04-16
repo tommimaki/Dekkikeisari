@@ -2,13 +2,14 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from '../../store';
 import { emptyCart } from '../../features/cart/cartSlice';
+import Product from '../../interfaces/product';
 
 
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 const Checkout = () => {
     const cartItems = useSelector((state: RootState) => state.cart?.items);
     const totalAmount = useSelector((state: RootState) => state.cart?.totalAmountReducer);
-    console.log(totalAmount);
+    console.log(cartItems);
 
 
     const [name, setName] = useState<string>('');
@@ -85,7 +86,7 @@ const Checkout = () => {
     }
 
     return (
-        <div className="checkout">
+        <div className="checkout min-h-screen grid grid-cols-1 px-10 md:grid-cols-2 py-10 justify-center  gap-8">
             <form onSubmit={handleSubmit} className="space-y-4">
                 <h2 className="text-lg font-bold mb-4">Checkout</h2>
                 <input
@@ -116,11 +117,42 @@ const Checkout = () => {
                     type="submit"
                     className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700"
                 >
-                    Submit
+                    Tee tilaus
                 </button>
             </form>
+            <div className="order-summary">
+                <h2 className="text-lg font-bold mb-4">TILAUKSESI</h2>
+                <div className="cart-summary mb-4">
+                    {cartItems.map((item: Product) => (
+                        <div key={item.id} className="grid grid-cols-2 gap-2 mb-2">
+                            <span>{item.name} - {item.size}</span>
+                            <span>× 1</span>
+                            <span>€{item.price}</span>
+                        </div>
+                    ))}
+                </div>
+                <hr />
+                <div className="delivery-options flex flex-col my-4">
+                    <h3 className="font-semibold mb-2">Toimitustapa:</h3>
+                    <label className="delivery-option-label inline-flex items-center mr-4">
+                        <input type="radio" className="delivery-option-input" name="delivery-option" value="Posti" />
+                        <span className="delivery-option-text ml-2">Posti</span>
+                    </label>
+                    <label className="delivery-option-label inline-flex items-center mr-4">
+                        <input type="radio" className="delivery-option-input" name="delivery-option" value="Matkahuolto" />
+                        <span className="delivery-option-text ml-2">Matkahuolto</span>
+                    </label>
+                    <label className="delivery-option-label inline-flex items-center mr-4">
+                        <input type="radio" className="delivery-option-input" name="delivery-option" value="Nouto - Myymälä, Forum" />
+                        <span className="delivery-option-text ml-2">Nouto - Myymälä, Kamppi</span>
+                    </label>
+                </div>
+                <hr />
+                <p className="font-semibold">Yhteensä: €{totalAmount.toFixed(2)} (sisältää €{(totalAmount * 0.24).toFixed(2)} ALV)</p>
+            </div>
         </div>
     );
+
 };
 
 export default Checkout;
