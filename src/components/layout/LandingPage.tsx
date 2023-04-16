@@ -1,6 +1,6 @@
 import React from 'react';
-import skater1 from '../assets/skater1.jpg'
-import NewIn from './products/NewIn';
+import skater1 from '../../assets/skater1.jpg'
+import NewIn from '../products/NewIn';
 import Info from './Info';
 
 const LandingPage = () => {

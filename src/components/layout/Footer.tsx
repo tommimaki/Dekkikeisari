@@ -1,5 +1,5 @@
 import React from 'react';
-import skatelogo from '../assets/skatelogo.jpeg'
+import skatelogo from '../../assets/skatelogo.jpeg'
 
 const Footer = () => {
     return (

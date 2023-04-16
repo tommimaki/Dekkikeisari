@@ -1,27 +1,31 @@
-
-
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import Product from '../../interfaces/product';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from '../../store';
+import { emptyCart } from '../../features/cart/cartSlice';
+
+
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
-
-// Define interface for CheckoutProps
-interface CheckoutProps {
-    cartItems: Product[];
-    totalAmount: number;
-    onCheckoutSuccess: () => void;
-}
-
-const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutSuccess }) => {
+const Checkout = () => {
+    const cartItems = useSelector((state: RootState) => state.cart?.items);
+    const totalAmount = useSelector((state: RootState) => state.cart?.totalAmountReducer);
+    console.log(totalAmount);
 
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [address, setAddress] = useState('');
+    const [name, setName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [address, setAddress] = useState<string>('');
+    const dispatch = useDispatch();
+    const handleEmptyCart = () => {
+        dispatch(emptyCart());
+    };
+    // const handleRemoveFromCart = (item: Product) => {
+    //     dispatch(removeFromCart(item));
+    // };
+    const handleCheckoutSuccess = () => {
+        handleEmptyCart();
+    };
 
     const user = useSelector((state: RootState) => state.user.user);
-
     // Update local state when the Redux user state changes
     useEffect(() => {
         if (user) {
@@ -31,19 +35,17 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
         }
     }, [user]);
 
-    const handleChange = (setter: (value: string) => void) => (
-        e: ChangeEvent<HTMLInputElement>
-    ) => {
+    const handleChange = (setter: (value: string) => void) => (e: ChangeEvent<HTMLInputElement>) => {
         setter(e.target.value);
     };
 
-    const handleSubmit = async (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
             const orderInfo = {
-                customerId: user.id || 1,
-                products: cartItems.map((item) => ({
+                customerId: user?.id || 1,
+                products: cartItems.map((item: any) => ({
                     productId: item.id,
                     price: item.price,
                     quantity: 1,
@@ -54,16 +56,10 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
                 email: email,
             };
 
-            // Add log statements to debug the issue
-            console.log("User object:", user);
-            console.log("Name, email, address:", name, email, address);
-            console.log("Order info:", orderInfo);
-
             await submitOrder(orderInfo);
 
-            console.log(orderInfo);
             alert("Checkout successful!");
-            onCheckoutSuccess();
+            handleCheckoutSuccess();
         } catch (error) {
             console.error("Failed to submit order:", error);
             alert("Failed to submit order. Please try again.");
@@ -71,6 +67,8 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
     };
 
     async function submitOrder(orderInfo: any) {
+        console.log(orderInfo);
+
         const response = await fetch(`${BASE_API_URL}orders`, {
             method: "POST",
             headers: {
@@ -87,39 +85,41 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalAmount, onCheckoutS
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <h2 className="text-lg font-bold mb-4">Checkout</h2>
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={handleChange(setName)}
-                required
-                className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={handleChange(setEmail)}
-                required
-                className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-                type="text"
-                placeholder="Address"
-                value={address}
-                onChange={handleChange(setAddress)}
-                required
-                className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <button
-                type="submit"
-                className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700"
-            >
-                Submit
-            </button>
-        </form>
+        <div className="checkout">
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <h2 className="text-lg font-bold mb-4">Checkout</h2>
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={handleChange(setName)}
+                    required
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleChange(setEmail)}
+                    required
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                />
+                <input
+                    type="text"
+                    placeholder="Address"
+                    value={address}
+                    onChange={handleChange(setAddress)}
+                    required
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                />
+                <button
+                    type="submit"
+                    className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700"
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
     );
 };
 

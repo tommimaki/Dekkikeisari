@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import skatelogo from '../assets/skatelogo.jpeg'
-import Cart from "./ShoppingCart/Cart";
+import skatelogo from '../../assets/skatelogo.jpeg'
+import Cart from "../ShoppingCart/Cart";
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from "../store";
-import { logout } from "../features/userAuth/userSlice";
+import { RootState } from "../../store";
+import { logout } from "../../features/userAuth/userSlice";
 
 
 const Header = () => {

@@ -5,7 +5,7 @@ import Product from '../../interfaces/product';
 import { addToCart } from '../../features/cart/cartSlice';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Breadcrumb from '../BreadCrumb';
+import Breadcrumb from '../layout/BreadCrumb';
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
 const ProductPage = () => {
@@ -91,8 +91,8 @@ const ProductPage = () => {
                     <div className="sm:w-1/2">
                         <h3 className="text-4xl font-semibold mb-4">{product.name}</h3>
                         <p className="text-gray-700 pb-2 border-b ">{product.description}</p>
-                        <p className="text-black text-xl mt-10 lfont-bold mb-4">{product.price}€</p>
-                        <div className="flex gap-6 items-center justify-center mb-4">
+                        <p className="text-black text-xl mt-10 text-center lfont-bold mb-4">{product.price}€</p>
+                        <div className="flex gap-6 items-center  justify-center mb-4">
                             {product.sizes && (
                                 <div>
                                     <label htmlFor="size" className="block mb-2">
@@ -130,23 +130,26 @@ const ProductPage = () => {
                                 />
                             </div>
                         </div>
-                        <button
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                            // disabled={!selectedSize}
-                            onClick={handleAddToCart}
-                        >
-                            Lisää ostoskoriin
-                        </button>
-                        {showAddedToCartMessage && (
-                            <div className="mt-4 text-green-600">
-                                Tuote lisätty ostoskoriin!
-                            </div>
-                        )}
-                        {showSizeQuantityMessage && (
-                            <div className="mt-4 text-red-600">
-                                Valitse koko ja määrä!
-                            </div>
-                        )}
+                        <div className="flex flex-col justify-center">
+
+                            <button
+                                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
+                                // disabled={!selectedSize}
+                                onClick={handleAddToCart}
+                            >
+                                Lisää ostoskoriin
+                            </button>
+                            {showAddedToCartMessage && (
+                                <div className="mt-4 text-green-600  text-center">
+                                    Tuote lisätty ostoskoriin!
+                                </div>
+                            )}
+                            {showSizeQuantityMessage && (
+                                <div className="mt-4 text-center text-red-600">
+                                    Valitse koko ja määrä!
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

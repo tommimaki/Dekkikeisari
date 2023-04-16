@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 
-import Breadcrumb from '../BreadCrumb';
+import Breadcrumb from '../layout/BreadCrumb';
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../features/userAuth/userSlice"
 import { Order } from '../../interfaces/order';

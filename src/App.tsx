@@ -1,20 +1,20 @@
 import React from 'react';
-import Header from './components/Header';
-import LandingPage from './components/LandingPage';
-import Footer from './components/Footer';
+import Header from './components/layout/Header';
+import LandingPage from './components/layout/LandingPage';
+import Footer from './components/layout/Footer';
 import SignUp from './components/user/UserSignUp';
+import SignIn from './components/user/SignIn';
 import Products from './components/products/Products'
+import Checkout from './components/ShoppingCart/Checkout';
 import AdminPanel from './admin/Orders/AdminPanel';
 import ProductPage from './components/products/ProductPage';
 import Orders from './admin/Orders/OrderManagement';
 import Profile from './components/user/Profile';
 import ProductManagement from './admin/Products/ProductManagement';
 import CustomerManagement from './admin/Customers/CustomerManagement';
-import SignIn from './components/user/SignIn';
 import CategoryProducts from './components/products/CategoryProducts';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import withAdminAuth from './admin/withAdminAuth';
-import './App.css';
 
 function App() {
 
@@ -62,6 +62,16 @@ function App() {
           />
           <Route path='/products' element={<Products />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+              // cartItems={[]}
+              // totalAmount={0}
+              // onCheckoutSuccess={() => { }}
+              />
+            }
+          />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/profile' element={<Profile />} />
           <Route path="/products/:id" element={<ProductPage />} />

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Filters from './Filters';
-import Breadcrumb from '../BreadCrumb';
+import Breadcrumb from '../layout/BreadCrumb';
 import CategoryProducts from './CategoryProducts';
 
 const Products = () => {

@@ -3,7 +3,7 @@ import { Route, Link, Routes, useLocation } from 'react-router-dom';
 import Orders from './OrderManagement';
 import ProductManagement from '../Products/ProductManagement';
 import CustomerManagement from '../Customers/CustomerManagement';
-import Breadcrumb from '../../components/BreadCrumb';
+import Breadcrumb from '../../components/layout/BreadCrumb';
 
 const AdminPanel: React.FC = () => {
     const location = useLocation();

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { FaTimes } from 'react-icons/fa';
-import Checkout from './Checkout';
-import { closeCart, emptyCart, removeFromCart } from '../../features/cart/cartSlice';
+import { closeCart, removeFromCart, setTotalAmountReducer } from '../../features/cart/cartSlice';
 import Product from '../../interfaces/product';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,22 +12,23 @@ const CartModal = () => {
     const cartItems = useSelector((state: RootState) => state.cart?.items);
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0);
-    const [showCheckout, setShowCheckout] = useState(false);
 
     const handleCloseCart = () => {
         dispatch(closeCart());
     };
-    const handleEmptyCart = () => {
-        dispatch(emptyCart());
-    };
+
     const handleRemoveFromCart = (item: Product) => {
         dispatch(removeFromCart(item));
     };
 
-    const handleCheckoutSuccess = () => {
-        handleEmptyCart();
+    const navigate = useNavigate();
+
+    const handleCheckout = () => {
+        navigate('/checkout');
         handleCloseCart();
     };
+
+
     useEffect(() => {
         const calculateTotal = () => {
             const total = cartItems.reduce((accumulator: number, item: Product) => {
@@ -37,10 +38,11 @@ const CartModal = () => {
             }, 0);
 
             setTotalAmount(total);
+            dispatch(setTotalAmountReducer(total));
         };
 
         calculateTotal();
-    }, [cartItems]);
+    }, [cartItems, dispatch]);
 
     return (
         <div className="cart-modal">
@@ -138,35 +140,13 @@ const CartModal = () => {
                     </p>
                 </div>
             </div >
-            {
-                !showCheckout && (
-                    <button
-                        onClick={() => setShowCheckout(true)}
-                        className="checkout-button bg-gray-600 text-white p-4 rounded-md"
-                    >
-                        Checkout
-                    </button>
-                )
-            }
-            {
-                showCheckout && (
-                    <>
-                        <button
-                            onClick={() => setShowCheckout(false)}
-                            className="checkout-button bg-gray-600 text-white p-4 rounded-md"
-                        >
-                            Takaisin ostoskoriin
-                        </button>
-                        <Checkout
-                            cartItems={cartItems}
-                            totalAmount={totalAmount}
-                            onCheckoutSuccess={handleCheckoutSuccess}
-                        />
-                    </>
-                )
-            }
+            <button onClick={handleCheckout} className="checkout-button bg-gray-600 text-white p-4 rounded-md">
+                Checkout
+            </button>
         </div >
     );
 };
 
 export default CartModal;
+
+
