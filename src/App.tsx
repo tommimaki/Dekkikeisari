@@ -62,16 +62,7 @@ function App() {
           />
           <Route path='/products' element={<Products />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route
-            path="/checkout"
-            element={
-              <Checkout
-              // cartItems={[]}
-              // totalAmount={0}
-              // onCheckoutSuccess={() => { }}
-              />
-            }
-          />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/profile' element={<Profile />} />
           <Route path="/products/:id" element={<ProductPage />} />

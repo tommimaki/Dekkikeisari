@@ -41,7 +41,7 @@ const NewIn = () => {
     return (
 
         <div className="py-8 mx-8">
-            <h2 className="text-2xl font-semibold mb-4">Uutuudet</h2>
+            <h2 className="text-2xl text-center font-semibold mb-4">Uutuudet</h2>
             <hr className="mb-4" />
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
                 {products.slice(-6).map((product) => (

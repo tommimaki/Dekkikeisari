@@ -55,10 +55,10 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({ category, title, su
     return (
         <div className="py-8 mx-8">
             <Link to={`/${category}`}>
-                <h3 className="text-2xl font-bold mb-4">{title}</h3>
+                <h3 className="text-2xl text-center font-bold mb-4">{title}</h3>
             </Link>
             <hr className="mb-4" />
-            <p className="text-gray-700 font-semibold mb-6">{subheading}</p>
+            <p className="text-gray-700 text-center font-semibold mb-6">{subheading}</p>
             <hr className="mb-4" />
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product) => (

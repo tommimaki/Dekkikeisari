@@ -89,7 +89,7 @@ const ProductPage = () => {
                         </Carousel>
                     </div>
                     <div className="sm:w-1/2">
-                        <h3 className="text-4xl font-semibold mb-4">{product.name}</h3>
+                        <h3 className="text-4xl text-center font-semibold mb-4">{product.name}</h3>
                         <p className="text-gray-700 pb-2 border-b ">{product.description}</p>
                         <p className="text-black text-xl mt-10 text-center lfont-bold mb-4">{product.price}€</p>
                         <div className="flex gap-6 items-center  justify-center mb-4">
@@ -130,6 +130,7 @@ const ProductPage = () => {
                                 />
                             </div>
                         </div>
+                        <hr className='mb-2' />
                         <div className="flex flex-col justify-center">
 
                             <button

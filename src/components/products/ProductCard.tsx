@@ -56,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 </Carousel>
                 <div className="py-1 px-4">
                     <Link to={`/products/${product.id}`} key={product.id}>
-                        <h5 className="mb-2 text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="mb-2 text-lg sm:text-xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
                             {product.name}
                         </h5>
 
