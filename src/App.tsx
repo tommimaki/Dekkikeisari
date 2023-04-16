@@ -6,7 +6,7 @@ import SignUp from './components/user/UserSignUp';
 import SignIn from './components/user/SignIn';
 import Products from './components/products/Products'
 import Checkout from './components/ShoppingCart/Checkout';
-import AdminPanel from './admin/Orders/AdminPanel';
+import AdminPanel from './admin/AdminPanel';
 import ProductPage from './components/products/ProductPage';
 import Orders from './admin/Orders/OrderManagement';
 import Profile from './components/user/Profile';

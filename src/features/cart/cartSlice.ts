@@ -45,6 +45,7 @@ export const cartSlice = createSlice({
     },
     emptyCart: (state) => {
       state.items = [];
+      state.totalAmountReducer = 0;
     },
     setTotalAmountReducer: (state, action: PayloadAction<number>) => {
       state.totalAmountReducer = action.payload;

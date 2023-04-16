@@ -158,13 +158,13 @@ const OrderList: React.FC = () => {
                         onClick={() => handleEdit(params.data.id)}
                         className="bg-blue-500 text-white text-sm px-3 py-1 rounded-md mr-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
-                        Edit
+                        Muokkaa
                     </button>
                     <button
                         onClick={() => handleDelete(params.data.id)}
                         className="bg-red-500 text-white text-sm px-3 py-1 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                     >
-                        Delete
+                        Poista
                     </button>
                 </div>
             ),
@@ -174,7 +174,7 @@ const OrderList: React.FC = () => {
 
     return (
         <div className="container mx-auto mt-8">
-            <h2 className="text-2xl font-semibold mb-4">Tilaukset</h2>
+            <h2 className="text-2xl font-semibold text-center mb-4">Tilaukset</h2>
 
             <div className="ag-theme-alpine" style={{ height: '800px', width: '100%' }}>
                 <AgGridReact
@@ -205,7 +205,7 @@ const OrderList: React.FC = () => {
                                 <div className="sm:flex sm:items-start">
                                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                         <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                            Edit Order {editFormData.id}
+                                            Muokkaa tilausta {editFormData.id}
                                         </h3>
                                         <div className="mt-2">
                                             <label
@@ -244,7 +244,7 @@ const OrderList: React.FC = () => {
                                     onClick={closeModal}
                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                                 >
-                                    Cancel
+                                    Peru
                                 </button>
                             </div>
                         </div>

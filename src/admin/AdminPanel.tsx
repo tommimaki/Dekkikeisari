@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Link, Routes, useLocation } from 'react-router-dom';
-import Orders from './OrderManagement';
-import ProductManagement from '../Products/ProductManagement';
-import CustomerManagement from '../Customers/CustomerManagement';
-import Breadcrumb from '../../components/layout/BreadCrumb';
+import Orders from './Orders/OrderManagement';
+import ProductManagement from './Products/ProductManagement';
+import CustomerManagement from './Customers/CustomerManagement';
+import Breadcrumb from '../components/layout/BreadCrumb';
 
 const AdminPanel: React.FC = () => {
     const location = useLocation();
@@ -14,7 +14,7 @@ const AdminPanel: React.FC = () => {
         <div style={{ minHeight: '500px' }}>
             <Breadcrumb category='admin' />
             <div className="container mx-auto px-4">
-                <h1 className="text-3xl font-bold mb-6">Admin Panel</h1>
+                <h1 className="text-3xl text-center font-bold mb-6">Admin Panel</h1>
                 <nav className="mb-8 flex justify-center">
                     <ul className="flex space-x-4">
                         <li>
