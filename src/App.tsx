@@ -56,7 +56,7 @@ function App() {
               <CategoryProducts
                 category="Shoes"
                 title="KENGÄT"
-                subheading="Valikoima kenkiä eri tarkoituksiin."
+                subheading="Valikoima skeittikenkiä."
               />
             }
           />

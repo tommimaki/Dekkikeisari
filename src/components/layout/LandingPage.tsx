@@ -14,7 +14,6 @@ const LandingPage = () => {
                             backgroundImage: `url(${bg3rs})`,
                         }}
                     >
-
                         <div className="absolute rounded-md top-1/2 left-1/2 w-full transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-70 text-white p-8 sm:p-">
                             <h1 className="text-xl md:text-4xl font-bold mb-4">Tervetuloa Dekkikeisariin</h1>
                             <p className="text-base md:text-md mb-8">Parhaat laudat ja vaatteet</p>

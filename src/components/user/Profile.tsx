@@ -188,7 +188,7 @@ const Profile = () => {
                 </div>
 
                 <div className="bg-white p-8 rounded shadow-lg w-full text-left h-full md:max-w-md">
-                    <h2 className="text-2xl font-bold mb-4">Sinun Tilauksesi:</h2>
+                    <h2 className="text-2xl text-center font-bold mb-4">Sinun Tilauksesi:</h2>
                     {orders.length > 0 ? (
                         <ul>
                             {orders.map((order) => (
