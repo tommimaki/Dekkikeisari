@@ -26,8 +26,8 @@ const Footer = () => {
                     </ul>
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                <div className="text-sm text-gray-500 sm:text-center dark:text-gray-400 justify-center">
-                    <div className="grid grid-cols-1 md:grid-cols-3   gap-4">
+                <div className="text-sm text-gray-500 text-center dark:text-gray-400 justify-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3  gap-4">
                         <div>
                             <p>
                                 Katuosoite 123<br />
@@ -51,6 +51,7 @@ const Footer = () => {
                                 verkkokauppa@dekkikeisari.fi<br />
                             </p>
                         </div>
+                        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                         <div className="md:col-span-3 ">
                             <p>© 2023 Dekkikeisari. Kaikki oikeudet pidätetään.</p>
                         </div>

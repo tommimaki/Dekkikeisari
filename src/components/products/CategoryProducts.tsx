@@ -9,10 +9,21 @@ interface CategoryProductsProps {
     title: string;
     subheading: string;
     size?: string;
+    search?: string;
+    onFilteredProductsUpdate?: (filteredProducts: Product[]) => void;
 }
 
-const CategoryProducts: React.FC<CategoryProductsProps> = ({ category, title, subheading, size }) => {
+const CategoryProducts: React.FC<CategoryProductsProps> = ({
+    category,
+    title,
+    subheading,
+    size,
+    search,
+    onFilteredProductsUpdate,
+}) => {
     const [products, setProducts] = useState<Product[]>([]);
+
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -21,7 +32,6 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({ category, title, su
 
             const parsedProducts = data.products.map((product: Product) => {
                 let imageUrlsArray = [];
-
                 try {
                     if (typeof product.image_urls === 'string') {
                         const parsed = JSON.parse(product.image_urls);
@@ -45,12 +55,28 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({ category, title, su
     }, [category]);
 
     const filteredProducts = products.filter((product) => {
+        let sizeMatch = true;
+        let searchTermMatch = true;
+
         if (size) {
             const sizesArray = JSON.parse(product.sizes);
-            return sizesArray.includes(size);
+            sizeMatch = sizesArray.includes(size);
         }
-        return true;
+
+        if (search) {
+            searchTermMatch = product.name.toLowerCase().includes(search.toLowerCase());
+        } else {
+            searchTermMatch = true;
+        }
+
+        return sizeMatch && searchTermMatch;
     });
+
+    useEffect(() => {
+        if (onFilteredProductsUpdate) {
+            onFilteredProductsUpdate(filteredProducts);
+        }
+    }, [products, size, search, onFilteredProductsUpdate]);
 
     return (
         <div className="py-8 mx-8">

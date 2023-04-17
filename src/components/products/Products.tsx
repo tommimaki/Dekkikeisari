@@ -1,17 +1,21 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Filters from './Filters';
 import Breadcrumb from '../layout/BreadCrumb';
 import CategoryProducts from './CategoryProducts';
+import Product from '../../interfaces/product';
 
 const Products = () => {
-    const [category, setCategory] = React.useState('');
-    const [size, setSize] = React.useState('');
+    const [category, setCategory] = useState('');
+    const [size, setSize] = useState('');
+    const [search, setSearch] = useState('');
 
     const handleFilterChange = (id: string, value: string) => {
         if (id === 'category') {
             setCategory(value);
         } else if (id === 'size') {
             setSize(value);
+        } else if (id === 'search') {
+            setSearch(value);
         }
     };
 
@@ -39,35 +43,35 @@ const Products = () => {
         },
     };
 
+    //needed
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const selectedCategory = categoryMapping[category] || {};
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [filteredProductsCount, setFilteredProductsCount] = React.useState<{ [key: string]: number }>({});
+
+    const handleFilteredProductsUpdate = (key: string, filteredProducts: Product[]) => {
+        setFilteredProductsCount((prev) => ({ ...prev, [key]: filteredProducts.length }));
+    };
 
     return (
         <div>
             <Breadcrumb name={'Tuotteet'} />
             <Filters handleFilterChange={handleFilterChange} />
             <div>
-                {category === '' && size === '' ? (
-                    <>
-                        {Object.keys(categoryMapping).map((key) => {
-                            const { category, title, subheading } = categoryMapping[key];
-                            return (
-                                <CategoryProducts
-                                    key={key}
-                                    category={category}
-                                    title={title}
-                                    subheading={subheading}
-                                />
-                            );
-                        })}
-                    </>
-                ) : (
-                    <CategoryProducts
-                        category={selectedCategory.category}
-                        title={selectedCategory.title}
-                        subheading={selectedCategory.subheading}
-                        size={size}
-                    />
-                )}
+                {Object.keys(categoryMapping).map((key) => {
+                    const { category, title, subheading } = categoryMapping[key];
+                    return (
+                        <CategoryProducts
+                            key={key}
+                            category={category}
+                            title={title}
+                            subheading={subheading}
+                            size={size}
+                            search={search}
+                            onFilteredProductsUpdate={(filtered) => handleFilteredProductsUpdate(key, filtered)}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
