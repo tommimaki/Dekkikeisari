@@ -15,6 +15,10 @@ interface CategoryProductsProps {
     search?: string;
     onFilteredProductsUpdate?: (filteredProducts: Product[]) => void;
     shouldRender?: boolean;
+    product?: Product;
+    currentProductId?: number;
+    maxProducts?: number;
+
 }
 
 const CategoryProducts: React.FC<CategoryProductsProps> = ({
@@ -25,6 +29,9 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
     search,
     onFilteredProductsUpdate,
     shouldRender = true,
+    product,
+    currentProductId,
+    maxProducts = Infinity
 }) => {
     const [products, setProducts] = useState<Product[]>([]);
     const location = useLocation();
@@ -59,30 +66,33 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
         fetchProducts();
     }, [category]);
 
-    const filteredProducts = products.filter((product) => {
+
+
+    const filteredProducts = products.filter((p) => {
         let sizeMatch = true;
         let searchTermMatch = true;
 
         if (size) {
-            const sizesArray = JSON.parse(product.sizes);
+            const sizesArray = JSON.parse(p.sizes);
             sizeMatch = sizesArray.includes(size);
         }
 
         if (search) {
-            searchTermMatch = product.name.toLowerCase().includes(search.toLowerCase());
+            searchTermMatch = p.name.toLowerCase().includes(search.toLowerCase());
         } else {
             searchTermMatch = true;
         }
 
-        return sizeMatch && searchTermMatch;
+        return sizeMatch && searchTermMatch && p.id !== product?.id && p.id !== currentProductId;
     });
+
 
     useEffect(() => {
         if (onFilteredProductsUpdate) {
             onFilteredProductsUpdate(filteredProducts);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [products, size, search, onFilteredProductsUpdate]);
+    }, [products, size, search]);
 
     if (!shouldRender) {
         return null;
