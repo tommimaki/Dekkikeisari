@@ -51,8 +51,8 @@ const Footer = () => {
                                 verkkokauppa@dekkikeisari.fi<br />
                             </p>
                         </div>
-                        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                         <div className="md:col-span-3 ">
+                            <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                             <p>© 2023 Dekkikeisari. Kaikki oikeudet pidätetään.</p>
                         </div>
                     </div>

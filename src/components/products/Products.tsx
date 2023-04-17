@@ -52,7 +52,6 @@ const Products = () => {
     const handleFilteredProductsUpdate = (key: string, filteredProducts: Product[]) => {
         setFilteredProductsCount((prev) => ({ ...prev, [key]: filteredProducts.length }));
     };
-
     return (
         <div>
             <Breadcrumb name={'Tuotteet'} />
@@ -70,6 +69,7 @@ const Products = () => {
                                 size={size}
                                 search={search}
                                 onFilteredProductsUpdate={(filtered) => handleFilteredProductsUpdate(key, filtered)}
+                                shouldRender={!!(filteredProductsCount[key] && filteredProductsCount[key] > 0)}
                             />
                         );
                     } else {
@@ -79,31 +79,6 @@ const Products = () => {
             </div>
         </div>
     );
-
-
 };
 
 export default Products;
-
-// return (
-//     <div>
-//         <Breadcrumb name={'Tuotteet'} />
-//         <Filters handleFilterChange={handleFilterChange} />
-//         <div>
-//             {Object.keys(categoryMapping).map((key) => {
-//                 const { category, title, subheading } = categoryMapping[key];
-//                 return (
-//                     <CategoryProducts
-//                         key={key}
-//                         category={category}
-//                         title={title}
-//                         subheading={subheading}
-//                         size={size}
-//                         search={search}
-//                         onFilteredProductsUpdate={(filtered) => handleFilteredProductsUpdate(key, filtered)}
-//                     />
-//                 );
-//             })}
-//         </div>
-//     </div>
-// );

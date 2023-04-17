@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Product from '../../interfaces/product';
 import ProductCard from './ProductCard';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Breadcrumb from '../layout/BreadCrumb';
+
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
+
 
 interface CategoryProductsProps {
     category: string;
@@ -11,6 +14,7 @@ interface CategoryProductsProps {
     size?: string;
     search?: string;
     onFilteredProductsUpdate?: (filteredProducts: Product[]) => void;
+    shouldRender?: boolean;
 }
 
 const CategoryProducts: React.FC<CategoryProductsProps> = ({
@@ -20,9 +24,10 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
     size,
     search,
     onFilteredProductsUpdate,
+    shouldRender = true,
 }) => {
     const [products, setProducts] = useState<Product[]>([]);
-
+    const location = useLocation();
 
 
     useEffect(() => {
@@ -79,20 +84,27 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [products, size, search, onFilteredProductsUpdate]);
 
+    if (!shouldRender) {
+        return null;
+    }
     return (
-        <div className="py-8 mx-8">
-            <Link to={`/${category}`}>
-                <h3 className="text-2xl text-center font-bold mb-4">{title}</h3>
-            </Link>
-            <hr className="mb-4" />
-            <p className="text-gray-700 text-center font-semibold mb-6">{subheading}</p>
-            <hr className="mb-4" />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
-                {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
+        <div>
+            {location.pathname === `/${category}` && <Breadcrumb category={'products'} name={category} />}
+            <div className="py-8 mx-8">
+                <Link to={`/${category}`}>
+                    <h3 className="text-2xl text-center font-bold mb-4">{title}</h3>
+                </Link>
+                <hr className="mb-4" />
+                <p className="text-gray-700 text-center font-semibold mb-6">{subheading}</p>
+                <hr className="mb-4" />
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+                    {filteredProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
             </div>
         </div>
+
     );
 };
 
