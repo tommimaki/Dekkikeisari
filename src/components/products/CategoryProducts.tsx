@@ -76,6 +76,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
         if (onFilteredProductsUpdate) {
             onFilteredProductsUpdate(filteredProducts);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [products, size, search, onFilteredProductsUpdate]);
 
     return (

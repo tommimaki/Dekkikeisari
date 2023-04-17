@@ -60,21 +60,50 @@ const Products = () => {
             <div>
                 {Object.keys(categoryMapping).map((key) => {
                     const { category, title, subheading } = categoryMapping[key];
-                    return (
-                        <CategoryProducts
-                            key={key}
-                            category={category}
-                            title={title}
-                            subheading={subheading}
-                            size={size}
-                            search={search}
-                            onFilteredProductsUpdate={(filtered) => handleFilteredProductsUpdate(key, filtered)}
-                        />
-                    );
+                    if (!selectedCategory.category || category === selectedCategory.category) {
+                        return (
+                            <CategoryProducts
+                                key={key}
+                                category={category}
+                                title={title}
+                                subheading={subheading}
+                                size={size}
+                                search={search}
+                                onFilteredProductsUpdate={(filtered) => handleFilteredProductsUpdate(key, filtered)}
+                            />
+                        );
+                    } else {
+                        return null;
+                    }
                 })}
             </div>
         </div>
     );
+
+
 };
 
 export default Products;
+
+// return (
+//     <div>
+//         <Breadcrumb name={'Tuotteet'} />
+//         <Filters handleFilterChange={handleFilterChange} />
+//         <div>
+//             {Object.keys(categoryMapping).map((key) => {
+//                 const { category, title, subheading } = categoryMapping[key];
+//                 return (
+//                     <CategoryProducts
+//                         key={key}
+//                         category={category}
+//                         title={title}
+//                         subheading={subheading}
+//                         size={size}
+//                         search={search}
+//                         onFilteredProductsUpdate={(filtered) => handleFilteredProductsUpdate(key, filtered)}
+//                     />
+//                 );
+//             })}
+//         </div>
+//     </div>
+// );
