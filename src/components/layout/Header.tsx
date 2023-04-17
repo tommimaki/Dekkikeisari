@@ -143,6 +143,7 @@ const Header = () => {
                                     </Link>
                                 </>
                             )}
+
                             <Cart handleClose={handleClose} />
                             {showMenu && <hr className="mb-5" />}
                         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/layout/Header';
 import LandingPage from './components/layout/LandingPage';
 import Footer from './components/layout/Footer';
@@ -15,7 +15,7 @@ import CustomerManagement from './admin/Customers/CustomerManagement';
 import CategoryProducts from './components/products/CategoryProducts';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import withAdminAuth from './admin/withAdminAuth';
-
+import ScrollToTopArrow from './components/layout/ScrollToTop';
 function App() {
 
   //adminpanel routes protected 
@@ -23,6 +23,19 @@ function App() {
   const OrdersProtected = withAdminAuth(Orders);
   const ProductManagementProtected = withAdminAuth(ProductManagement);
   const CustomerManagementProtected = withAdminAuth(CustomerManagement);
+
+  const [showScrollToTopArrow, setShowScrollToTopArrow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolledPastScreen = window.scrollY > window.innerHeight;
+      setShowScrollToTopArrow(isScrolledPastScreen);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -72,6 +85,7 @@ function App() {
           <Route path="/admin/customer-management" element={<CustomerManagementProtected />} />
         </Routes>
       </div>
+      {showScrollToTopArrow && <ScrollToTopArrow />}
       <Footer />
     </BrowserRouter>
   );
