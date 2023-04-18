@@ -47,7 +47,7 @@ const CartModal = () => {
     }, [cartItems, dispatch]);
 
     return (
-        <div className="cart-modal">
+        <div className="cart-modal max-w-7xl mx-auto">
             <div className="flex justify-end">
                 <button onClick={handleCloseCart}>
                     <FaTimes />

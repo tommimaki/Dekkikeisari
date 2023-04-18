@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk, RootState } from "../../store";
-import { useDispatch, useSelector } from "react-redux";
+import { AppThunk } from "../../store";
 import Product from "../../interfaces/product";
 import axios from "axios";
 

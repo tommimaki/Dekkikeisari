@@ -22,6 +22,7 @@ const Cart = ({ handleClose }: { handleClose: () => void }) => {
     };
 
     return (
+
         <div className="cart ">
             <div className="flex items-center">
                 <button onClick={handleOpenCart} className="flex items-center">
