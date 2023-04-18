@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware, Action } from "@reduxjs/toolkit";
-import { ThunkAction, ThunkDispatch, ThunkMiddleware } from "redux-thunk";
+import { ThunkAction } from "redux-thunk";
 
 import { persistStore, persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
