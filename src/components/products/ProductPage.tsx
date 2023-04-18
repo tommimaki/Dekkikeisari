@@ -21,9 +21,13 @@ const ProductPage = () => {
     const dispatch = useDispatch();
     const [showAddedToCartMessage, setShowAddedToCartMessage] = useState(false);
     const [showSizeQuantityMessage, setShowSizeQuantityMessage] = useState(false);
+    const [showLoggedmessage, setShowLoggedmessage] = useState(false)
+    const [showAddedToWishlist, setShowAddedToWishlist] = useState(false)
     const userId = useSelector((state: RootState) => state.user.user.id);
+    const user = useSelector((state: RootState) => state.user);
+
     const appDispatch = useDispatch<AppDispatch>();
-    console.log(userId)
+    console.log(user)
     useEffect(() => {
         const fetchProduct = async () => {
             const response = await fetch(`${BASE_API_URL}products/${id}`);
@@ -53,8 +57,14 @@ const ProductPage = () => {
     }
 
     const handleAddToWishlist = () => {
-        if (product) {
-            appDispatch(addToWishlist(product, userId));
+        if (user.isLoggedIn) {
+
+            if (product) {
+                setShowAddedToWishlist(true)
+                appDispatch(addToWishlist(product, userId));
+            }
+        } else {
+            return (setShowLoggedmessage(true))
         }
     };
 
@@ -156,6 +166,17 @@ const ProductPage = () => {
                             >
                                 Lisää toivelistalle
                             </button>
+                            {showLoggedmessage && (
+                                <div className="mt-4 text-center text-red-600">
+                                    Kirjaudu sisään voidaksesi lisätä toivelistaan
+                                </div>
+                            )}
+
+                            {showAddedToWishlist && (
+                                <div className="mt-4 text-green-600  text-center">
+                                    Tuote lisätty toivelistalle, katso koko lista profiilistasi!
+                                </div>
+                            )}
 
                             {showAddedToCartMessage && (
                                 <div className="mt-4 text-green-600  text-center">

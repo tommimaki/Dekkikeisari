@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../features/userAuth/userSlice"
 import { Order } from '../../interfaces/order';
 import { RootState } from '../../store';
+import Product from '../../interfaces/product';
+import { Link } from 'react-router-dom';
 import {
     FaUser,
     FaEnvelope,
@@ -19,6 +21,7 @@ const Profile = () => {
     const dispatch = useDispatch();
     const [orders, setOrders] = useState<Order[]>([]);
     const reduxUser = useSelector((state: RootState) => state.user);
+    const [wishlist, setWishlist] = useState([]);
 
     useEffect(() => {
         const fetchUserOrders = async () => {
@@ -41,10 +44,32 @@ const Profile = () => {
             }
         };
 
+        const fetchUserWishlist = async () => {
+            try {
+                const response = await fetch(`${BASE_API_URL}wishlist/${reduxUser.user.id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user wishlist');
+                }
+
+                const data = await response.json();
+                setWishlist(data.wishlist);
+            } catch (error) {
+                console.error('Error fetching user wishlist:', error);
+            }
+        };
+
 
         if (reduxUser.user.id) {
             setUser(reduxUser.user);
-            fetchUserOrders(); // Fetch user orders
+            fetchUserOrders();
+            fetchUserWishlist()
+
         }
     }, [reduxUser, reduxUser.id]);
 
@@ -79,6 +104,30 @@ const Profile = () => {
             console.error(`Error updating user data: ${error}`);
         }
     };
+
+    const handleDelete = async (id: number) => {
+        try {
+            const response = await fetch(`${BASE_API_URL}wishlist/remove/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete wishlist item');
+            }
+
+            // Remove the deleted item from the wishlist
+            setWishlist((prevWishlist) =>
+                prevWishlist.filter((item: Product) => item.id !== id)
+            );
+        } catch (error) {
+            console.error('Error deleting wishlist item:', error);
+        }
+    };
+
+
 
     return (
         <div >
@@ -213,6 +262,47 @@ const Profile = () => {
                     )}
                 </div>
             </div>
+            <div className="bg-white p-8 rounded shadow-lg w-full text-left h-full md:max-w-md">
+                <h2 className="text-2xl text-center font-bold mb-4">Sinun Toivelista:</h2>
+                {wishlist.length > 0 ? (
+                    <ul>
+                        {wishlist.map((product: Product) => (
+
+                            <div className='p-4 mb-4 bg-gray-100 justify-between rounded shadow flex'>
+                                <li
+                                    key={product.id}
+                                >
+                                    <div>
+                                        <p>
+                                            <strong>Nimi:</strong> {product.name}
+                                        </p>
+                                        <p>
+                                            <strong>Hinta:</strong> {product.price}€
+                                        </p>
+                                    </div>
+                                </li>
+                                <div className='flex flex-col gap-1'>
+
+                                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded-lg">
+                                        <Link to={`/products/${product.id}`} key={product.id}>
+                                            tuotesivu
+                                        </Link>
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(product.id)}
+                                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2  mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                        poista
+                                    </button>
+                                </div>
+                            </div>
+
+                        ))}
+                    </ul>
+                ) : (
+                    <p>Ei tuotteita toivelistalla, vielä</p>
+                )}
+            </div>
+
         </div >
     );
 };
