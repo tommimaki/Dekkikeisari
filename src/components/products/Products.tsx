@@ -53,7 +53,7 @@ const Products = () => {
         setFilteredProductsCount((prev) => ({ ...prev, [key]: filteredProducts.length }));
     };
     return (
-        <div>
+        <div className="max-w-7xl mx-auto p-4">
             <Breadcrumb name={'Tuotteet'} />
             <Filters handleFilterChange={handleFilterChange} />
             <div>

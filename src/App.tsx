@@ -38,8 +38,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header />
       <div className="App">
-        <Header />
+
         <Routes>
 
           <Route path='/' element={<LandingPage />} />
@@ -84,8 +85,9 @@ function App() {
           <Route path="/admin/product-management" element={<ProductManagementProtected />} />
           <Route path="/admin/customer-management" element={<CustomerManagementProtected />} />
         </Routes>
+        {showScrollToTopArrow && <ScrollToTopArrow />}
       </div>
-      {showScrollToTopArrow && <ScrollToTopArrow />}
+
       <Footer />
     </BrowserRouter>
   );

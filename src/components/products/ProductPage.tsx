@@ -61,10 +61,12 @@ const ProductPage = () => {
 
             if (product) {
                 setShowAddedToWishlist(true)
+                setTimeout(() => setShowAddedToWishlist(false), 3000);
                 appDispatch(addToWishlist(product, userId));
             }
         } else {
-            return (setShowLoggedmessage(true))
+            setShowLoggedmessage(true)
+            setTimeout(() => setShowLoggedmessage(false), 3000);
         }
     };
 
