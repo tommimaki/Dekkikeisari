@@ -14,7 +14,7 @@ Backend repository here: https://github.com/tommimaki/dekkikeisari-Backend
 - Admin panel for managing products, orders, and customers
 - Responsive design
 
-## Frontend Technologies used
+## Frontend Technologies/libraries used
 
 - React
 - Redux
