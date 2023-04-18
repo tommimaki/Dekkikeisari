@@ -1,4 +1,5 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware, Action } from "@reduxjs/toolkit";
+import { ThunkAction, ThunkDispatch, ThunkMiddleware } from "redux-thunk";
 
 import { persistStore, persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
@@ -36,6 +37,15 @@ const store = configureStore({
 const persistor = persistStore(store);
 
 export type GetState = RootState;
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState> & PersistPartial;
 export { store, persistor };
+// export type AppDispatch = ThunkDispatch<RootState, null, Action>;
+export type AppDispatch = typeof store.dispatch;
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

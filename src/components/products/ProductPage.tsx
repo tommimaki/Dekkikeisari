@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Product from '../../interfaces/product';
 import { addToCart } from '../../features/cart/cartSlice';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Breadcrumb from '../layout/BreadCrumb';
 import CategoryProducts from './CategoryProducts';
+import { addToWishlist } from '../../features/wishlist/wishlistSlice';
+import { AppDispatch, RootState } from '../../store';
+
 
 const BASE_API_URL = process.env.REACT_APP_API_URL || 'def';
 
@@ -18,8 +21,9 @@ const ProductPage = () => {
     const dispatch = useDispatch();
     const [showAddedToCartMessage, setShowAddedToCartMessage] = useState(false);
     const [showSizeQuantityMessage, setShowSizeQuantityMessage] = useState(false);
-
-
+    const userId = useSelector((state: RootState) => state.user.user.id);
+    const appDispatch = useDispatch<AppDispatch>();
+    console.log(userId)
     useEffect(() => {
         const fetchProduct = async () => {
             const response = await fetch(`${BASE_API_URL}products/${id}`);
@@ -48,6 +52,11 @@ const ProductPage = () => {
         return <div>Loading...</div>;
     }
 
+    const handleAddToWishlist = () => {
+        if (product) {
+            appDispatch(addToWishlist(product, userId));
+        }
+    };
 
     let imageUrlsArray = [];
 
@@ -141,6 +150,13 @@ const ProductPage = () => {
                             >
                                 Lisää ostoskoriin
                             </button>
+                            <button
+                                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 self-center rounded mt-2"
+                                onClick={handleAddToWishlist}
+                            >
+                                Lisää toivelistalle
+                            </button>
+
                             {showAddedToCartMessage && (
                                 <div className="mt-4 text-green-600  text-center">
                                     Tuote lisätty ostoskoriin!
