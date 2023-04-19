@@ -13,7 +13,6 @@ const Header = () => {
     const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    //conditional rendering for adminpanel if user is admin
     const user = useSelector((state: RootState) => state.user);
     const userRole = user.user?.role;
     const isAdmin = userRole === 'admin';

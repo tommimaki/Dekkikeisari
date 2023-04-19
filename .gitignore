@@ -13,6 +13,7 @@
 
 .env.development
 .env.production
+cypress.env.json
 # misc
 .DS_Store
 .env.local
