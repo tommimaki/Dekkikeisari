@@ -27,7 +27,7 @@ const Cart = ({ handleClose }: { handleClose: () => void }) => {
             <div className="flex items-center">
                 <button onClick={handleOpenCart} className="flex items-center">
                     <FaShoppingCart className="mr-2" />
-                    <span>({cartItems.length})</span>
+                    <span data-testid="cart-counter">({cartItems.length})</span>
                 </button>
             </div>
 

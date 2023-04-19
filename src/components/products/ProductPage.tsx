@@ -87,123 +87,124 @@ const ProductPage = () => {
 
 
     return (
+        <div className="max-w-7xl mx-auto p-4">
+            <div className='flex-col mb-10'>
+                <Breadcrumb category={product.category} name={product.name} />
 
-        <div className='flex-col mb-10'>
-            <Breadcrumb category={product.category} name={product.name} />
-
-            <div className=" mx-auto max-w-7xl px-4 flex flex-col items-center justify-center sm:px-6 lg:px-8">
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-6">
-                    <div className="sm:w-1/2 z-0 flex items-center justify-center lg:justify-start mb-8 sm:mb-0">
-                        <Carousel
-                            className="w-full"
-                            showStatus={false}
-                            showThumbs={false}
-                            infiniteLoop
-                            swipeable
-                            autoPlay
-                            interval={2000}
-                        >
-                            {imageUrlsArray.map((imageUrl: string, index: number) => (
-                                <div key={index}>
-                                    <img src={imageUrl} alt={`${product.name} ${index}`} />
-                                </div>
-                            ))}
-                        </Carousel>
-                    </div>
-                    <div className="sm:w-1/2">
-                        <h3 className="text-4xl text-center font-semibold mb-4">{product.name}</h3>
-                        <p className="text-gray-700 pb-2 border-b text-center ">{product.description}</p>
-                        <p className="text-black text-2xl mt-10 text-center lfont-bold mb-4">{product.price}€</p>
-                        <div className="flex gap-6 items-center  justify-center mb-4">
-                            {product.sizes && (
-                                <div>
-                                    <label htmlFor="size" className="block mb-2">
-                                        Koko
-                                    </label>
-                                    <select
-                                        id="size"
-                                        value={selectedSize}
-                                        onChange={(e) => setSelectedSize(e.target.value || "")}
-                                        className="w-24 border border-gray-300 p-2 rounded"
-                                    >
-                                        <option value="">Koko</option>
-                                        {(() => {
-                                            const parsedSizes = JSON.parse(product.sizes);
-                                            return parsedSizes.map((sizeString: string) => (
-                                                <option key={sizeString} value={sizeString}>
-                                                    {sizeString}
-                                                </option>
-                                            ));
-                                        })()}
-                                    </select>
-                                </div>
-                            )}
-                            <div>
-                                <label htmlFor="quantity" className="block mb-2">
-                                    Määrä
-                                </label>
-                                <input
-                                    type="number"
-                                    id="quantity"
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                    min={1}
-                                    className="w-24 border border-gray-300 p-2 rounded"
-                                />
-                            </div>
+                <div className=" mx-auto max-w-7xl px-4 flex flex-col items-center justify-center sm:px-6 lg:px-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-6">
+                        <div className="sm:w-1/2 z-0 flex items-center justify-center lg:justify-start mb-8 sm:mb-0">
+                            <Carousel
+                                className="w-full"
+                                showStatus={false}
+                                showThumbs={false}
+                                infiniteLoop
+                                swipeable
+                                autoPlay
+                                interval={2000}
+                            >
+                                {imageUrlsArray.map((imageUrl: string, index: number) => (
+                                    <div key={index}>
+                                        <img src={imageUrl} alt={`${product.name} ${index}`} />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
-                        <hr className='mb-2' />
-                        <div className="flex flex-col justify-center">
-                            <div className='flex gap-2 justify-center'>
-                                <button
-                                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
-                                    // disabled={!selectedSize}
-                                    onClick={handleAddToCart}
-                                >
-                                    Lisää ostoskoriin
-                                </button>
-                                <button
-                                    className="bg-green-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
-                                    onClick={handleAddToWishlist}
-                                >
-                                    Lisää toivelistalle
-                                </button>
+                        <div className="sm:w-1/2">
+                            <h3 className="text-4xl text-center font-semibold mb-4">{product.name}</h3>
+                            <p className="text-gray-700 pb-2 border-b text-center ">{product.description}</p>
+                            <p className="text-black text-2xl mt-10 text-center lfont-bold mb-4">{product.price}€</p>
+                            <div className="flex gap-6 items-center  justify-center mb-4">
+                                {product.sizes && (
+                                    <div>
+                                        <label htmlFor="size" className="block mb-2">
+                                            Koko
+                                        </label>
+                                        <select
+                                            id="size"
+                                            value={selectedSize}
+                                            onChange={(e) => setSelectedSize(e.target.value || "")}
+                                            className="w-24 border border-gray-300 p-2 rounded"
+                                        >
+                                            <option value="">Koko</option>
+                                            {(() => {
+                                                const parsedSizes = JSON.parse(product.sizes);
+                                                return parsedSizes.map((sizeString: string) => (
+                                                    <option key={sizeString} value={sizeString}>
+                                                        {sizeString}
+                                                    </option>
+                                                ));
+                                            })()}
+                                        </select>
+                                    </div>
+                                )}
+                                <div>
+                                    <label htmlFor="quantity" className="block mb-2">
+                                        Määrä
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="quantity"
+                                        value={quantity}
+                                        onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                        min={1}
+                                        className="w-24 border border-gray-300 p-2 rounded"
+                                    />
+                                </div>
                             </div>
-                            {showLoggedmessage && (
-                                <div className="mt-4 text-center text-red-600">
-                                    Kirjaudu sisään voidaksesi lisätä toivelistaan
+                            <hr className='mb-2' />
+                            <div className="flex flex-col justify-center">
+                                <div className='flex gap-2 justify-center'>
+                                    <button
+                                        className="addToCart bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
+                                        // disabled={!selectedSize}
+                                        onClick={handleAddToCart}
+                                    >
+                                        Lisää ostoskoriin
+                                    </button>
+                                    <button
+                                        className="addToWishlist bg-green-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
+                                        onClick={handleAddToWishlist}
+                                    >
+                                        Lisää toivelistalle
+                                    </button>
                                 </div>
-                            )}
+                                {showLoggedmessage && (
+                                    <div className="mt-4 text-center text-red-600">
+                                        Kirjaudu sisään voidaksesi lisätä toivelistaan
+                                    </div>
+                                )}
 
-                            {showAddedToWishlist && (
-                                <div className="mt-4 text-green-600  text-center">
-                                    Tuote lisätty toivelistalle, katso koko lista profiilistasi!
-                                </div>
-                            )}
+                                {showAddedToWishlist && (
+                                    <div className="mt-4 text-green-600  text-center">
+                                        Tuote lisätty toivelistalle, katso koko lista profiilistasi!
+                                    </div>
+                                )}
 
-                            {showAddedToCartMessage && (
-                                <div className="mt-4 text-green-600  text-center">
-                                    Tuote lisätty ostoskoriin!
-                                </div>
-                            )}
-                            {showSizeQuantityMessage && (
-                                <div className="mt-4 text-center text-red-600">
-                                    Valitse koko ja määrä!
-                                </div>
-                            )}
+                                {showAddedToCartMessage && (
+                                    <div className="mt-4 text-green-600  text-center">
+                                        Tuote lisätty ostoskoriin!
+                                    </div>
+                                )}
+                                {showSizeQuantityMessage && (
+                                    <div className="mt-4 text-center text-red-600">
+                                        Valitse koko ja määrä!
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
+                <CategoryProducts
+                    category={product.category}
+                    title={''}
+                    subheading="muita samanlaisia tuotteita"
+                    shouldRender={true}
+                    currentProductId={product.id}
+                />
+
+
             </div>
-            <CategoryProducts
-                category={product.category}
-                title={''}
-                subheading="muita samanlaisia tuotteita"
-                shouldRender={true}
-                currentProductId={product.id}
-            />
-
-
         </div>
     );
 
