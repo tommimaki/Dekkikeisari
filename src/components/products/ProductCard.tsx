@@ -74,14 +74,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 ))}
                             </div>
                         </div>
-
                         <button className="w-full md:w-28 md:h-110 md:self-end mt-2 md:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            <div className='flex justify-between'>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2zm0 0V4a2 2 0 012-2h2a2 2 0 012 2v1" />
-                                </svg>
-                                {product.price}€
-                            </div>
+                            <Link to={`/products/${product.id}`} key={product.id}>
+                                <div className='flex justify-between'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2zm0 0V4a2 2 0 012-2h2a2 2 0 012 2v1" />
+                                    </svg>
+                                    {product.price}€
+                                </div>
+                            </Link>
                         </button>
                     </div>
                 </div>

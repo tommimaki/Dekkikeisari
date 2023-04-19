@@ -113,7 +113,7 @@ const ProductPage = () => {
                     <div className="sm:w-1/2">
                         <h3 className="text-4xl text-center font-semibold mb-4">{product.name}</h3>
                         <p className="text-gray-700 pb-2 border-b text-center ">{product.description}</p>
-                        <p className="text-black text-xl mt-10 text-center lfont-bold mb-4">{product.price}€</p>
+                        <p className="text-black text-2xl mt-10 text-center lfont-bold mb-4">{product.price}€</p>
                         <div className="flex gap-6 items-center  justify-center mb-4">
                             {product.sizes && (
                                 <div>
@@ -154,20 +154,21 @@ const ProductPage = () => {
                         </div>
                         <hr className='mb-2' />
                         <div className="flex flex-col justify-center">
-
-                            <button
-                                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
-                                // disabled={!selectedSize}
-                                onClick={handleAddToCart}
-                            >
-                                Lisää ostoskoriin
-                            </button>
-                            <button
-                                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 self-center rounded mt-2"
-                                onClick={handleAddToWishlist}
-                            >
-                                Lisää toivelistalle
-                            </button>
+                            <div className='flex gap-2 justify-center'>
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
+                                    // disabled={!selectedSize}
+                                    onClick={handleAddToCart}
+                                >
+                                    Lisää ostoskoriin
+                                </button>
+                                <button
+                                    className="bg-green-500 hover:bg-blue-600 text-white font-bold py-2 px-4 self-center rounded"
+                                    onClick={handleAddToWishlist}
+                                >
+                                    Lisää toivelistalle
+                                </button>
+                            </div>
                             {showLoggedmessage && (
                                 <div className="mt-4 text-center text-red-600">
                                     Kirjaudu sisään voidaksesi lisätä toivelistaan
