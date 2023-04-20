@@ -98,7 +98,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
         return null;
     }
     return (
-        <div>
+        <div className='max-w-7xl mx-auto p-4'>
             {location.pathname === `/${category}` && <Breadcrumb category={'products'} name={category} />}
             <div className="py-8 mx-8">
                 <Link to={`/${category}`}>

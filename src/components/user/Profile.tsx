@@ -244,20 +244,20 @@ const Profile = () => {
                         {orders.length > 0 ? (
                             <ul>
                                 {orders.map((order) => (
-                                    <li
-                                        key={order.id}
-                                        className="p-4 mb-4 bg-gray-100 rounded shadow"
-                                    >
-                                        <p>
-                                            <strong>Tilaus ID:</strong> {order.id}
-                                        </p>
-                                        <p>
-                                            <strong>Summa:</strong> {order.total}€
-                                        </p>
-                                        <p>
-                                            <strong>Tilauksen status:</strong> {order.status}
-                                        </p>
-                                    </li>
+                                    <div key={order.id} className='p-4 mb-4 bg-gray-100 justify-between rounded shadow flex'>
+                                        <li
+                                        >
+                                            <p>
+                                                <strong>Tilaus ID:</strong> {order.id}
+                                            </p>
+                                            <p>
+                                                <strong>Summa:</strong> {order.total}€
+                                            </p>
+                                            <p>
+                                                <strong>Tilauksen status:</strong> {order.status}
+                                            </p>
+                                        </li>
+                                    </div>
                                 ))}
                             </ul>
                         ) : (
@@ -270,9 +270,9 @@ const Profile = () => {
                         {wishlist.length > 0 ? (
                             <ul>
                                 {wishlist.map((product: Product) => (
-                                    <div className='p-4 mb-4 bg-gray-100 justify-between rounded shadow flex'>
+                                    <div key={product.id} className='p-4 mb-4 bg-gray-100 justify-between rounded shadow flex'>
                                         <li
-                                            key={product.id}
+
                                         >
                                             <div>
                                                 <p>
