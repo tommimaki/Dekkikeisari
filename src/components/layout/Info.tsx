@@ -36,14 +36,17 @@ const Info = () => {
     };
     return (
         <div className=" bg-gray-700 text-white w-full p">
-            <div className="container mx-auto px-4 flex flex-col lg:gap-5 items-center  lg:flex-row  justify-between">
-                <div className="lg:w-1/2 mb-6 mx-6 items-center justify-center lg:mb-0">
-                    <h2 className="md:text-4xl text-2xl text-center font-semibold my-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
-                    <p className="text-white text-md text-center md:text-xl mb-4">
-                        Myymme streetwear-vaatteita ja skeittilautoja. Tee tilaus netissä tai tule moikkaamaan
-                        liikkeeseemme!
-                    </p>
-                    <section className="bg-white rounded lg:mb-10 mt-5 dark:bg-gray-900">
+            <div className="container mx-auto px-4 flex flex-col lg:gap-10  lg:flex-row  justify-between">
+                <div className="lg:w-1/2 flex flex-col mb-6 mx-6  gap-20 lg:mb-0">
+                    <div>
+
+                        <h2 className="md:text-4xl sm:mt-40 mt-10 text-4xl text-center font-semibold my-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
+                        <p className="text-white text-md text-center md:text-2xl text-xl mb-4">
+                            Myymme streetwear-vaatteita ja skeittilautoja. Tee tilaus netissä tai tule moikkaamaan
+                            liikkeeseemme!
+                        </p>
+                    </div>
+                    <section className="bg-white rounded mb-20 mt-5 dark:bg-gray-900">
                         <div className="py-4 px-4  max-w-screen-xl lg:py-8 lg:px-6">
                             <div className="mx-auto max-w-screen-md sm:text-center">
                                 <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl text-center dark:text-white">Tilaa Uutiskirjeemme!</h2>

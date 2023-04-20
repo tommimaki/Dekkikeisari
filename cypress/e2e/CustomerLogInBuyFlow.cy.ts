@@ -38,40 +38,40 @@ describe("End-to-end tests", () => {
     cy.get('[data-testid="cart-counter"]').should("have.text", "(1)");
   });
 
-  //   it("can complete the checkout flow", () => {
-  //     // Add a product to the cart
-  cy.contains("Tutustu valikoimaan").click();
-  cy.get(".product-card a").first().click();
-  cy.get("#size").select(1);
-  cy.get("#quantity").clear().type("1");
-  cy.contains("button", "Lisää ostoskoriin").click();
+  it("can complete the checkout flow", () => {
+    //     // Add a product to the cart
+    cy.contains("Tutustu valikoimaan").click();
+    cy.get(".product-card a").first().click();
+    cy.get("#size").select(1);
+    cy.get("#quantity").clear().type("1");
+    cy.contains("button", "Lisää ostoskoriin").click();
 
-  // Navigate to the checkout page
-  //     cy.get("#checkout-link").click();
-  //     cy.url().should("include", "/checkout");
+    // Navigate to the checkout page
+    //     cy.get("#checkout-link").click();
+    //     cy.url().should("include", "/checkout");
 
-  //     // Fill in shipping and payment details
-  //     // Replace the selectors with those that match your application
-  //     cy.get("#shipping-name").type("John Doe");
-  //     cy.get("#shipping-address").type("123 Main St");
-  //     cy.get("#payment-method").select("Credit Card");
-  //     cy.get("#card-number").type("4111111111111111");
-  //     cy.get("#card-expiration").type("12/24");
-  //     cy.get("#card-cvv").type("123");
+    //     // Fill in shipping and payment details
+    //     // Replace the selectors with those that match your application
+    //     cy.get("#shipping-name").type("John Doe");
+    //     cy.get("#shipping-address").type("123 Main St");
+    //     cy.get("#payment-method").select("Credit Card");
+    //     cy.get("#card-number").type("4111111111111111");
+    //     cy.get("#card-expiration").type("12/24");
+    //     cy.get("#card-cvv").type("123");
 
-  //     // Place the order
-  //     cy.get("#place-order-button").click();
-  //     cy.url().should("include", "/order-confirmation");
-  //   });
+    //     // Place the order
+    //     cy.get("#place-order-button").click();
+    //     cy.url().should("include", "/order-confirmation");
+    //   });
 
-  //   it("can view the order details in their profile after placing an order", () => {
-  // Complete the checkout process (as in the previous test)
+    //   it("can view the order details in their profile after placing an order", () => {
+    // Complete the checkout process (as in the previous test)
 
-  // // Navigate to the user profile page
-  // cy.get("#user-profile-link").click();
-  // cy.url().should("include", "/profile");
+    // // Navigate to the user profile page
+    // cy.get("#user-profile-link").click();
+    // cy.url().should("include", "/profile");
 
-  // // Check if the order is displayed in the user's order history
-  // cy.get(".order-item").its("length").should("be.gte", 1);
-  //   });
+    // // Check if the order is displayed in the user's order history
+    // cy.get(".order-item").its("length").should("be.gte", 1);
+  });
 });
