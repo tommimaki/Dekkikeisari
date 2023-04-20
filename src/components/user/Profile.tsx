@@ -272,7 +272,6 @@ const Profile = () => {
                                 {wishlist.map((product: Product) => (
                                     <div key={product.id} className='p-4 mb-4 bg-gray-100 justify-between rounded shadow flex'>
                                         <li
-
                                         >
                                             <div>
                                                 <p>
