@@ -35,12 +35,12 @@ const Info = () => {
         }
     };
     return (
-        <div className=" bg-gray-700 text-white w-full p">
+        <div className=" bg-gray-700 text-white w-full ">
             <div className="container mx-auto px-4 flex flex-col lg:gap-10  lg:flex-row  justify-between">
                 <div className="lg:w-1/2 flex flex-col mb-6 mx-6  gap-20 lg:mb-0">
                     <div>
 
-                        <h2 className="md:text-4xl sm:mt-40 mt-10 text-4xl text-center font-semibold my-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
+                        <h2 className="md:text-4xl sm:mt-20 mt-10 text-4xl text-center font-semibold my-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
                         <p className="text-white text-md text-center md:text-2xl text-xl mb-4">
                             Myymme streetwear-vaatteita ja skeittilautoja. Tee tilaus netissä tai tule moikkaamaan
                             liikkeeseemme!

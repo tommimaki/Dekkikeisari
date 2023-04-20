@@ -1,3 +1,4 @@
+//test for registered user to sign in, add product to cart, checkout and view the order on profile page
 describe("End-to-end tests", () => {
   beforeEach(() => {
     // Log in before each test
@@ -39,6 +40,8 @@ describe("End-to-end tests", () => {
   });
 
   it("can complete the checkout flow", () => {
+    let orderId;
+    cy.intercept("POST", "/orders").as("createOrder");
     //     // Add a product to the cart
     cy.contains("Tutustu valikoimaan").click();
     cy.get(".product-card a").first().click();
@@ -46,32 +49,53 @@ describe("End-to-end tests", () => {
     cy.get("#quantity").clear().type("1");
     cy.contains("button", "Lisää ostoskoriin").click();
 
+    // open cart
+    //open hamburger menu if testing in small screen
+    cy.get("[data-testid='hamburger-menu-button']").then(($button) => {
+      if ($button.is(":visible")) {
+        // Open the hamburger menu
+        cy.get("[data-testid='hamburger-menu-button']").click();
+      }
+    });
+    cy.get("[data-testid='cart-button']").click();
+
     // Navigate to the checkout page
-    //     cy.get("#checkout-link").click();
-    //     cy.url().should("include", "/checkout");
+    cy.contains("button", "Checkout").click();
+    cy.url().should("include", "/checkout");
 
-    //     // Fill in shipping and payment details
-    //     // Replace the selectors with those that match your application
-    //     cy.get("#shipping-name").type("John Doe");
-    //     cy.get("#shipping-address").type("123 Main St");
-    //     cy.get("#payment-method").select("Credit Card");
-    //     cy.get("#card-number").type("4111111111111111");
-    //     cy.get("#card-expiration").type("12/24");
-    //     cy.get("#card-cvv").type("123");
+    // Fill in shipping and payment details
+    //info prefilled for customer logged in and saved data
+    // cy.get("input[placeholder='Name']").type("John Doe");
+    // cy.get("input[placeholder='Email']").type("john.doe@example.com");
+    // cy.get("input[placeholder='Address']").type("123 Main St");
 
-    //     // Place the order
-    //     cy.get("#place-order-button").click();
-    //     cy.url().should("include", "/order-confirmation");
-    //   });
+    // Select a delivery method
+    cy.get("input[name='delivery-option']").first().check();
 
-    //   it("can view the order details in their profile after placing an order", () => {
-    // Complete the checkout process (as in the previous test)
+    // Place the order
+    cy.get("button[type='submit']").click();
 
-    // // Navigate to the user profile page
-    // cy.get("#user-profile-link").click();
-    // cy.url().should("include", "/profile");
+    cy.contains("Tilaus Vastaanotettu!").should("be.visible");
 
-    // // Check if the order is displayed in the user's order history
-    // cy.get(".order-item").its("length").should("be.gte", 1);
+    // Waiting for the network request and capture the response
+    cy.wait("@createOrder").then((interception) => {
+      const orderId = interception.response?.body?.orderId ?? null;
+      console.log("Order ID:", orderId);
+
+      cy.get("[data-testid='hamburger-menu-button']").then(($button) => {
+        if ($button.is(":visible")) {
+          cy.get("[data-testid='hamburger-menu-button']").click();
+        }
+      });
+
+      // Navigate to the profile page
+      cy.contains("Profiili").click();
+      cy.url().should("include", "/profile");
+
+      cy.get(`li:contains('Tilaus ID: ${orderId}')`).should(
+        "contain",
+        `Tilaus ID: ${orderId}`
+      );
+    });
   });
 });

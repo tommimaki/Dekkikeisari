@@ -45,6 +45,8 @@ const Header = () => {
                     <button
                         onClick={toggleMenu}
                         className="block lg:hidden text-white focus:outline-none"
+                        data-testid="hamburger-menu-button"
+
                     >
                         {showMenu ? (
                             ""
@@ -92,11 +94,11 @@ const Header = () => {
                             </Link>
 
                             {isLoggedIn ? (
-                                <div>
+                                <div className="">
                                     <Link
                                         to="/profile"
                                         onClick={() => setShowMenu(false)}
-                                        className={`block ${showMenu ? "mt-10" : "mt-0"} lg:inline-block  mr-10 text-white hover:text-gray-400`}
+                                        className={`block ${showMenu ? "mt-10" : "mt-3"} lg:inline-block   mr-10 text-white hover:text-gray-400`}
                                     >
                                         Profiili
                                         {showMenu && <hr className="mb-5" />}
