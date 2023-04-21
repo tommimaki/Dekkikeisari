@@ -8,7 +8,12 @@ describe("End-to-end tests", () => {
     cy.get("#email").type(email);
     cy.get("#password").type(password);
     cy.get('button[type="submit"]').click();
-    cy.url().should("include", "/");
+    // checking that user is logged in
+    cy.window().its("localStorage.token").should("exist");
+    cy.window().then((win) => {
+      const token = win.localStorage.token;
+      cy.log(`Login successful: ${token}`);
+    });
   });
 
   it("can navigate to the product page after login", () => {
@@ -32,24 +37,24 @@ describe("End-to-end tests", () => {
 
     cy.get("h3.text-4xl.text-center.font-semibold.mb-4").then(($title) => {
       const productName = $title.text().trim();
-      // Add the product to the wishlist
+      // Adding the product to the wishlist
       cy.contains("button", "Lisää toivelistalle").click();
       // Check that the product has been added to the wishlist
 
-      //open hamburger menu if there
+      //opening hamburger menu if there
       cy.get("[data-testid='hamburger-menu-button']").then(($button) => {
         if ($button.is(":visible")) {
           cy.get("[data-testid='hamburger-menu-button']").click();
         }
       });
 
-      // Navigate to the profile page
+      // Navigating to the profile page
       cy.contains("Profiili").click();
       cy.url().should("include", "/profile");
       //is the product there
       cy.contains("Sinun Toivelista").click();
 
-      // Check if the added product is in the wishlist
+      // Checking if the added product is in the wishlist
       cy.get("div.bg-gray-100 p")
         .filter((_index, el) => {
           return el.querySelector("strong")?.innerText === "Nimi:";
@@ -67,6 +72,7 @@ describe("End-to-end tests", () => {
             .contains("button", "poista")
             .click();
 
+          //waiting for dom to update the deletion
           cy.wait(500);
 
           cy.get("div.bg-gray-100 p").then(($remainingProductNames) => {
