@@ -10,7 +10,7 @@ interface WishlistState {
 const initialState: WishlistState = {
   items: [],
 };
-// const dispatch = useDispatch();
+
 const BASE_API_URL = process.env.REACT_APP_API_URL || "def";
 export const wishlistSlice = createSlice({
   name: "wishlist",
@@ -27,7 +27,6 @@ export const wishlistSlice = createSlice({
 
 export const { setWishlist, addItemToWishlist } = wishlistSlice.actions;
 
-// wishlistSlice.ts
 export const addToWishlist =
   (product: Product, userId: number): AppThunk =>
   async (dispatch) => {

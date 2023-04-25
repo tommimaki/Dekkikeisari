@@ -15,8 +15,6 @@ const OrderList: React.FC = () => {
         status: '',
     });
 
-
-
     useEffect(() => {
         const fetchOrders = async () => {
             try {

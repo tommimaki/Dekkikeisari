@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { ProductInOrder } from "../../interfaces/order";
 
-Modal.setAppElement("#root"); // Replace #root with the id of your root element
+Modal.setAppElement("#root");
 
 const ProductCell: React.FC<{ value: ProductInOrder[] }> = (params) => {
   const [isOpen, setIsOpen] = useState(false);

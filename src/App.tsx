@@ -40,10 +40,9 @@ function App() {
     <BrowserRouter>
       <Header />
       <div className="App">
-
         <Routes>
-
           <Route path='/' element={<LandingPage />} />
+          {/* todo  alla olevat omaan komponenttiin*/}
           <Route
             path='/skateboards'
             element={

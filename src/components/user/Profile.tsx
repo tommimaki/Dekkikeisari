@@ -204,7 +204,7 @@ const Profile = () => {
                                     Tallenna muutokset
                                 </button>
                                 <button
-                                    type="button"
+                                    // type="button"
                                     onClick={() => setIsEditing(false)}
                                     className="bg-gray-300 text-black px-4 py-2 ml-2 rounded hover:bg-gray-400 focus:outline-none"
                                 >

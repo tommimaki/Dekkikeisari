@@ -9,7 +9,7 @@ async function addProduct(product: any) {
 
     console.log(product)
     try {
-        // Log the FormData object's keys and values
+        // Logging the FormData object's keys and values
         product.forEach((value: any, key: string) => {
             console.log(`${key}: ${value}`);
         });
@@ -34,7 +34,6 @@ interface Props {
 
 const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
 
-    // const [image, setImage] = useState<File | null>(null);
     const [images, setImages] = useState<File[]>([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -43,11 +42,7 @@ const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [availableSizes, setAvailableSizes] = useState<string[]>([]);
 
-    //image stuff
-    // const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    //     const file = acceptedFiles[0];
-    //     setImage(file);
-    // }, []);
+
     const onDrop = useCallback(async (acceptedFiles: File[]) => {
         setImages((prevImages) => [...prevImages, ...acceptedFiles]);
     }, []);
@@ -165,7 +160,7 @@ const AddProductForm: React.FC<Props> = ({ onCloseModal }) => {
                         setSelectedSizes(Array.from(e.target.selectedOptions, (option) => option.value))
                     }
                     className="mt-1 w-full border border-gray-300 rounded p-2"
-                    multiple // allow selecting multiple options
+                    multiple // allowing selecting multiple options
                 >
                     {availableSizes.map((size) => (
                         <option key={size} value={size}>

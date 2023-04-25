@@ -12,7 +12,7 @@ import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 const middleware = getDefaultMiddleware({
   serializableCheck: {
-    ignoredActions: ["persist/PERSIST"], // ignore the non-serializable action
+    ignoredActions: ["persist/PERSIST"], 
   },
 });
 
@@ -37,10 +37,8 @@ const store = configureStore({
 const persistor = persistStore(store);
 
 export type GetState = RootState;
-// export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState> & PersistPartial;
 export { store, persistor };
-// export type AppDispatch = ThunkDispatch<RootState, null, Action>;
 export type AppDispatch = typeof store.dispatch;
 
 export type AppThunk<ReturnType = void> = ThunkAction<

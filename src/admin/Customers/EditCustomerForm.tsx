@@ -10,7 +10,6 @@ interface EditCustomerProps {
 }
 
 const EditCustomer: React.FC<EditCustomerProps> = ({ customer, onCloseModal, onCustomerUpdated }) => {
-    // const [updatedCustomer, setUpdatedCustomer] = useState<Customer>(customer);
     const [updatedCustomer, setUpdatedCustomer] = useState<Customer>({
         ...customer,
         name: customer.name || '',

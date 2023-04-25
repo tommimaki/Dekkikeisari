@@ -36,7 +36,7 @@ const SignIn = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
-                localStorage.setItem('token', data.token); // Store the token in local storage
+                localStorage.setItem('token', data.token); // Storing the token in local storage
                 dispatch(login());
 
                 const userData = await fetchUserData(data.token);
@@ -45,7 +45,7 @@ const SignIn = () => {
                     dispatch(setUser(userData));
                 }
 
-                navigate('/'); // redirect to dashboard page
+                navigate('/'); // redirecting to dashboard page
             } else {
                 const error = await response.json();
                 console.log('Login failed:', error);
@@ -73,7 +73,6 @@ const SignIn = () => {
 
             if (response.ok) {
                 const userData = await response.json();
-                // console.log('User data:', userData);
                 return userData;
             } else {
                 const error = await response.json();
@@ -102,7 +101,7 @@ const SignIn = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
-                localStorage.setItem('token', data.token); // Store the token in local storage
+                localStorage.setItem('token', data.token); // Storing the token in local storage
                 dispatch(login());
 
                 const userData = await fetchUserData(data.token);
@@ -110,7 +109,7 @@ const SignIn = () => {
                 if (userData) {
                     dispatch(setUser(userData));
                 }
-                navigate('/'); // redirect to dashboard page
+                navigate('/'); // redirecting to dashboard page
             } else {
                 const error = await response.json();
                 console.log('Login failed:', error);
