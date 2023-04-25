@@ -29,9 +29,5 @@ Backend repository here: https://github.com/tommimaki/dekkikeisari-Backend
 - Axios
 - ag-Grid
 
-
-
 License
 MIT
-
-

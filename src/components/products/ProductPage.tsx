@@ -27,7 +27,7 @@ const ProductPage = () => {
     const user = useSelector((state: RootState) => state.user);
 
     const appDispatch = useDispatch<AppDispatch>();
-    console.log(user)
+
     useEffect(() => {
         const fetchProduct = async () => {
             const response = await fetch(`${BASE_API_URL}products/${id}`);
