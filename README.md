@@ -44,7 +44,7 @@ MIT -->
 
 ![products page](src/assets/products.png)
 ![admin page](src/assets/admin.png)
-![Architecture Image](uploads/archfr.png)
+![Architecture Image](src/assets/archfr.png)
 
 ## Table of Contents
 
