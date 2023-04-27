@@ -26,6 +26,7 @@
 
 - React: A JavaScript library for building user interfaces
 - Redux: A state management library for JavaScript applications
+- Frontend tests done with Cypress
 - TypeScript: A typed superset of JavaScript that adds static types
 - Tailwind CSS: A utility-first CSS framework for rapid UI development
 - React Router DOM: Declarative routing for React
