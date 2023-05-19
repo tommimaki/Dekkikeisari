@@ -36,8 +36,8 @@ const Info = () => {
     };
     return (
         <div className=" bg-gray-700 text-white w-full ">
-            <div className="container mx-auto px-4 flex flex-col lg:gap-10  lg:flex-row  justify-between">
-                <div className="lg:w-1/2 flex flex-col mb-6 mx-6  gap-20 lg:mb-0">
+            <div className="container mx-auto px-4 flex flex-col lg:gap-10  xl:flex-row  justify-between">
+                <div className="xl:w-1/2 flex flex-col mb-6 mx-6  gap-5 lg:gap-8 lg:mb-0">
                     <div>
 
                         <h2 className="md:text-4xl sm:mt-20 mt-10 text-4xl text-center font-semibold my-4">Moikka, olemme Dekkikeisari, skeittikauppa stadista!</h2>
@@ -79,7 +79,7 @@ const Info = () => {
                     </section>
 
                 </div>
-                <div className="w-full lg:w-1/2 lg:mt-20  mb-10 lg:mx-0">
+                <div className="w-full xl:w-1/2 lg:mt-20  mb-10 lg:mx-0">
                     <div className="bg-white p-4 rounded-lg shadow-md">
                         <div className="flex items-center">
                             <FaMapMarkerAlt className="text-red-600 mr-2" />

@@ -17,14 +17,12 @@ describe("End-to-end tests", () => {
   });
 
   it("can navigate to the product page after login", () => {
-    // Find the link element with text "Tuotteet" and click on it
     cy.contains("Tutustu valikoimaan").click();
     // Verify that the URL includes "/products"
     cy.url().should("include", "/products");
   });
 
   it("can click on a product and see the product details page", () => {
-    // Click on the link to go to the product details page
     cy.get(".product-card a").first().click();
     // Verify that the URL contains '/product/'
     cy.url().should("match", /\/products\/\d+/);

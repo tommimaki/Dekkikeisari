@@ -79,7 +79,7 @@ const Filters = ({ handleFilterChange }: FiltersProps) => {
                             id="search"
                             type="text"
                             onChange={(event) => handleFilterChange('search', event.target.value)}
-                            className="block w-full p-2.5 rounded-lg border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="block w-full p-2.5 rounded-lg border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
                         <FaSearch className="absolute right-2 top-3.5 text-white pointer-events-none" />
                     </div>

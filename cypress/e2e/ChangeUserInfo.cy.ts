@@ -5,6 +5,7 @@ describe("End-to-end tests", () => {
     // Log in before each test
     const email = Cypress.env("TestMail");
     const password = Cypress.env("TestSalis");
+
     cy.visit("http://localhost:3000/signin");
     cy.get("#email").type(email);
     cy.get("#password").type(password);

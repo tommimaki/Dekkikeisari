@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     return (
         <div className="flex justify-center product-card h-full">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
+            <div className="max-w-sm  border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
                 <div className="flex flex-col">
                     <Carousel
                         className="rounded-t-lg"
@@ -67,10 +67,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <div className="py-1 px-4">
                     <div className="flex flex-col md:flex-row justify-between  mb-3">
                         <div className="flex flex-col flex-start">
-                            <p className="text-sm sm:text-base text-left text-white mb-2">Koot:</p>
+                            <p className="text-sm sm:text-base text-left dark:text-white mb-2">Koot:</p>
                             <div className="flex flex-wrap">
                                 {sizes.map((size: string, index: number) => (
-                                    <span key={index} className="text-sm sm:text-base mr-2 mb-1 font-semibold text-white">{size}</span>
+                                    <span key={index} className="text-sm sm:text-base mr-2 mb-1 font-semibold dark:text-white">{size}</span>
                                 ))}
                             </div>
                         </div>

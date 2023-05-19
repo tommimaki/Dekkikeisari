@@ -12,7 +12,7 @@ import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 const middleware = getDefaultMiddleware({
   serializableCheck: {
-    ignoredActions: ["persist/PERSIST"], 
+    ignoredActions: ["persist/PERSIST"],
   },
 });
 
